@@ -1,0 +1,13 @@
+.login-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-flow: column;
+    width: 20%;
+    padding: 50px;
+    background-color: #eca2a2;
+    border-radius: 10px;
+    color: #fff;
+}
