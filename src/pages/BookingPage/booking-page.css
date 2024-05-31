@@ -1,0 +1,46 @@
+.booking-container {
+    padding: 20px;
+}
+
+.booking-main {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.booking-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.booking-attribute-container {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    align-items: center;
+}
+
+.booking-attribute {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.booking-main header {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0d2554;
+}
+
+.booking-attribute input {
+    border: none;
+    outline: none;
+    box-shadow: rgba(13, 37, 84, 0.635) 0px 1px;
+    font-size: 20px;
+    width: 300px;
+}
+
+.booking-attribute input:focus {
+    box-shadow: rgb(0, 4, 12)0px 1.5px;
+}

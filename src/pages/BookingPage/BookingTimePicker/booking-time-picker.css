@@ -1,0 +1,35 @@
+/* Custom styles for the Select component */
+.booking-time-picker {
+    width: 300px; /* Set the width of the Select component */
+    border: 0.5px solid black;
+    border-radius: 5px;
+}
+
+.booking-time-picker svg {
+    color: black;
+}
+
+/* Custom styles for the dropdown menu */
+.select__menu {
+    border-radius: 4px; /* Add border-radius to the dropdown menu */
+    box-shadow: 0 0 4px rgba(0, 0, 0, 1); /* Add box-shadow to the dropdown menu */
+}
+
+/* Custom styles for the options */
+.select__option {
+    padding: 8px 12px; /* Add padding to the options */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Custom styles for the selected value */
+.select__single-value {
+    color: #333; /* Change the color of the selected value */
+    font-weight: bold; /* Make the selected value bold */
+}
+
+/* Custom styles for the input field */
+.select__input input {
+    border: 1px solid #ccc; /* Add border to the input field */
+    border-radius: 4px; /* Add border-radius to the input field */
+    padding: 8px; /* Add padding to the input field */
+}
