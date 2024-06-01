@@ -101,9 +101,9 @@
     gap: 10px;
 }
 
-.service-page-extra-left button {
+.service-page-extra-left a {
     align-items: center;
-    background-color: #fff2f1;
+    background: #fff2f1;
     border: 0.5px solid #111;
     border-radius: 8px;
     box-sizing: border-box;
@@ -125,13 +125,15 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     margin-top: 50px;
+    text-decoration: none;
+    transition: background ease 0.3s;
 }
 
-.service-page-extra-left button:hover {
+.service-page-extra-left a:hover {
     background-color: #fededc;
 }
 
-.service-page-extra-left button:active {
+.service-page-extra-left a:active {
     background-color: #ffe8e6;
     outline: 0;
 }

@@ -9,7 +9,7 @@ const EmptyLayout = () => {
             sx={{
                 backgroundImage: `url(${backgroundImage})`,
                 height: "100vh",
-                backgroundRepeat: "repeat-y", // Make background repeat vertically
+                backgroundRepeat: "repeat-y",
             }}
         >
             <Outlet />
