@@ -1,0 +1,27 @@
+.hero-section {
+    background-color: #1976d2; /* Material-UI primary main color */
+    color: white;
+    padding: 64px 0;
+    text-align: center;
+    background-image: url(https://images.pexels.com/photos/17802936/pexels-photo-17802936/free-photo-of-cute-cat-sleeping-in-pet-bath.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-size:auto;
+    background-position: center;
+    object-fit: fill;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+    color: black;
+    font-style: oblique;
+  }
+  
+  .section {
+    padding: 64px 0;
+  }
+  
+  .avatar-large {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 16px;
+  }
