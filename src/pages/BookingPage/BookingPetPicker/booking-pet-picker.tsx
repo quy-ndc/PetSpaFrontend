@@ -35,7 +35,7 @@ const BookingPetPicker: React.FC<BookingPetPickerProps> = ({value, onChange}) =>
                 isSearchable={isSearchable}
                 name="color"
                 options={options}
-                placeholder="Choose a time..."
+                placeholder="Choose a pet..."
                 onChange={onChange}
                 value={options.find(option => option.value === value)}
             />

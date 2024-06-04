@@ -60,82 +60,91 @@ const BookingPage: React.FC = () => {
         <>
             <div className="booking-container">
                 <div className="booking-main">
-                    <div className="booking-inner">
-                        <h2>How should we contact you</h2>
-                        <div className="booking-attribute-container">
-                            <div className="booking-attribute">
-                                <div>Full name</div>
-                                <input
-                                    type="text"
-                                    value={fullname}
-                                    onChange={handleFullnameChange}
-                                />
+                    <section className="booking-section">
+                        <div className="booking-inner">
+                            <h2>How should we contact you</h2>
+                            <div className="booking-attribute-container">
+                                <div className="booking-attribute">
+                                    <div>Full name</div>
+                                    <input
+                                        type="text"
+                                        value={fullname}
+                                        onChange={handleFullnameChange}
+                                    />
+                                </div>
+                                <div className="booking-attribute">
+                                    <div>Email</div>
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={handleEmailChange}
+                                    />
+                                </div>
+                                <div className="booking-attribute">
+                                    <div>Phone</div>
+                                    <input
+                                        type="number"
+                                        value={phone}
+                                        onChange={handlePhoneChange}
+                                    />
+                                </div>
                             </div>
-                            <div className="booking-attribute">
-                                <div>Email</div>
-                                <input
-                                    type="email"
-                                    value={email}
-                                    onChange={handleEmailChange}
-                                />
+                        </div>
+                        <div className="booking-inner">
+                            <h2>Which of your pet is this service for</h2>
+                            <div className="booking-attribute-container">
+                                <div className="booking-attribute">
+                                    <BookingPetPicker
+                                        value={pet}
+                                        onChange={handlePetChange}
+                                    />
+                                </div>
                             </div>
-                            <div className="booking-attribute">
-                                <div>Phone</div>
-                                <input
-                                    type="number"
-                                    value={phone}
-                                    onChange={handlePhoneChange}
+                        </div>
+                    </section>
+
+                    <section className="booking-section">
+                        <div className="booking-inner">
+                            <h2>When do you want this appointment</h2>
+                            <div className="booking-date-container">
+                                <BookingDatePicker
+                                    value={date}
+                                    onChange={setDate}
+                                />
+                                <BookingTimePicker
+                                    value={time}
+                                    onChange={setTime}
                                 />
                             </div>
                         </div>
-                    </div>
-                    <div className="booking-inner">
-                        <h2>When do you want this appointment</h2>
-                        <div className="booking-attribute-container">
-                            <BookingDatePicker
-                                value={date}
-                                onChange={setDate}
-                            />
-                            <BookingTimePicker
-                                value={time}
-                                onChange={setTime}
-                            />
-                        </div>
-                    </div>
-                    <div className="booking-inner">
-                        <h2>What type of service/combo do you want</h2>
-                        <div className="booking-attribute-container">
-                            <div className="booking-attribute">
-                                <BookingServicePicker
-                                    onChange={handleServiceChange}
-                                />
+                        <div className="booking-inner">
+                            <h2>What type of service/combo do you want</h2>
+                            <div className="booking-attribute-container">
+                                <div className="booking-attribute">
+                                    <BookingServicePicker
+                                        onChange={handleServiceChange}
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="booking-inner">
-                        <h2>Do you want to assign a specific doctor</h2>
-                        <div className="booking-attribute-container">
-                            <div className="booking-attribute">
-                                <BookingDoctorPicker
-                                    value={doctor}
-                                    onChange={handleDoctorChange}
-                                />
+                        <div className="booking-inner">
+                            <h2>Do you want to assign a specific doctor</h2>
+                            <div className="booking-attribute-container">
+                                <div className="booking-attribute">
+                                    <BookingDoctorPicker
+                                        value={doctor}
+                                        onChange={handleDoctorChange}
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="booking-inner">
-                        <h2>Which of your pet is this service for</h2>
-                        <div className="booking-attribute-container">
-                            <div className="booking-attribute">
-                                <BookingPetPicker
-                                    value={pet}
-                                    onChange={handlePetChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    </section>
+                </div >
+                <div className="booking-action">
+                    <button>Confirm</button>
+                    <button>Cancel</button>
                 </div>
-            </div>
+            </div >
         </>
     );
 };
