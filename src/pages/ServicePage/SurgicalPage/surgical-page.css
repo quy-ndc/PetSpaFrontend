@@ -1,5 +1,5 @@
 .surgical-page-banner {
-    background-image: url("https://aescparker.com/wp-content/uploads/2019/01/pet-surgery.jpg");
+    background-image: url("../../../assets/images/surgical-page-banner.jpg");
     width: 100%;
     height: 400px;
     object-fit: fill;
@@ -24,8 +24,13 @@
 }
 
 .surgical-page-banner p {
-    color: #fff;
-    font-size: 20px;
+    color: white;
+    font-size: 22px;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
 }
 
 .surgical-page-service {

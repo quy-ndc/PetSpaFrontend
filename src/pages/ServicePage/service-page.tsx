@@ -1,7 +1,11 @@
 import React from "react";
 import "./service-page.css";
 import { Link } from "react-router-dom";
-
+import catImage from "../../assets/images/cat-png.png";
+import clinicalImage from "../../assets/images/clinical-image.jpg"
+import surgicalImage from "../../assets/images/surgical-image.jpg"
+import hoslisticImage from "../../assets/images/hoslistic-image.jpg"
+import groomingImage from "../../assets/images/grooming-image.jpg"
 
 const ServicePage: React.FC = () => {
 
@@ -16,7 +20,7 @@ const ServicePage: React.FC = () => {
                 <div className="service-display-container">
                     <Link to="clinical" className="service-display-item">
                         <div className="service-item-image">
-                            <img src="https://www.vetmed.com.au/wp-content/uploads/2018/02/golden-retriever-on-surgical-bench-min-1080x675.jpg" />
+                            <img src={clinicalImage} />
                         </div>
                         <div className="service-item-content">
                             <h3>Clinical</h3>
@@ -28,7 +32,7 @@ const ServicePage: React.FC = () => {
                     </Link>
                     <Link to="surgical" className="service-display-item">
                         <div className="service-item-image">
-                            <img src="https://lh4.googleusercontent.com/proxy/A7J3HnQXcZ9RL84RCvaS2gNnmjFZE9MFHvN6kOqkXWoZ-BM9jjO2g_9Ad2G4m6jjrmbbyDFxv9eE48bX0y1XVZML6_TfSxHq0Sl8ug-0a3KUfd6-BQLQRAJug-Y" />
+                            <img src={surgicalImage} />
                         </div>
                         <div className="service-item-content">
                             <h3>Surgical</h3>
@@ -40,7 +44,7 @@ const ServicePage: React.FC = () => {
                     </Link>
                     <Link to="hoslistic" className="service-display-item">
                         <div className="service-item-image">
-                            <img src="https://theanimaldoctors.org/wp-content/uploads/2023/05/IMG_2038-scaled.jpg" />
+                            <img src={hoslisticImage} />
                         </div>
                         <div className="service-item-content">
                             <h3>Hoslistic therapy</h3>
@@ -52,7 +56,7 @@ const ServicePage: React.FC = () => {
                     </Link>
                     <Link to="grooming" className="service-display-item">
                         <div className="service-item-image">
-                            <img src="https://vuanem.com/blog/wp-content/uploads/2023/03/grooming-nghia-la-gi.jpg" />
+                            <img src={groomingImage} />
                         </div>
                         <div className="service-item-content">
                             <h3>Grooming</h3>
@@ -76,7 +80,7 @@ const ServicePage: React.FC = () => {
                     <Link to="pricing">See pricing</Link>
                 </div>
                 <div className="service-page-extra-right">
-                    <img src="https://cdn.discordapp.com/attachments/923178092644687882/1246132584769912842/sitting-sweety-cat-looking-aside-600nw-2323092103-removebg-preview.png?ex=665b46e8&is=6659f568&hm=5a5a54c814bcfa7d3ec01005299f5b4949d69dc4ab5ba8b8a50ff5f75767c70d&" />
+                    <img src={catImage} />
                 </div>
             </section>
         </>

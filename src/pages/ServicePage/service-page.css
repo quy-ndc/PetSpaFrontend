@@ -84,6 +84,7 @@
     position: relative;
     justify-content: space-evenly;
     margin-top: 90px;
+    border-radius: 30px;
 }
 
 .service-page-extra-left {

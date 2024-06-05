@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./surgical-page.css";
 import { Link } from "react-router-dom";
+import neuteringImage from "../../../assets/images/neutering-image.png";
+import dentistryImage from "../../../assets/images/dentistry-image.png";
+import softTissueImage from "../../../assets/images/soft-tissue-image.png";
+import massRemovalImage from "../../../assets/images/mass-removal-image.png";
+import orthopedicImage from "../../../assets/images/orthopedic-image.png";
 
 
 const SurgicalPage: React.FC = () => {
@@ -11,27 +16,27 @@ const SurgicalPage: React.FC = () => {
         {
             title: "Neutering",
             description: "Spaying and neutering are vital procedures in responsible pet care. Spaying is the surgical removal of a female animal's reproductive organs, while neutering refers to the same procedure in males. These surgeries prevent unwanted litters, reduce the risk of certain cancers, and curb behavioral issues.",
-            imgSrc: "https://theanimaldoctors.org/wp-content/uploads/2023/05/spay_optimized-1.png"
+            imgSrc: neuteringImage
         },
         {
             title: "Dentistry",
             description: "Dentistry in pet care involves maintaining optimal oral health for animals. Regular dental check-ups, cleanings, and treatments like extractions ensure healthy teeth and gums, preventing pain, infections, and potential systemic health issues related to dental disease.",
-            imgSrc: "https://www.theanimaldoctors.org/wp-content/uploads/2023/05/dental_optimized-1.png"
+            imgSrc: dentistryImage
         },
         {
             title: "Soft-tissure surgery",
             description: "Soft tissue surgery in pet care addresses various non-bony structures, including organs, muscles, and skin. Procedures like tumor removals, abdominal surgeries, and wound repairs aim to treat conditions such as tumors, gastrointestinal issues, and trauma, promoting pets' overall well-being and quality of life.",
-            imgSrc: "https://theanimaldoctors.org/wp-content/uploads/2023/05/soft-tissue_optimized-1.png"
+            imgSrc: softTissueImage
         },
         {
             title: "Mass Removal",
             description: "Mass removal surgery in pet care involves excising abnormal growths or tumors. It's crucial for diagnosing and treating potentially malignant masses, ensuring pets' health and comfort. These surgeries often require precision and care to minimize risks and promote swift recovery for the animal.",
-            imgSrc: "https://theanimaldoctors.org/wp-content/uploads/2023/05/mass_optimized-1.png"
+            imgSrc: massRemovalImage
         },
         {
             title: "Orthopedic surgery",
             description: "Orthopedic surgery for pets addresses musculoskeletal issues like fractures or ligament tears. It restores mobility and alleviates pain, enhancing pets' quality of life. Skilled veterinary surgeons use specialized techniques and tools to ensure effective treatment and support pets' healing process.",
-            imgSrc: "https://www.theanimaldoctors.org/wp-content/uploads/2023/05/ortho_optimized.png"
+            imgSrc: orthopedicImage
         }
     ];
 

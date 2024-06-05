@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import "./Register.css";
+import "./register.css";
 import { Box, TextField, Button, Typography } from "@mui/material";
 
 type Inputs = {

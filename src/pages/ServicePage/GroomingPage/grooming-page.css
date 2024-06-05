@@ -1,0 +1,34 @@
+.grooming-page-banner {
+    background-image: url("../../../assets/images/grooming-page-banner.png");
+    width: 100%;
+    height: 400px;
+    object-fit: fill;
+    align-items: center;
+    background-size: cover;
+    background-position: center 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.grooming-page-banner h2 {
+    font-size: 60px;
+    margin: 20px 0px 0px 20px;
+    color: #fff;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+.grooming-page-banner p {
+    color: white;
+    font-size: 22px;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}

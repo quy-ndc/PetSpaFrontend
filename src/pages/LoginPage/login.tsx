@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import "./Login.css";
+import "./login.css";
 import { Box, TextField, Button, Typography } from "@mui/material";
 
 type Inputs = {
