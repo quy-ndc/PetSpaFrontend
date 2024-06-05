@@ -5,6 +5,7 @@ import EmptyLayout from "./components/layout/EmptyLayout";
 import Login from "./pages/LoginPage/login";
 import Register from "./pages/RegisterPage/register";
 import BookingPage from "./pages/BookingPage/booking-page";
+import AboutUsPage from "./pages/AboutUsPage/about-us";
 import ServicePage from "./pages/ServicePage/service-page";
 import ClinicalPage from "./pages/ServicePage/ClinicalPage/clinical-page";
 import SurgicalPage from "./pages/ServicePage/SurgicalPage/surgical-page";
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/booking" element={<BookingPage />} />
+                <Route path="/about-us" element={<AboutUsPage />} />
                 <Route path="/service" element={<ServicePage />} />
                 <Route path="/service/clinical" element={<ClinicalPage />} />
                 <Route path="/service/surgical" element={<SurgicalPage />} />
