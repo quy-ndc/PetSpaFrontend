@@ -1,0 +1,10 @@
+/* Custom styles for the Select component */
+.booking-pet-picker {
+    width: 300px; /* Set the width of the Select component */
+    border: 0.5px solid black;
+    border-radius: 5px;
+}
+
+.booking-pet-picker svg {
+    color: black;
+}

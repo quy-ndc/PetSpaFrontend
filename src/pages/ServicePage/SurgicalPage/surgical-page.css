@@ -1,0 +1,174 @@
+.surgical-page-banner {
+    background-image: url("../../../assets/images/surgical-page-banner.jpg");
+    width: 100%;
+    height: 400px;
+    object-fit: fill;
+    align-items: center;
+    background-size: cover;
+    background-position: center 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.surgical-page-banner h2 {
+    font-size: 60px;
+    margin: 20px 0px 0px 20px;
+    color: #fff;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+.surgical-page-banner p {
+    color: white;
+    font-size: 22px;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+.surgical-page-service {
+    background: #fff;
+    border-radius: 50px;
+    padding: 50px 20px 50px 20px;
+    position: relative;
+    z-index: 1;
+    margin-top: -50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.surgical-page-service-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.surgical-page-service-navbar-items {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.surgical-page-service-navbar-item.active .navbar-item-title {
+    font-weight: bold;
+    color: #75010A;
+}
+
+.surgical-page-service-navbar-item a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 3px;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.surgical-page-service-navbar-item a::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    border-radius: 10px;
+    background: 0 0;
+    background-color: #75010A;
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease;
+}
+
+.surgical-page-service-navbar-item a:hover {
+    color: #75010A;
+}
+
+.surgical-page-service-navbar-item a:hover::after {
+    width: 100%;
+}
+
+.surgical-page-service-detail {
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    gap: 50px;
+    width: 100%;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.surgical-page-service-detail-left img {
+    height: 600px;
+    width: 550px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.surgical-page-service-detail-right {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.surgical-page-service-detail-right h1 {
+    font-size: 30px;
+    margin: 0px 0px 10px 0px;
+}
+
+.surgical-page-service-detail-right p {
+    font-size: 20px;
+    word-spacing: 5px;
+    row-gap: 10px;
+}
+
+.surgical-page-service-detail-right a {
+    align-items: center;
+    background: #fff2f1;
+    border: 0.5px solid #111;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    width: 150px;
+    height: 48px;
+    justify-content: center;
+    line-height: 24px;
+    max-width: 100%;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-top: 50px;
+    text-decoration: none;
+    transition: background ease 0.3s;
+    align-self: center;
+}
+
+.surgical-page-service-detail-right a:hover {
+    background-color: #fededc;
+}
+
+.surgical-page-service-detail-right a:active {
+    background-color: #ffe8e6;
+    outline: 0;
+}

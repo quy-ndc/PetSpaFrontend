@@ -1,0 +1,10 @@
+/* Custom styles for the Select component */
+.booking-doctor-picker {
+    width: 300px; /* Set the width of the Select component */
+    border: 0.5px solid black;
+    border-radius: 5px;
+}
+
+.booking-doctor-picker svg {
+    color: black;
+}
