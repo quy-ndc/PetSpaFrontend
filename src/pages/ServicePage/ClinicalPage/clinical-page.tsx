@@ -1,190 +1,84 @@
 import React, { useState } from "react";
 import "./clinical-page.css";
 
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ClinicalPageSerive from "./clinical-page-service";
 
 const ClinicalPage: React.FC = () => {
-    const [selectedContent, setSelectedContent] = useState<string | null>(null);
+  const data = [
+    {
+      name: "Laboratory",
+      desc: "Expert veterinary lab services offer precise diagnostics, ensuring your pet's health and enabling tailored treatment for optimal well-being.",
+    },
 
-    const handleButtonClick = (content: string) => {
-        setSelectedContent(content);
-    };
+    {
+      name: "Wellness exams",
+      desc: "Wellness exams for pets provide comprehensive health assessments, early detection of issues, and personalized care plans for their overall well-being",
+    },
+    {
+      name: "Exotic pets",
+      desc: "Specialized care for exotic pets includes unique dietary needs, habitat requirements, and medical expertise tailored to each species' specific needs",
+    },
+    {
+      name: "Dermatology",
+      desc: "Dermatology services address skin conditions in pets, offering diagnostics, treatments, and preventive care for optimal skin health and comfort.",
+    },
 
-    return (
-        <>
-            <section className="clinical-page-banner">
-                <h2>Grooming</h2>
-                <p>
-                    Our grooming services pamper your furry friend with baths,
-                    haircuts, nail trims, ear cleaning, and more!
-                </p>
-            </section>
-            <section className="surgical-page-service">
-                <div className="button-container">
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ArrowDownwardIcon />}
-                            aria-controls="panel1-content"
-                            id="panel1-header"
-                        >
-                            <Typography>Dermatology</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Suspendisse malesuada lacus ex,
-                                sit amet blandit leo lobortis eget.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ArrowDownwardIcon />}
-                            aria-controls="panel1-content"
-                            id="panel1-header"
-                        >
-                            <Typography>Wellness Exam</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Suspendisse malesuada lacus ex,
-                                sit amet blandit leo lobortis eget.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ArrowDownwardIcon />}
-                            aria-controls="panel1-content"
-                            id="panel1-header"
-                        >
-                            <Typography>Exotic pets</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Suspendisse malesuada lacus ex,
-                                sit amet blandit leo lobortis eget.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>                        
- 
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("Cardiology")}
-                    >
-                        Cardiology
-                    </button>
+    {
+      name: "Cardiology",
+      desc: "Pet cardiology services provide advanced heart care, including diagnostics, treatments, and monitoring for cardiac conditions, ensuring their overall health.",
+    },
 
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("Emergency")}
-                    >
-                        Emergency
-                    </button>
+    {
+      name: "Rehabilitation",
+      desc: "Rehabilitation services for pets offer tailored programs to enhance mobility, relieve pain, and improve overall quality of life through therapy.",
+    },
+    {
+      name: "Telemedicine",
+      desc: "Telemedicine for pets offers convenient access to veterinary care, consultations, and guidance, ensuring timely support for pet health concerns remotely.",
+    },
 
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("Neurology")}
-                    >
-                        Neurology
-                    </button>
+    {
+      name: "Emergency",
+      desc: "Emergency pet services provide immediate care for injuries, illnesses, and critical situations, ensuring rapid response and life-saving interventions.",
+    },
 
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("Stem cell")}
-                    >
-                        Stem cell
-                    </button>
+    {
+      name: "Ultrasound",
+      desc: "Ultrasound services for pets offer non-invasive diagnostic imaging to examine internal organs, detect abnormalities, and guide medical treatments effectively.",
+    },
 
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("Endocrinology")}
-                    >
-                        Endocrinology
-                    </button>
+    {
+      name: "Neurology",
+      desc: "Neurology services for pets provide expertise in diagnosing and treating neurological disorders, ensuring optimal brain and nervous system health.",
+    },
 
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("CT & MRI")}
-                    >
-                        CT & MRI
-                    </button>
+    {
+      name: "Endoscopy",
+      desc: "Endoscopy services for pets offer minimally invasive procedures to diagnose and treat gastrointestinal and respiratory conditions, ensuring thorough examinations.",
+    },
+  ];
 
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("End-of-life care")}
-                    >
-                        End-of-life care
-                    </button>
-
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("Laboratory")}
-                    >
-                        Laboratory
-                    </button>
-
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("Rehabilitation")}
-                    >
-                        Rehabilitation
-                    </button>
-
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("Telemedicine")}
-                    >
-                        Telemedicine
-                    </button>
-
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("Ultrasound")}
-                    >
-                        Ultrasound
-                    </button>
-
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("Endoscopy")}
-                    >
-                        Endoscopy
-                    </button>
-
-                    <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("Internal medicine")}
-                    >
-                        Internal medicine
-                    </button>
-
-                    {/* <button
-                        className="clinical-button"
-                        onClick={() => handleButtonClick("Chemotherapy")}
-                    >
-                        Chemotherapy
-                    </button> */}
-
-                    <div className="selected-content">
-                        {selectedContent && (
-                            <div>
-                                {selectedContent} content will be displayed
-                                here.
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </section>
-        </>
-    );
+  return (
+    <>
+      <section className="clinical-page-banner">
+        <h2>Grooming</h2>
+        <p>
+          Our grooming services pamper your furry friend with baths, haircuts,
+          nail trims, ear cleaning, and more!
+        </p>
+      </section>
+      <section className="surgical-page-service">
+      <section className="clinical-service-container">
+     
+          {data.map((post) => (
+            <>
+              <ClinicalPageSerive name={post.name} desc={post.desc} />
+            </>
+          ))}
+      </section>
+      </section>
+    </>
+  );
 };
 
 export default ClinicalPage;
