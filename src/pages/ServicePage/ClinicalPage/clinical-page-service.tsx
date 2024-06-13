@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./clinical-page.css";
 
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import { styled } from "@mui/material";
+
+const Button1 = styled("button")({
+  color: "darkslategray",
+  backgroundColor: "#faf7f1",
+  padding: 8,
+  borderRadius: 4,
+});
 
 interface ClinicalPageServiceProp {
   name: string;
@@ -31,27 +38,22 @@ const ClinicalPageSerive: React.FC<ClinicalPageServiceProp> = ({
 
   return (
     <>
-    {/* <button></button> */}
-            <Button
-              aria-describedby={id}
-              variant="contained"
-              onClick={handleClick}
-            >
-              {name}
-            </Button>
-            <Popover
-              id={id}
-              open={open}
-              anchorEl={anchorEl}
-              onClose={handleClose}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-            >
-              <Typography sx={{ p: 2 }}>{desc}</Typography>
-            </Popover>
-
+      {/* <button></button> */}
+      <Button1 aria-describedby={id} onClick={handleClick}>
+        {name}
+      </Button1>
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+      >
+        <Typography sx={{ p: 2 }}>{desc}</Typography>
+      </Popover>
     </>
   );
 };

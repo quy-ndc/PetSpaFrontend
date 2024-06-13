@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./clinical-page.css";
 
 import ClinicalPageSerive from "./clinical-page-service";
+import { Link } from "react-router-dom";
 
 const ClinicalPage: React.FC = () => {
   const data = [
@@ -61,21 +62,24 @@ const ClinicalPage: React.FC = () => {
   return (
     <>
       <section className="clinical-page-banner">
-        <h2>Grooming</h2>
+        <h2>Clinical Services</h2>
         <p>
-          Our grooming services pamper your furry friend with baths, haircuts,
-          nail trims, ear cleaning, and more!
+          Your pet deserves nothing less than the best in veterinary care.
+          And
+          that’s what you’ll find when you trust your pet’s health to us.
         </p>
       </section>
       <section className="surgical-page-service">
-      <section className="clinical-service-container">
-     
+        <section className="clinical-service-container">
           {data.map((post) => (
             <>
               <ClinicalPageSerive name={post.name} desc={post.desc} />
             </>
           ))}
-      </section>
+        </section>
+        <div className="clinical-page-service-detail-right">
+          <Link to="/booking">Book now</Link>
+        </div>
       </section>
     </>
   );
