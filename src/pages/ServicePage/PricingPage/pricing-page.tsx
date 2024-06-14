@@ -277,13 +277,11 @@ function PricingPage() {
               </TabPanel>
             </Box>
           </Box>
-         </div>
-         <div className="pricing-page-service-detail-right">
+          <div className="pricing-page-service-detail-right">
             <Link to="/booking">Book now</Link>
           </div>
+        </div>
       </section>
-      
-        
     </>
   );
 }
