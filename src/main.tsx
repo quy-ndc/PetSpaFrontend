@@ -9,7 +9,9 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import { BrowserRouter } from "react-router-dom";
-
+import { register } from 'swiper/element/bundle';
+// register Swiper custom elements
+register();
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
         <BrowserRouter>
