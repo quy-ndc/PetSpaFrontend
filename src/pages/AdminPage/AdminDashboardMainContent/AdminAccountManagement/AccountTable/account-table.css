@@ -1,0 +1,156 @@
+.account-table-action {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account-table-action-left input {
+    border: none;
+    outline: none;
+    box-shadow: rgba(13, 37, 84, 0.635) 0px 1px;
+    font-size: 17px;
+    width: 300px;
+    height: 30px;
+    background: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.account-table-action-right {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.account-table-filter-button,
+.account-table-add-button {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 6px 10px 6px 10px;
+    gap: 7px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.account-table-filter-button {
+    background: white;
+    color: black;
+    border: 1px solid #dddddd;
+    width: 80px;
+    box-shadow: 3px 4px rgb(183, 183, 183);
+}
+
+.account-table-filter-button:hover {
+    background: black;
+    color: white;
+    font-weight: bold;
+    border: 0.5px solid black;
+    box-shadow: none;
+}
+
+.account-table-add-button {
+    background: black;
+    color: white;
+    border: 1px solid black;
+    box-shadow: 3px 4px #4a4a4a;
+}
+
+.account-table-add-button:hover {
+    background: white;
+    color: black;
+    border: 1px solid #dddddd;
+    box-shadow: none;
+}
+
+.account-table-add-button:hover svg {
+    fill: black;
+}
+
+.account-table-add-button svg {
+    fill: white;
+}
+
+.admin-account-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: center;
+}
+
+.admin-account-table th,
+.admin-account-table td {
+    border-bottom: 0.5px solid #dddddd;
+    padding: 12px;
+    color: black;
+}
+
+.admin-account-table th {
+    font-size: 20px;
+}
+
+.admin-account-table th {
+    background-color: #f2f2f2b2;
+}
+
+.admin-account-table th {
+    border-right: 0.5px solid #dddddd;
+}
+
+.admin-account-table th:last-child {
+    border-right: none;
+}
+
+.admin-account-table td {
+    font-size: 15px;
+}
+
+.admin-account-table td a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.admin-account-table td a:hover {
+    color: rgb(62, 152, 254);
+}
+
+.admin-account-table tbody tr:hover {
+    background-color: rgba(237, 237, 237, 0.679)
+}
+
+.admin-account-table input[type='checkbox'] {
+    margin: 0;
+    scale: 1.3;
+}
+
+.active-status,
+.inactive-status {
+    display: inline-block;
+    width: 100%;
+    padding: 3px;
+    border-radius: 5px;
+    color: #efefef;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.active-status {
+    background: rgba(1, 204, 1, 0.788);
+}
+
+.inactive-status {
+    background: rgba(240, 38, 24, 0.796);
+}
+
+.account-table-status-column {
+    align-items: center;
+    text-align: center;
+}

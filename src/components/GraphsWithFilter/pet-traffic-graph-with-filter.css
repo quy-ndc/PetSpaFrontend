@@ -1,0 +1,9 @@
+.pet-graph-list-filters {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    width: 200px;
+}

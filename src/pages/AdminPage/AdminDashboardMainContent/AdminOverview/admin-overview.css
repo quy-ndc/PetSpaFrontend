@@ -1,0 +1,25 @@
+.admin-overview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.admin-overview-top {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.admin-overview-main {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.admin-overview-main-left {
+    flex-basis: 50%;
+}
+
+.admin-overview-main-right {
+    flex-basis: 45%;
+}

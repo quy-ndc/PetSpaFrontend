@@ -13,6 +13,7 @@ import HoslisticPage from "./pages/ServicePage/HoslisticPage/hoslistic-page";
 import GroomingPage from "./pages/ServicePage/GroomingPage/grooming-page";
 import PricingPage from "./pages/ServicePage/PricingPage/pricing-page";
 import ComboPage from "./pages/ServicePage/ComboPage/combo-page";
+import AdminDashboard from "./pages/AdminPage/admin-dashboard";
 
 function App() {
     return (
@@ -29,7 +30,9 @@ function App() {
                 <Route path="/service/grooming" element={<GroomingPage />} />
                 <Route path="/service/pricing" element={<PricingPage />} />
                 <Route path="/service/combo" element={<ComboPage />} />
+                <Route path='/admin' element={<AdminDashboard />} />
             </Route>
+           
         </Routes>
     );
 }

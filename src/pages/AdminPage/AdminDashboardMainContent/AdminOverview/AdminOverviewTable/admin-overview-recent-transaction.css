@@ -1,0 +1,63 @@
+.recent-transaction-container {
+    border: 1px solid #acacac;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.503);
+}
+
+.recent-transaction-top h2 {
+    color: black;
+    margin: 0px;
+    padding: 10px;
+}
+
+.recent-transaction-main table {
+    color: black;
+    width: 100%;
+    padding: 15px;
+    border-collapse: collapse;
+}
+
+.recent-transaction-main table tbody tr:hover {
+    background-color: rgba(232, 232, 232, 0.452)
+}
+
+.recent-transaction-main table th,
+.recent-transaction-main table td {
+    padding: 15px;
+    border-bottom: 0.5px solid #dddddd;
+    color: black;
+}
+
+.recent-transaction-main table tr th {
+    font-size: 15px;
+    font-weight: 100;
+    color: rgb(80, 80, 80);
+}
+
+.recent-transaction-main table tr th:first-child,
+.transaction-name {
+    align-items: left;
+    text-align: left;
+}
+
+.recent-transaction-main table tr th:last-child,
+.transaction-amount {
+    align-items: right;
+    text-align: right;
+}
+
+.transaction-amount,
+.transaction-name {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.transaction-name a {
+    text-decoration: none;
+    color: black;
+}
+
+.transaction-name a:hover {
+    color: rgb(82, 160, 254);
+}

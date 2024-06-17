@@ -1,0 +1,10 @@
+.admin-dashboard-main-content {
+    flex-basis: 100%;
+}
+
+
+.admin-dashboard-nav-content-container {
+    display: flex;
+    align-items: top;
+    padding-top: 10px;
+}

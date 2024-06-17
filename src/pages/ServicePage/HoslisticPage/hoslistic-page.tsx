@@ -37,7 +37,7 @@ const HoslisticPage: React.FC = () => {
     return (
         <>
             <section className="hoslistic-page-banner">
-                <h2>Hoslistic Therapy</h2>
+                <h2>Holistic Therapy</h2>
                 <p>Holistic pet care is a comprehensive approach that recognizes the interconnectedness of a pet's mental well-being</p>
             </section>
             <section className="surgical-page-service">

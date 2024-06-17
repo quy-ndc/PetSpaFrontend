@@ -1,0 +1,51 @@
+.graph-list-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.graph-list-filters {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    width: 400px;
+}
+
+.graph-list-filter-option {
+    width: 90px;
+    height: 35px;
+    background: none;
+    border: 0.5px solid black;
+    border-radius: 7px;
+    cursor: pointer;
+    box-shadow: 2px 3px #333;
+    transition: box-shadow 0.3s ease-in;
+    transition: background 0.4s ease;
+}
+
+.graph-list-filter-option:hover {
+    box-shadow: 2px 3px rgb(0, 0, 0, 0);
+    background: black;
+    color: white;
+}
+
+.selected-graph-filter {
+    background: black;
+    color: white;
+    font-weight: bold;
+    box-shadow: none;
+}
+
+.graph-list-header {
+    color: black;
+    margin: 0px;
+    padding: 10px;
+}
+
+.graph-list-header span {
+    color: red;
+}

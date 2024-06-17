@@ -47,7 +47,7 @@ const ServicePage: React.FC = () => {
                             <img src={hoslisticImage} />
                         </div>
                         <div className="service-item-content">
-                            <h3>Hoslistic therapy</h3>
+                            <h3>Holistic therapy</h3>
                             <div className="service-item-description">
                                 Holistic pet therapy: natural treatments, stress relief, and wellness for your pets.
                             </div>
