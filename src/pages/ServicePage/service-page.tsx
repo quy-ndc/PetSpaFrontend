@@ -9,7 +9,6 @@ import groomingImage from "../../assets/images/grooming-image.jpg"
 
 const ServicePage: React.FC = () => {
 
-
     return (
         <>
             <section className="service-display">
