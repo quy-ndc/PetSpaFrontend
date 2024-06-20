@@ -3,7 +3,7 @@ import './admin-dashboard-side-bar.css';
 import { useAdminDashboard } from '../admin-dashboard-context';
 import GroupsIcon from '@mui/icons-material/Groups';
 import PetsIcon from '@mui/icons-material/Pets';
-import { GiSittingDog } from "react-icons/gi";
+// import { GiSittingDog } from "react-icons/gi";
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import SettingsIcon from '@mui/icons-material/Settings';
 import RemoveFromQueueIcon from '@mui/icons-material/RemoveFromQueue';
@@ -41,7 +41,7 @@ const AdminDashboardSideNav: React.FC = () => {
                         onClick={() => setSelectedNavItem('pet')}
                     >
                         <a>
-                            <GiSittingDog />
+                            {/* <GiSittingDog /> */}
                             Pets
                         </a>
                     </li>
