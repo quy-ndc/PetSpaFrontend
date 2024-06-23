@@ -224,15 +224,21 @@
     }
 
     .introduction {
-        background-image: url(https://tropicpet.vn/wp-content/uploads/2024/01/home-bg.jpg);
         height: 680px;
         display: flex;
         flex-direction: column;
     }
 
+    .introvideo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     .introduction__content {
         margin-top: 140px;
         margin-left: 160px;
+        position: absolute;
     }
 
     .introduction__content-title {

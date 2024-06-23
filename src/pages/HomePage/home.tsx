@@ -2,6 +2,7 @@ import "./home.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useEffect } from "react";
+import bgvideo from "../../assets/video/pet-care.mp4"
 
 export function HomePage() {
 
@@ -101,6 +102,7 @@ export function HomePage() {
                 </div>
             </header>
             <section className="introduction">
+                <video className="introvideo" src={bgvideo} autoPlay loop muted />
                 <div className="introduction__content">
                     <div className="introduction__content-title">
                         Hệ thống thú y TROPICET
