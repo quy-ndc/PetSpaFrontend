@@ -8,11 +8,11 @@ const DoctorLayout = () => {
     return (
         <div className="doctor-layout">
             <nav>
-                <div className="nav-left">
+                <div className="doctor-nav-left">
                     <img src={logo} />
                     <span>Welcome Dr.Timothy</span>
                 </div>
-                <div className="nav-right">
+                <div className="doctor-nav-right">
                     <img src={image} />
                 </div>
             </nav>

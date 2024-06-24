@@ -1,0 +1,99 @@
+.staff-layout {
+    background-image: url('/src/assets/images/background.png');
+    min-height: 100vh;
+    background-repeat: repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.staff-layout nav {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.682);
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.staff-nav-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.staff-nav-left img {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    margin-right: 10px;
+}
+
+.staff-nav-left span {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.staff-nav-left-action {
+    display: flex;
+    gap: 26px;
+    margin-left: 25px;
+}
+
+.staff-nav-left-action a {
+    text-decoration: none;
+    color: #222;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px 10px;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    align-items: center;
+    transition-duration: 0.3s ease;
+}
+
+.staff-nav-left-action a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    bottom: 0;
+    left: 0;
+    background: none;
+    transition: width 0.3s ease-in-out;
+}
+
+.staff-nav-left-action a:hover::after {
+    width: 100%;
+    border: 0.5px solid black;
+}
+
+.active-staff-option {
+    font-weight: bold;
+}
+
+.active-staff-option::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: none;
+    transition: width 0.3s ease-in-out;
+    width: 100% !important;
+    border: 0.5px solid black;
+}
+
+.staff-nav-right img {
+    height: 40px;
+    width: 40px;
+    margin-right: 40px;
+    border-radius: 50%;
+    object-fit: fill;
+}

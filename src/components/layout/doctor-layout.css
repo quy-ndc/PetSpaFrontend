@@ -22,25 +22,25 @@
     z-index: 1000;
 }
 
-.nav-left {
+.doctor-nav-left {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.nav-left img {
+.doctor-nav-left img {
     height: 40px;
     width: 40px;
     display: flex;
     margin-right: 10px;
 }
 
-.nav-left span {
+.doctor-nav-left span {
     font-size: 18px;
     font-weight: bold;
 }
 
-.nav-right img {
+.doctor-nav-right img {
     height: 40px;
     width: 40px;
     margin-right: 40px;

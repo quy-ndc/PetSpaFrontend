@@ -18,6 +18,9 @@ import AdminDashboard from "./pages/AdminPage/admin-dashboard";
 import StaffDashboard from "./pages/StaffPage/staff-dashboard";
 import DoctorDashboard from "./pages/DoctorPage/doctor-dashboard";
 import DoctorLayout from "./components/layout/doctor-layout";
+import StaffLayout from "./components/layout/staff-layout";
+import StaffReviewManagement from "./pages/StaffPage/ReviewManagement/staff-review-management";
+import StaffAppointmentManagement from "./pages/StaffPage/AppointmentManagement/staff-appointment-management";
 
 function App() {
     return (
@@ -36,10 +39,14 @@ function App() {
                 <Route path="/service/pricing" element={<PricingPage />} />
                 <Route path="/service/combo" element={<ComboPage />} />
                 <Route path='/admin' element={<AdminDashboard />} />
-                <Route path='/staff' element={<StaffDashboard />} />
             </Route>
             <Route path="/doctor" element={<DoctorLayout />}>
                 <Route path="" element={<DoctorDashboard />} />
+            </Route>
+            <Route path="/staff" element={<StaffLayout />}>
+                <Route path='/staff/' element={<StaffDashboard />} />
+                <Route path='/staff/reviews' element={<StaffReviewManagement />} />
+                <Route path='/staff/appointment' element={<StaffAppointmentManagement />} />
             </Route>
         </Routes>
     );
