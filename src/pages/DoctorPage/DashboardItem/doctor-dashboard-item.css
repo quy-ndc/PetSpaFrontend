@@ -1,0 +1,56 @@
+.doctor-dashboard-item {
+    background: #fef6e98b;
+    padding: 15px;
+    border: 0.5px solid rgb(128, 128, 128, 0.662);
+    border-radius: 7px;
+    width: 500px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.doctor-dashboard-item:hover {
+    border: 1px solid black;
+    background: #fff4e2b1;
+}
+
+.doctor-dashboard-item svg {
+    scale: 80%;
+}
+
+.item-time {
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(90, 90, 90);
+    display: flex;
+    gap: 7px;
+    align-items: center;
+}
+
+.item-detail {
+    align-items: center;
+    color: black;
+    margin: 7px 0;
+    font-size: 17px;
+}
+
+.item-detail a {
+    text-decoration: none;
+    color: #1E3A8A;
+}
+
+.item-detail a:hover {
+    text-decoration: underline;
+    color: rgb(120, 41, 255);
+}
+
+.item-service {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    margin: 10px 0px 3px 0px;
+    font-size: 15px;
+}
+
+.item-service svg {
+    fill: rgb(104, 50, 253);
+}

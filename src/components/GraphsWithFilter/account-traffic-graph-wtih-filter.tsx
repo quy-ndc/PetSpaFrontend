@@ -8,14 +8,14 @@ interface ChartOption {
 }
 
 interface AccountTrafficGraphWithFilterProp {
-    graphByAge: JSX.Element;
+    graphByAge: React.ReactNode;
     graphByGender: JSX.Element;
     description: string;
 }
 
 const AccountTrafficGraphWithFilter: React.FC<AccountTrafficGraphWithFilterProp> = ({ graphByAge, graphByGender, description }) => {
 
-    const [selectedChart, setSelectedChart] = useState<JSX.Element | null>(graphByAge);
+    const [selectedChart, setSelectedChart] = useState<React.ReactNode | null>(graphByAge);
     const [selectedOption, setSelectedOption] = useState<number>(1);
     const [dateRange, setDateRange] = useState<string>('');
 
@@ -29,7 +29,7 @@ const AccountTrafficGraphWithFilter: React.FC<AccountTrafficGraphWithFilterProp>
         setSelectedOption(chartNumber);
     };
 
-    const getSelectedChartComponent = (chartNumber: number): JSX.Element => {
+    const getSelectedChartComponent = (chartNumber: number): React.ReactNode => {
         switch (chartNumber) {
             case 1:
                 return graphByAge;

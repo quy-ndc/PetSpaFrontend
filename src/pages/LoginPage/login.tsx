@@ -1,6 +1,9 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import "./login.css";
 import { Box, TextField, Button, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import GoogleIcon from '@mui/icons-material/Google';
+import LoginIcon from '@mui/icons-material/Login';
 
 type Inputs = {
     username: string;
@@ -22,45 +25,49 @@ export default function Login() {
     };
 
     return (
-        /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-        <Box
-            component="form"
-            className="login-form"
-            onSubmit={handleSubmit(onSubmit)}
-        >
-            <Typography
-            sx={{
-                marginBottom: "30px",
-                textAlign: "center"
-            }}
-            variant="h6" gutterBottom>
-                Login to your account
-            </Typography>
+        <>
+            <Box
+                component="form"
+                className="login-form"
+                onSubmit={handleSubmit(onSubmit)}
+            >
+                <Typography
+                    sx={{
+                        marginBottom: "30px",
+                        textAlign: "center",
+                        color: 'black'
 
-            {/* register your input into the hook by invoking the "register" function */}
-            <TextField
-                sx={inputStyle}
-                required
-                id="outlined-required-username"
-                label="Username"
-                {...register("username")}
-            />
-            <TextField
-                sx={inputStyle}
-                required
-                id="outlined-required-password"
-                label="Password"
-                type="password"
-                {...register("password")}
-            />
+                    }}
+                    variant="h6" gutterBottom>
+                    Login to your account
+                </Typography>
 
-            {/* include validation with required or other standard HTML validation rules */}
-            {/* errors will return when field validation fails  */}
-            {errors.password && <span>This field is required</span>}
+                <TextField
+                    sx={inputStyle}
+                    required
+                    id="outlined-required-username"
+                    label="Username"
+                    {...register("username")}
+                />
+                <TextField
+                    sx={inputStyle}
+                    required
+                    id="outlined-required-password"
+                    label="Password"
+                    type="password"
+                    {...register("password")}
+                />
 
-            <Button type="submit" variant="contained">
-                Login
-            </Button>
-        </Box>
+                {errors.password && <span>This field is required</span>}
+                <Link to='/register'>Don't have an account?</Link>
+                <button type="submit" className="login-button">
+                    <LoginIcon /> Login
+                </button>
+                <span > Or</span>
+                <button className="google-button">
+                    <GoogleIcon /> Continue with Google
+                </button>
+            </Box >
+        </>
     );
 }

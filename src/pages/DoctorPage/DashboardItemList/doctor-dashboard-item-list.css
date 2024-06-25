@@ -1,0 +1,28 @@
+.doctor-dashboard-item-list {
+    display: flex;
+    flex-direction: row;
+    gap: 17px;
+}
+
+.list-line {
+    border-left: 0.5px dashed gray;
+    margin-top: 20px;
+    height: 95%;
+}
+
+.doctor-dashboard-item-list-right h4 {
+    margin: 0px 0px 20px 0px;
+    display: flex;
+    position: relative;
+}
+
+.date-dot {
+    position: absolute;
+    left: -20px;
+}
+
+.doctor-dashboard-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

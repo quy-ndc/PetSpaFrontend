@@ -7,16 +7,16 @@ interface ChartOption {
 }
 
 interface GraphWithFilterProp {
-    graphByWeek: JSX.Element;
-    graphByMonth: JSX.Element;
-    graphByYear: JSX.Element;
-    graphByAllTime: JSX.Element;
+    graphByWeek: React.ReactNode;
+    graphByMonth: React.ReactNode;
+    graphByYear: React.ReactNode;
+    graphByAllTime: React.ReactNode;
     description: string;
 }
 
 const GraphWithFilter: React.FC<GraphWithFilterProp> = ({ graphByWeek, graphByMonth, graphByYear, graphByAllTime, description }) => {
 
-    const [selectedChart, setSelectedChart] = useState<JSX.Element | null>(graphByWeek);
+    const [selectedChart, setSelectedChart] = useState<React.ReactNode | null>(graphByWeek);
     const [selectedOption, setSelectedOption] = useState<number>(1);
     const [dateRange, setDateRange] = useState<string>('');
 
@@ -32,7 +32,7 @@ const GraphWithFilter: React.FC<GraphWithFilterProp> = ({ graphByWeek, graphByMo
         setSelectedOption(chartNumber);
     };
 
-    const getSelectedChartComponent = (chartNumber: number): JSX.Element => {
+    const getSelectedChartComponent = (chartNumber: number): React.ReactNode => {
         switch (chartNumber) {
             case 1:
                 return graphByWeek;

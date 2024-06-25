@@ -18,7 +18,7 @@ interface BodyOption {
 
 const AdminPetManagement: React.FC = () => {
 
-    const [selectedBody, setSelectedBody] = useState<JSX.Element | null>(<PetTable />);
+    const [selectedBody, setSelectedBody] = useState<React.ReactNode | null>(<PetTable />);
     const [selectedOption, setSelectedOption] = useState<number>(1);
 
     const bodyOptions: BodyOption[] = [
@@ -31,7 +31,7 @@ const AdminPetManagement: React.FC = () => {
         setSelectedOption(bodyId);
     };
 
-    const getSelectedChartComponent = (bodyId: number): JSX.Element => {
+    const getSelectedChartComponent = (bodyId: number): React.ReactNode => {
         switch (bodyId) {
             case 1:
                 return <PetTable />;

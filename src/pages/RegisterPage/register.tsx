@@ -37,6 +37,7 @@ export default function Register() {
                 }}
                 variant="h6"
                 gutterBottom
+                color='black'
             >
                 Join our pet-loving family
             </Typography>
@@ -47,7 +48,7 @@ export default function Register() {
                 required
                 id="outlined-required-email"
                 label="Email"
-                {...register("email", {pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i})}
+                {...register("email", { pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i })}
             />
             <TextField
                 sx={inputStyle}

@@ -20,7 +20,7 @@ interface BodyOption {
 
 const AdminRevenueManagement: React.FC = () => {
 
-    const [selectedBody, setSelectedBody] = useState<JSX.Element | null>(<GraphWithFilter
+    const [selectedBody, setSelectedBody] = useState<React.ReactNode | null>(<GraphWithFilter
         graphByWeek={<EarningWeek />}
         graphByMonth={<EarningMonth />}
         graphByYear={<EarningYear />}
@@ -42,7 +42,7 @@ const AdminRevenueManagement: React.FC = () => {
         console.log(bodyId)
     };
 
-    const getSelectedChartComponent = (bodyId: number): JSX.Element => {
+    const getSelectedChartComponent = (bodyId: number): React.ReactNode => {
         switch (bodyId) {
             case 1:
                 return <GraphWithFilter
