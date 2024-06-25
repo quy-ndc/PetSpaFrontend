@@ -6,10 +6,11 @@ import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material";
 
 const Button1 = styled("button")({
-  color: "darkslategray",
+  // color: "darkslategray",
   backgroundColor: "#faf7f1",
-  padding: 8,
+  padding: "20px 30px",
   borderRadius: 4,
+  border: 2, 
 });
 
 interface ClinicalPageServiceProp {
@@ -17,7 +18,7 @@ interface ClinicalPageServiceProp {
   desc: string;
 }
 
-const ClinicalPageSerive: React.FC<ClinicalPageServiceProp> = ({
+const ClinicalPageService: React.FC<ClinicalPageServiceProp> = ({
   name,
   desc,
 }) => {
@@ -58,4 +59,4 @@ const ClinicalPageSerive: React.FC<ClinicalPageServiceProp> = ({
   );
 };
 
-export default ClinicalPageSerive;
+export default ClinicalPageService;

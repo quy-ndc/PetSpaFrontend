@@ -211,6 +211,8 @@ function PricingPage() {
         <div className="img-left">
           <img src="https://anticruelty.org/sites/default/files/images/ACS-Images/Clinic/postadoptservices_hero2.jpg" />
         </div>
+        <div className="content-right">
+
         <h1>PRICING</h1>
         <p>
           We believe in being upfront with our pet parents. Being upfront means
@@ -218,6 +220,7 @@ function PricingPage() {
           the options for their treatment and the likely results of each option.
           And being upfront also includes talking about the cost of each option.
         </p>
+        </div>
       </div>
 
       <section className="pricing-page-service">
@@ -239,15 +242,8 @@ function PricingPage() {
               sx={{
                 borderRight: 1,
                 borderColor: "divider",
-                color: "yellow!important",
               }}
             >
-              {/* <Tab label="Clinical" sx={{
-                fontFamily:"sans-serif",
-                fontStyle:"normal",
-                fontWeight:"bold",
-                color: "#75010A"
-              }} */}
               <Tab label="Clinical" {...a11yProps(0)} />
               <Tab label="Grooming" {...a11yProps(1)} />
               <Tab label="Laboratory" {...a11yProps(2)} />
