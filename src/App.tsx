@@ -22,7 +22,7 @@ import StaffDashboard from "./pages/StaffPage/staff-dashboard";
 import StaffReviewManagement from "./pages/StaffPage/ReviewManagement/staff-review-management";
 import StaffAppointmentManagement from "./pages/StaffPage/AppointmentManagement/staff-appointment-management";
 import SchedulerView from "./components/Scheduler/Scheduler";
-
+import Profile from "./pages/ProfilePage/Profile";
 function App() {
     return (
         <Routes>
@@ -52,6 +52,7 @@ function App() {
                 <Route path='/staff/appointment' element={<StaffAppointmentManagement />} />
 
             </Route>
+            <Route path="/user/:activepage" element={<Profile />} />
         </Routes>
     );
 }
