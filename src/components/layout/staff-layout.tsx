@@ -20,7 +20,7 @@ const StaffLayout = () => {
             <nav className="staff-nav">
                 <div className="staff-nav-left">
                     <img src={logo} />
-                    <span>Welcome Dr.Timothy</span>
+                    <span>Welcome Miss...</span>
                     <div className="staff-nav-left-action">
                         <Tooltip title='Manage appointments'>
                             <Link
@@ -43,10 +43,21 @@ const StaffLayout = () => {
                         <Tooltip title='Manage reviews'>
                         <Link
                             to="reviews"
-                            onClick={() => handleOptionChange("appointment")}
-                            className={`${selectedOption === 'appointment' ? 'active-staff-option' : ''}`}
+                            onClick={() => handleOptionChange("reviews")}
+                            className={`${selectedOption === 'reviews' ? 'active-staff-option' : ''}`}
                         >
                             Reviews
+                        </Link>
+                    </Tooltip>
+
+                    {/* Shelter */}
+                    <Tooltip title='Manage shelter'>
+                        <Link
+                            to="shelter"
+                            onClick={() => handleOptionChange("shelter")}
+                            className={`${selectedOption === 'shelter' ? 'active-staff-option' : ''}`}
+                        >
+                            Shelter
                         </Link>
                     </Tooltip>
                     </div>

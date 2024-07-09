@@ -3,6 +3,7 @@ import Rating from "@mui/material/Rating";
 
 import "./staff-review-management.css";
 import { Pagination } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface Review {
   id: number;
@@ -52,10 +53,10 @@ const StaffReviewManagement: React.FC = () => {
           {reviews.map((review) => (
             <div key={review.id} className="review-card">
               <div className="review-details">
-                <span className="review-user">{review.userId}</span>
-                <span className="review-service">
-                  {review.serviceId}
+                <span className="review-user">
+                  <Link to="#" className="no-underline">{review.userId}</Link>
                 </span>
+                <span className="review-service">{review.serviceId}</span>
                 <span className="review-text">{review.reviewText}</span>
                 <Rating name="read-only" value={review.star} readOnly />
               </div>
