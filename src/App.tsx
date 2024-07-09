@@ -23,7 +23,7 @@ import StaffReviewManagement from "./pages/StaffPage/ReviewManagement/staff-revi
 import StaffAppointmentManagement from "./pages/StaffPage/AppointmentManagement/staff-appointment-management";
 import StaffShelterManage from "./pages/StaffPage/Shelter/staff-shelter-manage";
 import SchedulerView from "./components/Scheduler/Scheduler";
-
+import profile from "./pages/ProfilePage/profile";
 function App() {
   return (
     <Routes>
@@ -45,18 +45,14 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
       </Route>
       <Route path="/doctor" element={<DoctorLayout />}>
-        <Route path="" element={<DoctorDashboard />} />
+        <Route path="/doctor/" element={<DoctorDashboard />} />
       </Route>
       <Route path="/staff" element={<StaffLayout />}>
-        <Route path="/staff/" element={<StaffDashboard />} />
+        <Route path="/staff/" element={<StaffAppointmentManagement />} />
         <Route path="/staff/reviews" element={<StaffReviewManagement />} />
-        <Route
-          path="/staff/appointment"
-          element={<StaffAppointmentManagement />}
-        />
+        <Route path="/staff/appointment" element={<StaffAppointmentManagement />}/>
         <Route path="/staff/schedule" element={<SchedulerView />} />
         <Route path="/staff/shelter" element={<StaffShelterManage />} />
-
       </Route>
     </Routes>
   );
