@@ -1,5 +1,4 @@
 import "./App.css";
-
 import { Routes, Route } from "react-router-dom";
 import EmptyLayout from "./components/layout/EmptyLayout";
 import Login from "./pages/LoginPage/login";
@@ -21,41 +20,48 @@ import StaffLayout from "./components/layout/staff-layout";
 import StaffDashboard from "./pages/StaffPage/staff-dashboard";
 import StaffReviewManagement from "./pages/StaffPage/ReviewManagement/staff-review-management";
 import StaffAppointmentManagement from "./pages/StaffPage/AppointmentManagement/staff-appointment-management";
-import StaffShelterManage from "./pages/StaffPage/Shelter/staff-shelter-manage";
 import SchedulerView from "./components/Scheduler/Scheduler";
-import profile from "./pages/ProfilePage/profile";
+import DoctorReviewManagement from "./pages/DoctorPage/doctor-review-management";
+import MainLayout from "./components/layout/main-layout";
+import CheckOut from "./pages/CheckOut/check-out";
+import StaffShelterManage from "./pages/StaffPage/Shelter/staff-shelter-manage";
+import Profile from "./pages/ProfilePage/profile";
+
 function App() {
-  return (
-    <Routes>
-      {/* TEST */}
-      {/* <Route path='/scheduler' element={<SchedulerView />} /> */}
-      <Route path="/" element={<EmptyLayout />}>
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/booking" element={<BookingPage />} />
-        <Route path="/about-us" element={<AboutUsPage />} />
-        <Route path="/service" element={<ServicePage />} />
-        <Route path="/service/clinical" element={<ClinicalPage />} />
-        <Route path="/service/surgical" element={<SurgicalPage />} />
-        <Route path="/service/holistic" element={<HoslisticPage />} />
-        <Route path="/service/grooming" element={<GroomingPage />} />
-        <Route path="/service/pricing" element={<PricingPage />} />
-        <Route path="/service/combo" element={<ComboPage />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-      </Route>
-      <Route path="/doctor" element={<DoctorLayout />}>
-        <Route path="/doctor/" element={<DoctorDashboard />} />
-      </Route>
-      <Route path="/staff" element={<StaffLayout />}>
-        <Route path="/staff/" element={<StaffAppointmentManagement />} />
-        <Route path="/staff/reviews" element={<StaffReviewManagement />} />
-        <Route path="/staff/appointment" element={<StaffAppointmentManagement />}/>
-        <Route path="/staff/schedule" element={<SchedulerView />} />
-        <Route path="/staff/shelter" element={<StaffShelterManage />} />
-      </Route>
-    </Routes>
-  );
+    return (
+        <Routes>
+            {/* <Route path='/scheduler' element={<SchedulerView />} /> */}
+            <Route path='/admin' element={<AdminDashboard />} />
+            <Route path="/" element={<MainLayout />}>
+                <Route path="/home" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/booking" element={<BookingPage />} />
+                <Route path="/about-us" element={<AboutUsPage />} />
+                <Route path="/service" element={<ServicePage />} />
+                <Route path="/service/clinical" element={<ClinicalPage />} />
+                <Route path="/service/surgical" element={<SurgicalPage />} />
+                <Route path="/service/hoslistic" element={<HoslisticPage />} />
+                <Route path="/service/grooming" element={<GroomingPage />} />
+                <Route path="/service/pricing" element={<PricingPage />} />
+                <Route path="/service/combo" element={<ComboPage />} />
+                <Route path='/check-out' element={<CheckOut />} />
+                <Route path='profile' element={<Profile />} />
+            </Route>
+            <Route path="/doctor" element={<DoctorLayout />}>
+                <Route path="/doctor/" element={<DoctorDashboard />} />
+                <Route path="/doctor/schedule" element={<DoctorDashboard />} />
+                <Route path='/doctor/review' element={<DoctorReviewManagement />} />
+            </Route>
+            <Route path="/staff" element={<StaffLayout />}>
+                <Route path='/staff/' element={<StaffAppointmentManagement />} />
+                <Route path='/staff/appointment' element={<StaffAppointmentManagement />} />
+                <Route path='/staff/schedule' element={<SchedulerView />} />
+                <Route path='/staff/reviews' element={<StaffReviewManagement />} />
+                <Route path='/staff/shelter' element={<StaffShelterManage />} />
+            </Route>
+        </Routes>
+    );
 }
 
 export default App;

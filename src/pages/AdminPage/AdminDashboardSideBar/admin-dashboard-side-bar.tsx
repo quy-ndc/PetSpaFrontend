@@ -6,6 +6,7 @@ import PetsIcon from '@mui/icons-material/Pets';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import SettingsIcon from '@mui/icons-material/Settings';
 import RemoveFromQueueIcon from '@mui/icons-material/RemoveFromQueue';
+import HomeIcon from '@mui/icons-material/Home';
 
 const AdminDashboardSideNav: React.FC = () => {
 
@@ -52,6 +53,16 @@ const AdminDashboardSideNav: React.FC = () => {
                         <a>
                             <SettingsIcon />
                             Services
+                        </a>
+                    </li>
+
+                    <li
+                        className={`admin-dashboard-left-nav-link ${selectedNavItem === 'shelter' ? 'active-dashboard-option' : ''}`}
+                        onClick={() => setSelectedNavItem('shelter')}
+                    >
+                        <a>
+                            <HomeIcon />
+                            Shelter
                         </a>
                     </li>
 

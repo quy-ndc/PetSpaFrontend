@@ -132,7 +132,9 @@
 }
 
 .active-status,
-.inactive-status {
+.inactive-status,
+.full-status,
+.available-status {
     display: inline-block;
     width: 100%;
     padding: 3px;
@@ -142,11 +144,13 @@
     font-weight: bold;
 }
 
-.active-status {
+.active-status,
+.available-status {
     background: rgba(1, 204, 1, 0.788);
 }
 
-.inactive-status {
+.inactive-status,
+.full-status {
     background: rgba(240, 38, 24, 0.796);
 }
 

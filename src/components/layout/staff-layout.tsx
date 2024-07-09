@@ -41,16 +41,16 @@ const StaffLayout = () => {
               </Link>
             </Tooltip>
             <Tooltip title="Manage reviews">
-              <Link
-                to="reviews"
-                onClick={() => handleOptionChange("reviews")}
-                className={`${
+                  <Link
+                    to="reviews"
+                    onClick={() => handleOptionChange("reviews")}
+                    className={`${
                   selectedOption === "reviews" ? "active-staff-option" : ""
                 }`}
-              >
-                Reviews
-              </Link>
-            </Tooltip>
+                  >
+                    Reviews
+                  </Link>
+                </Tooltip>
 
             {/* Shelter */}
             <Tooltip title="Manage shelter">
