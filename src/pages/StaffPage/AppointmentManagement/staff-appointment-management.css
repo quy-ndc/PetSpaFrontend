@@ -43,18 +43,33 @@ main h1 {
   margin-bottom: 5px;
 }
 
-.delete-button {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
+.handle-pending {
   grid-column: span 2;
-  justify-self: center;
-
+  justify-self: right;
 }
 
-.delete-button:hover {
-  background-color: #ff1a1a;
+button.approve-button, button.deny-button {
+  margin: 5px;
+  padding: 5px 10px;
+  width: 100px;  
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.approve-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+button.deny-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.button-container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
 }

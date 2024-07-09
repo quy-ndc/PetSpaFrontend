@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Pagination from "@mui/material/Pagination";
-
 import "./staff-appointment-management.css";
 
 interface Appointment {
@@ -12,6 +11,7 @@ interface Appointment {
   doctorName: string;
   dateTime: string;
   serviceName: string;
+  status: 'pending' | 'approved' | 'denied';
 }
 
 const StaffAppointmentManagement: React.FC = () => {
@@ -25,6 +25,7 @@ const StaffAppointmentManagement: React.FC = () => {
       doctorName: "Dr. Smith",
       dateTime: "June 19 - 12:30 AM",
       serviceName: "Grooming",
+      status: 'pending'
     },
     {
       id: 2,
@@ -35,20 +36,20 @@ const StaffAppointmentManagement: React.FC = () => {
       doctorName: "Dr. Brown",
       dateTime: "June 19 - 3:20 PM",
       serviceName: "Medical bath",
+      status: 'pending'
     },
   ]);
 
-  const handleDelete = (id: number) => {
-    setAppointments(
-      appointments.filter((appointment) => appointment.id !== id)
-    );
+  const handleApprove = (id: number) => {
+    setAppointments(appointments.filter((appointment) => appointment.id !== id));
+  };
+
+  const handleDeny = (id: number) => {
+    setAppointments(appointments.filter((appointment) => appointment.id !== id));
   };
 
   return (
     <div className="container">
-      {/* <header>
-        <div className="welcome-message">Welcome to Staff Page</div>
-      </header> */}
       <main>
         <h1>Appointments</h1>
         <div>
@@ -75,12 +76,25 @@ const StaffAppointmentManagement: React.FC = () => {
               <div className="grid-item">
                 <strong>Service/Combo:</strong> {appointment.serviceName}
               </div>
-              <button
-                className="grid-item delete-button"
-                onClick={() => handleDelete(appointment.id)}
-              >
-                Delete
-              </button>
+              <div className="grid-item">
+                <strong>Status:</strong> {appointment.status}
+              </div>
+              {appointment.status === 'pending' && (
+                <div className="handle-pending">
+                  <button
+                    className="grid-item approve-button"
+                    onClick={() => handleApprove(appointment.id)}
+                  >
+                    Approve
+                  </button>
+                  <button
+                    className="grid-item deny-button"
+                    onClick={() => handleDeny(appointment.id)}
+                  >
+                    Deny
+                  </button>
+                </div>
+              )}
             </div>
           ))}
         </div>

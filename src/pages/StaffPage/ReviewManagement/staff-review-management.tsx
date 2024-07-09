@@ -16,21 +16,21 @@ const StaffReviewManagement: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([
     {
       id: 1,
-      userId: "user1",
+      userId: "Meo",
       serviceId: "service1",
       reviewText: "Great service!",
       star: 4,
     },
     {
       id: 2,
-      userId: "user2",
+      userId: "Mèo",
       serviceId: "service2",
       reviewText: "Good experience.",
       star: 5,
     },
     {
       id: 3,
-      userId: "user3",
+      userId: "Méo",
       serviceId: "service3",
       reviewText: "Very satisfied with the service.",
       star: 4,
@@ -52,9 +52,9 @@ const StaffReviewManagement: React.FC = () => {
           {reviews.map((review) => (
             <div key={review.id} className="review-card">
               <div className="review-details">
-                <span className="review-user">User ID: {review.userId}</span>
+                <span className="review-user">{review.userId}</span>
                 <span className="review-service">
-                  Service ID: {review.serviceId}
+                  {review.serviceId}
                 </span>
                 <span className="review-text">{review.reviewText}</span>
                 <Rating name="read-only" value={review.star} readOnly />
