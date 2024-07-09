@@ -17,7 +17,7 @@ const StaffLayout = () => {
 
     return (
         <div className="staff-layout">
-            <nav>
+            <nav className="staff-nav">
                 <div className="staff-nav-left">
                     <img src={logo} />
                     <span>Welcome Dr.Timothy</span>

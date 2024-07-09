@@ -27,7 +27,7 @@ function App() {
     return (
         <Routes>
             {/* TEST */}
-            <Route path='/scheduler' element={<SchedulerView />} />
+            {/* <Route path='/scheduler' element={<SchedulerView />} /> */}
             <Route path="/" element={<EmptyLayout />}>
                 <Route path="/home" element={<Home />} />
                 <Route path="/login" element={<Login />} />
@@ -50,6 +50,8 @@ function App() {
                 <Route path='/staff/' element={<StaffDashboard />} />
                 <Route path='/staff/reviews' element={<StaffReviewManagement />} />
                 <Route path='/staff/appointment' element={<StaffAppointmentManagement />} />
+                        <Route path='/staff/schedule' element={<SchedulerView />} />
+
 
             </Route>
             <Route path="/user/:activepage" element={<Profile />} />
