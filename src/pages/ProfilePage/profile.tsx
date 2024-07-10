@@ -13,7 +13,7 @@ const profile = () => {
         <div>
             <SingleBanner
                 heading={'My Profile'}
-                bannerimage=''
+                bannerimage={img}
             />
             {/* UserProfile , showing {activepage} */}
 

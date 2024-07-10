@@ -2,7 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './UserSidebar.css'
 
-const UserSidebar = ({ activepage }) => {
+interface UserSidebarProps {
+    activepage: string;
+}
+
+const UserSidebar: React.FC<UserSidebarProps> = ({ activepage }) => {
     return (
         <div className='usersidebar'>
             {
