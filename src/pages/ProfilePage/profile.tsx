@@ -4,7 +4,8 @@ import SingleBanner from '../../components/banner/SingleBanner'
 import UserSideBar from './UserProfie/UserSidebar'
 import AccountSettings from '../../components/UserProfile/AccountSetting'
 import "./Profile.css"
-const profile = () => {
+import img from "../../assets/images/hygiene-image.jpg"
+const Profile = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { activepage } = useParams()
     // alert(activepage)
