@@ -6,6 +6,7 @@ import AdminServiceManagement from "./AdminServiceManagement/admin-service-manag
 import AdminOverview from "./AdminOverview/admin-overview";
 import AdminPetManagement from "./AdminPetManagement/admin-pet-management";
 import AdminRevenueManagement from "./AdminRevenue/admin-revenue-management";
+import AdminShelterManagement from "./AdminShelterManagement/admin-shelter-management";
 
 
 const AdminDashoardMainContent: React.FC = () => {
@@ -35,6 +36,12 @@ const AdminDashoardMainContent: React.FC = () => {
             {selectedNavItem === "service" && (
                 <>
                     <AdminServiceManagement />
+                </>
+            )}
+
+            {selectedNavItem === "shelter" && (
+                <>
+                    <AdminShelterManagement />
                 </>
             )}
 

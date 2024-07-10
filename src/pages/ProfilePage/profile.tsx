@@ -4,7 +4,6 @@ import SingleBanner from '../../components/banner/SingleBanner'
 import UserSideBar from './UserProfie/UserSidebar'
 import AccountSettings from '../../components/UserProfile/AccountSetting'
 import "./Profile.css"
-import img from '../../assets/images/background.png'
 const profile = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { activepage } = useParams()
@@ -29,4 +28,4 @@ const profile = () => {
     )
 }
 
-export default profile
+export default Profile

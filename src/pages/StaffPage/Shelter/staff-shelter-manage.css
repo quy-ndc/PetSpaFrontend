@@ -132,9 +132,7 @@
 }
 
 .active-status,
-.inactive-status,
-.full-status,
-.available-status {
+.inactive-status {
     display: inline-block;
     width: 100%;
     padding: 3px;
@@ -144,17 +142,18 @@
     font-weight: bold;
 }
 
-.active-status,
-.available-status {
+.active-status {
     background: rgba(1, 204, 1, 0.788);
 }
 
-.inactive-status,
-.full-status {
+.inactive-status {
     background: rgba(240, 38, 24, 0.796);
 }
 
 .account-table-status-column {
     align-items: center;
     text-align: center;
+}
+.staff-manage-shelter{
+    padding: 10px;
 }

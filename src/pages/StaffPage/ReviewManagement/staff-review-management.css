@@ -71,4 +71,8 @@
   .delete-button:hover {
     background-color: #ff1a1a;
   }
+  .no-underline {
+    text-decoration: none;
+    color: #333; 
+  }
   
