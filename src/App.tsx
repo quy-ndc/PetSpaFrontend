@@ -29,6 +29,8 @@ import Profile from "./pages/ProfilePage/Profile";
 import AccountSettings from "./components/UserProfile/AccountSetting";
 import ChangePassword from "./pages/ProfilePage/UserProfie/ChangePassword";
 import YourOrders from "./pages/ProfilePage/UserProfie/Order";
+import Order from "./pages/ProfilePage/UserProfie/Order";
+import PetList from "./pages/ProfilePage/UserProfie/PetList";
 
 function App() {
     return (
@@ -50,6 +52,10 @@ function App() {
                 <Route path="/service/pricing" element={<PricingPage />} />
                 <Route path="/service/combo" element={<ComboPage />} />
                 <Route path='/check-out' element={<CheckOut />} />
+                <Route path='/user:activepage' element={<Order />} />
+                <Route path='/order' element={<Order />} />
+                <Route path='/pet' element={<PetList />} />
+                <Route path='/setting' element={<AccountSettings />} />
             </Route>
             <Route path="/doctor" element={<DoctorLayout />}>
                 <Route path="/doctor/" element={<DoctorDashboard />} />
@@ -62,11 +68,6 @@ function App() {
                 <Route path='/staff/schedule' element={<SchedulerView />} />
                 <Route path='/staff/reviews' element={<StaffReviewManagement />} />
                 <Route path='/staff/shelter' element={<StaffShelterManage />} />
-            </Route>
-            <Route path="/profile" element={<Profile />}>
-                <Route path="/profile/accountsetting" element={<AccountSettings />} />
-                <Route path="/profile/orderlist" element={<YourOrders />} />
-                <Route path='/profile/changepassword' element={<ChangePassword />} />
             </Route>
         </Routes>
     );

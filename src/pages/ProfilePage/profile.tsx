@@ -5,6 +5,7 @@ import UserSideBar from './UserProfie/UserSidebar'
 import AccountSettings from '../../components/UserProfile/AccountSetting'
 import ChangePassword from './UserProfie/ChangePassword'
 import Order from './UserProfie/Order'
+import Pet from './UserProfie/PetList'
 import "./Profile.css"
 import img from "../../assets/images/hygiene-image.jpg"
 const Profile = () => {
@@ -27,7 +28,7 @@ const Profile = () => {
                     {activepage === 'accountsettings' && <AccountSettings />}
                     {activepage === 'changepassword' && <ChangePassword />}
                     {activepage === 'orders' && <Order />}
-                    {activepage === 'petstable' && <PetList />}
+                    {activepage === 'petstable' && <Pet />}
                     {activepage === 'legalnotice' && <LegalNotice />}
                 </div>
             </div>
