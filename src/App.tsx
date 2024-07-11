@@ -25,7 +25,7 @@ import DoctorReviewManagement from "./pages/DoctorPage/doctor-review-management"
 import MainLayout from "./components/layout/main-layout";
 import CheckOut from "./pages/CheckOut/check-out";
 import StaffShelterManage from "./pages/StaffPage/Shelter/staff-shelter-manage";
-// import Profile from "./pages/ProfilePage/profile";
+import Profile from "./pages/ProfilePage/profile";
 
 function App() {
     return (
