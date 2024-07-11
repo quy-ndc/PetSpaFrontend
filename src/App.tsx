@@ -33,6 +33,7 @@ function App() {
             {/* <Route path='/scheduler' element={<SchedulerView />} /> */}
             <Route path='/admin' element={<AdminDashboard />} />
             <Route path="/" element={<MainLayout />}>
+                <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
