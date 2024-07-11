@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import SingleBanner from '../../components/banner/SingleBanner'
 import UserSideBar from './UserProfie/UserSidebar'
 import AccountSettings from '../../components/UserProfile/AccountSetting'
+import ChangePassword from './UserProfie/ChangePassword'
+import Order from './UserProfie/Order'
 import "./Profile.css"
 import img from "../../assets/images/hygiene-image.jpg"
 const Profile = () => {
@@ -10,19 +12,23 @@ const Profile = () => {
     const { activepage } = useParams()
     // alert(activepage)
     return (
-        <div>
+        <div className='userprofile'>
             <SingleBanner
                 heading={'My Profile'}
                 bannerimage={img}
             />
             {/* UserProfile , showing {activepage} */}
 
-            <div className='userprofile'>
+            <div className='userprofilein'>
                 <div className='left'>
                     <UserSideBar activepage={activepage} />
                 </div>
                 <div className='right'>
                     {activepage === 'accountsettings' && <AccountSettings />}
+                    {activepage === 'changepassword' && <ChangePassword />}
+                    {activepage === 'orders' && <Order />}
+                    {activepage === 'petstable' && <PetList />}
+                    {activepage === 'legalnotice' && <LegalNotice />}
                 </div>
             </div>
         </div>
