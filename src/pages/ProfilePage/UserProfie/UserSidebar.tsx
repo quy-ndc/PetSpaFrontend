@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './UserSidebar.css'
 
 interface UserSidebarProps {
-    activepage: string;
+    activepage: string | undefined;
 }
 
 const UserSidebar: React.FC<UserSidebarProps> = ({ activepage }) => {

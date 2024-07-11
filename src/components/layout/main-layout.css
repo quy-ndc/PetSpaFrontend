@@ -7,23 +7,24 @@
 }
 
 .main-layout nav {
-    width: 100%;
+    width: 98%;
     padding: 15px;
     background: transparent;
     height: 40px;
-    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    text-align: center;
     justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 1000;
     transition: background 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.main-layout nav:hover {
-    background: rgba(255, 255, 255, 0.682);
+.main-layout nav.scrolled {
+    background: white;
 }
 
 .main-nav-left {
@@ -38,7 +39,7 @@
 }
 
 .main-nav-right img {
-    height: 40px;   
+    height: 40px;
     width: 40px;
     margin-right: 40px;
     border-radius: 50%;
@@ -54,7 +55,7 @@
 .main-nav-left-action a {
     text-decoration: none;
     color: #222;
-    font-size: 15px;
+    font-size: 16px;
     cursor: pointer;
     padding: 5px 10px;
     position: relative;
@@ -92,4 +93,101 @@
     transition: width 0.3s ease-in-out;
     width: 100% !important;
     border: 0.5px solid black;
+}
+
+
+.main-nav-right {
+    position: relative;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.nav-right-book-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 5px;
+    width: 110px;
+    border: 0.5px solid black;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 7px;
+    transition: background 0.4s ease
+}
+
+.nav-right-book-button:hover {
+    background: black;
+    color: white;
+}
+
+.nav-right-book-button:hover svg {
+    fill: white;
+}
+
+.nav-right-book-button svg {
+    width: 20px;
+}
+
+.nav-right-dropdown {
+    position: relative;
+}
+
+.nav-right-dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    transition: background 0.4s ease;
+    border-radius: 7px;
+}
+
+.nav-right-dropdown-toggle:hover {
+    background: rgb(230, 230, 230);
+}
+
+.nav-right-dropdown-menu {
+    position: absolute;
+    right: left;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 130px;
+    margin-top: 3px;
+    text-align: center;
+    border-radius: 7px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.nav-right-dropdown-item {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.nav-right-dropdown-item:hover {
+    background-color: #e9e9e9;
+}
+
+.nav-right-dropdown-item:first-child:hover {
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
+
+.nav-right-dropdown-item:last-child:hover {
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
 }

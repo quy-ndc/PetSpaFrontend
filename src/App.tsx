@@ -25,7 +25,7 @@ import DoctorReviewManagement from "./pages/DoctorPage/doctor-review-management"
 import MainLayout from "./components/layout/main-layout";
 import CheckOut from "./pages/CheckOut/check-out";
 import StaffShelterManage from "./pages/StaffPage/Shelter/staff-shelter-manage";
-// import Profile from "./pages/ProfilePage/profile";
+import Profile from "./pages/ProfilePage/profile";
 
 function App() {
     return (
@@ -33,6 +33,7 @@ function App() {
             {/* <Route path='/scheduler' element={<SchedulerView />} /> */}
             <Route path='/admin' element={<AdminDashboard />} />
             <Route path="/" element={<MainLayout />}>
+                <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
