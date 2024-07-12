@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import './user-sidebar.css'
 import SettingsIcon from '@mui/icons-material/Settings';
 import PetsIcon from '@mui/icons-material/Pets';

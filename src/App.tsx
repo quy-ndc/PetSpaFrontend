@@ -26,7 +26,6 @@ import MainLayout from "./components/layout/main-layout";
 import CheckOut from "./pages/CheckOut/check-out";
 import StaffShelterManage from "./pages/StaffPage/Shelter/staff-shelter-manage";
 import Profile from "./pages/ProfilePage/profile";
-import AccountSettings from "./components/UserProfile/AccountSetting";
 
 function App() {
     return (
@@ -48,7 +47,6 @@ function App() {
                 <Route path="/service/pricing" element={<PricingPage />} />
                 <Route path="/service/combo" element={<ComboPage />} />
                 <Route path='/check-out' element={<CheckOut />} />
-                <Route path='/setting' element={<AccountSettings />} />
             </Route>
             <Route path="/doctor" element={<DoctorLayout />}>
                 <Route path="/doctor/" element={<DoctorDashboard />} />
