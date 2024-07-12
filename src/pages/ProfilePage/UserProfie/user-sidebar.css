@@ -1,0 +1,56 @@
+.user-profile-left-nav {
+    height: 100vh;
+}
+
+.user-profile-left-nav nav{
+    background: none;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.user-profile-left-nav-list {
+    list-style: none;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.user-profile-left-nav-list li{
+    padding: 15px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+}
+
+.user-profile-left-nav-list li:hover{
+    background: #333;
+}
+
+.user-profile-left-nav-list li:hover a {
+    color: white;
+}
+ 
+.user-profile-left-nav-link a{
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.active-user-option{
+   background: #222;
+   border-radius: 10px;
+}
+
+.active-user-option a {
+    color: white;
+    font-weight: bold;
+}
+
+
