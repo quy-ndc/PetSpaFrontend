@@ -1,7 +1,8 @@
 import React from 'react'
 import "./profile.css"
-import UserSideBar from './UserProfie/user-sidebar'
+
 import { UserProfileProvider } from './UserProfie/user-profile-context'
+import UserSideBar from './UserProfie/user-sidebar'
 import UserProfileMainContent from './UserProfie/user-profile-main'
 
 
