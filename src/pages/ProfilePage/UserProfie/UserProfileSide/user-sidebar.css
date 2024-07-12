@@ -10,7 +10,7 @@
 
 .user-profile-left-nav-list {
     list-style: none;
-    width: 150px;
+    width: 180px;
     display: flex;
     flex-direction: column;
     gap: 20px;

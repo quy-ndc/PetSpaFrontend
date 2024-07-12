@@ -1,8 +1,8 @@
 import React from 'react'
 import { UserProfileProvider } from './UserProfie/user-profile-context'
-import UserSideBar from './UserProfie/user-sidebar'
-import UserProfileMainContent from './UserProfie/user-profile-main'
-
+import UserSideBar from './UserProfie/UserProfileSide/user-sidebar'
+import UserProfileMainContent from './UserProfie/UserProfileMain/user-profile-main'
+import './profile.css'
 
 const Profile: React.FC = () => {
 
