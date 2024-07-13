@@ -25,12 +25,13 @@ import DoctorReviewManagement from "./pages/DoctorPage/doctor-review-management"
 import MainLayout from "./components/layout/main-layout";
 import CheckOut from "./pages/CheckOut/check-out";
 import StaffShelterManage from "./pages/StaffPage/Shelter/staff-shelter-manage";
-import Profile from "./pages/ProfilePage/Profile";
+// import Profile from "./pages/ProfilePage/Profile";
 import AccountSettings from "./components/UserProfile/AccountSetting";
 import ChangePassword from "./pages/ProfilePage/UserProfie/ChangePassword";
 import YourOrders from "./pages/ProfilePage/UserProfie/Order";
 import Order from "./pages/ProfilePage/UserProfie/Order";
 import PetList from "./pages/ProfilePage/UserProfie/PetList";
+import TheImageList from "./components/TheImageList";
 
 function App() {
     return (
@@ -40,7 +41,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/profile" element={<Profile />} />
+                {/* <Route path="/profile" element={<Profile />} /> */}
                 <Route path="/register" element={<Register />} />
                 <Route path="/booking" element={<BookingPage />} />
                 <Route path="/about-us" element={<AboutUsPage />} />
