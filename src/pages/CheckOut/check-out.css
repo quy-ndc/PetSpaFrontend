@@ -21,23 +21,18 @@ h1 {
   gap: 50px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-information {
+.checkout-contact-information {
   position: relative;
   display: flex;
   flex-flow: column;
 }
 
-button[type="submit"] {
+button.checkout-button[type="submit"] {
   margin: 0 auto;
   padding: 10px 30px;
 }
 
-button {
+button.checkout-button {
   background-color: #000;
   color: #fff;
   padding: 10px;
@@ -47,7 +42,7 @@ button {
   margin-top: 10px;
 }
 
-button:hover {
+button.checkout-button:hover {
   background-color: #555;
 }
 
@@ -63,14 +58,14 @@ button:hover {
   margin-bottom: 20px;
 }
 
-.order-item {
+.checkout-order-item {
   display: flex;
   margin-bottom: 10px;
   gap: 10px;
   align-items: center;
 }
 
-.order-item img {
+.checkout-order-item img {
   width: 250px;
   height: 200px;
 }

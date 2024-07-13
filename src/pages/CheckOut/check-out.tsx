@@ -44,7 +44,7 @@ const CheckOut = () => {
       <h1>Checkout</h1>
       <div className="checkout-content">
         <form onSubmit={handleSubmit(onSubmit)} className="checkout-form">
-          <div className="contact-information">
+          <div className="checkout-contact-information">
             <h2>Contact information</h2>
             <TextField
               sx={inputStyle}
@@ -100,12 +100,13 @@ const CheckOut = () => {
               />
               <h5>You will pay by VNPAY</h5>
             </div>
-            <button type="submit">Pay</button>
+            
+            <button className="checkout-button" type="submit">Pay</button>
           </div>
           <div className="order-summary">
             <h2>Order Summary</h2>
             {orderItems.map((item, index) => (
-              <div className="order-item" key={index}>
+              <div className="checkout-order-item" key={index}>
                 <img src={item.imageUrl} alt={item.name} />
                 <div>
                   <p>{item.name}</p>
