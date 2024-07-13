@@ -1,0 +1,48 @@
+.user-overview-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 200px;
+    height: 90px;
+    padding: 5px 20px 5px 20px;
+    border-radius: 10px;
+    border: 0.5px solid #dddddd;
+    background: #ffffff9b;
+    color: black;
+    transition: box-shadow 0.3s ease;
+}
+
+.user-overview-item:hover {
+    box-shadow: 3px 5px rgba(0, 0, 0, 0.717);
+}
+
+.user-overview-item-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+.user-overview-item-top h4 {
+    margin: 0px;
+    font-weight: 550;
+    font-size: 14px;
+}
+
+.user-overview-item-main {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.user-overview-item-main h2, .user-overview-item-main h4 {
+    margin: 0px;
+}
+
+.user-overview-item-main h4 {
+    font-size: 13px;
+    font-weight: 100;
+    color: #71717a;
+}

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../../../../../DoctorPage/DashboardItem/doctor-dashboard-item.css';
-import './user-finished-appointment-item.css'
+import './user-finished-appointment-item.css';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import StarIcon from '@mui/icons-material/Star';
@@ -19,12 +19,19 @@ const UserFinishedAppointmentItem: React.FC<UserAppointmentItemProp> = ({
     time, type, name, service
 }) => {
 
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         top: false,
         left: false,
         bottom: false,
         right: false,
     });
+
+    const [rating, setRating] = useState<number>(5);
+
+    const changeRating = (newRating: number, event: React.MouseEvent) => {
+        event.stopPropagation();
+        setRating(newRating);
+    };
 
     const toggleDrawer =
         (anchor: Anchor, open: boolean) =>
@@ -44,14 +51,40 @@ const UserFinishedAppointmentItem: React.FC<UserAppointmentItemProp> = ({
         <div
             className="service-rate-drawer"
             role="presentation"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
+            onClick={(event) => event.stopPropagation()}
+            onKeyDown={(event) => event.stopPropagation()}
         >
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
-            <StarIcon />
+            <h3>How would you rate the service</h3>
+            <div className="service-rate-stars">
+                {[1, 2, 3, 4, 5].map((starRating) => (
+                    <div
+                        key={starRating}
+                        onClick={(event) => changeRating(starRating, event)}
+                        className={`service-rate-star ${rating >= starRating ? 'rated' : ''}`}
+                    >
+                        <StarIcon />
+                    </div>
+                ))}
+            </div>
+            <h3>Leave a comment? (300 words)</h3>
+            <div className="service-rate-content">
+                <textarea
+                    name=""
+                    id=""
+                    cols={30}
+                    rows={10}
+                    maxLength={300}
+                    placeholder='Say something about your experience...'
+                    onClick={(event) => event.stopPropagation()}
+                    onMouseDown={(event) => event.stopPropagation()}
+                />
+            </div>
+            <button
+                className='service-rate-button'
+                onClick={(event) => event.stopPropagation()}
+            >
+                Post
+            </button>
         </div>
     );
 

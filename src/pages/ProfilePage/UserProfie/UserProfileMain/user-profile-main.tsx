@@ -7,6 +7,8 @@ import UserAppointment from "./Appointment/OtherAppointment/user-appointment";
 import UserAppointmentItemList from "./Appointment/OtherAppointment/user-appointment-item-list";
 import UserFinishedAppointmentItemList from "./Appointment/FinishedAppointment/user-finished-appointment-list";
 import UserPetSettings from "./PetSettings/user-pet-settings";
+import UserOverview from "./UserOverview/user-overview";
+import UserReviewList from "./UserReview/user-review-list";
 
 const UserProfileMainContent: React.FC = () => {
 
@@ -15,6 +17,12 @@ const UserProfileMainContent: React.FC = () => {
     return (
         <>
             <div className="admin-dashboard-content">
+                {selectedNavItem === "overview" && (
+                    <>
+                        <UserOverview />
+                    </>
+                )}
+
                 {selectedNavItem === "setting" && (
                     <>
                         <AccountSetting />
@@ -34,6 +42,12 @@ const UserProfileMainContent: React.FC = () => {
                             pastAppointment={<UserFinishedAppointmentItemList date="June 22 - Saturday" />}
                             onGoingAppointment={<UserAppointmentItemList date="June 22 - Saturday" />}
                         />
+                    </>
+                )}
+
+                {selectedNavItem === "review" && (
+                    <>
+                        <UserReviewList />
                     </>
                 )}
 

@@ -1,0 +1,115 @@
+.user-overview-reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-overview-reviews h2 {
+    margin: 0;
+    color: black;
+}
+
+.user-overview-review {
+    padding: 10px;
+    border: 0.5px solid black;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 500px;
+    background: rgba(253, 250, 244, 0.635);
+}
+
+.user-overview-review-rating {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.user-overview-review-rating p {
+    color: rgb(148, 148, 148);
+    margin: 0;
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+.review-rate-star svg {
+    stroke: black;
+    stroke-width: 0.5;
+}
+
+.review-rated svg {
+    fill: yellow;
+}
+
+.user-overview-review-comment p {
+    color: black;
+    margin: 0;
+    font-weight: bold;
+}
+
+.user-overview-review-button {
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    padding-left: 0;
+    background: none;
+    border: 0.5px solid black;
+    border-radius: 7px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.4s ease;
+}
+
+.user-overview-review-button:hover {
+    background: black;
+    color: white;
+}
+
+.user-overview-review-drawer {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.service-rate-button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.service-update-button,
+.service-delete-button {
+    width: 70px;
+    height: 34px;
+    margin-top: 10px;
+    background: none;
+    font-weight: bold;
+    border-radius: 7px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.4s ease;
+}
+
+.service-update-button {
+    border: 0.5px solid green;
+    color: green;
+}
+
+.service-delete-button {
+    border: 0.5px solid red;
+    color: red;
+}
+
+.service-update-button:hover {
+    background: green;
+    color: white;
+}
+
+.service-delete-button:hover {
+    background: red;
+    color: white;
+}

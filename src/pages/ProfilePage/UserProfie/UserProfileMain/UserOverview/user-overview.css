@@ -1,0 +1,25 @@
+.user-overview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.user-overview-items {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.user-overview-body {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.user-overview-body-left {
+    flex-basis: 45%;
+}
+
+.user-overview-body-right {
+    flex-basis: 45%;
+}

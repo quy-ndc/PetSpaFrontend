@@ -23,3 +23,67 @@
 .appointment-rate-button:hover svg {
     fill: white;
 }
+
+.service-rate-drawer {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.service-rate-stars {
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    padding: 10px;
+}
+
+.service-rate-star svg {
+    width: 40px;
+    height: 40px;
+}
+
+.rated svg {
+    fill: yellow;
+    stroke: black;
+    stroke-width: 0.5;
+}
+
+.service-rate-content {
+    width: 380px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.service-rate-content textarea {
+    width: 100%;
+    resize: none;
+    padding: 10px;
+    font-size: 17px;
+    border-radius: 7px;
+}
+
+.service-rate-content textarea:focus {
+    outline: none;
+}
+
+.service-rate-button {
+    width: 70px;
+    height: 34px;
+    margin-top: 10px;
+    background: none;
+    font-weight: bold;
+    border: 0.5px solid black;
+    border-radius: 7px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.4s ease;
+}
+
+.service-rate-button:hover {
+    background: black;
+    color: white;
+}

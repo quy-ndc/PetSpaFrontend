@@ -89,11 +89,11 @@ const MainLayout = () => {
                             <div className="nav-right-dropdown-menu">
                                 <div className="nav-right-dropdown-item">
                                     <AccountCircleIcon />
-                                    <Link to="/profile" className="nav-right-dropdown-item">Profile</Link>
+                                    <Link onClick={toggleDropdown} to="/profile" className="nav-right-dropdown-item">Profile</Link>
                                 </div>
                                 <div className="nav-right-dropdown-item">
                                     <ExitToAppIcon />
-                                    <Link to="/logout" className="nav-right-dropdown-item">Logout</Link>
+                                    <Link onClick={toggleDropdown} to="/logout" className="nav-right-dropdown-item">Logout</Link>
                                 </div>
                             </div>
                         )}

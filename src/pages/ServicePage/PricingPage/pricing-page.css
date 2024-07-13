@@ -25,6 +25,7 @@
   /* margin-bottom: 30px; */
   max-width: 600px;
 }
+
 .pricing-page-service-container {
   display: flex;
   flex-direction: column;
@@ -35,22 +36,23 @@
   flex: 1;
   margin-right: 40px;
 }
+
 .img-left img {
   height: 400px;
   width: 440px;
   object-fit: cover;
   border-radius: 10px;
 }
+
 .pricing-page-service-detail {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 40px;
   /* gap: 50px;
-  width: 100%; */ */
+  width: 100%; */
   /* margin-top: 30px;
   /* padding: 20px; */
-
 }
 
 .price-table {
@@ -87,6 +89,7 @@
   color: #000;
   border-bottom: 2px solid #ddd;
 }
+
 .pricing-page-service-detail-right a {
   align-items: center;
   background: #fff2f1;

@@ -266,20 +266,22 @@
     .introduction__content-button {
         padding: 10px 30px;
         color: gainsboro;
-        background: blue;
+        background: #75010A;
         font-size: 19px;
         font-weight: 600;
         margin-right: 20px;
         border-radius: 5px;
         width: fit-content;
+        text-decoration: none;
+        transition: background 0.3s ease;
     }
 
     .introduction__content-button:hover {
-        background-color: #f5a623;
+        background: #822029;
     }
 
     .aboutus {
-        padding: 0 170px;
+        padding: 0 30px;
         margin-top: 20px;
     }
 
@@ -327,10 +329,9 @@
     }
 
     .services {
-        padding: 0 170px;
+        padding: 0 30px;
         margin-top: 20px;
-        background-color: antiquewhite;
-        border-radius: 200px;
+        background-color: rgba(250, 235, 215, 0.496);
     }
 
     .services__title {

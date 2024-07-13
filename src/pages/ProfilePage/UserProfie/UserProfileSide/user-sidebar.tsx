@@ -4,6 +4,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import PetsIcon from '@mui/icons-material/Pets';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import StarsIcon from '@mui/icons-material/Stars';
 import { useUserProfile } from '../user-profile-context';
 
 
@@ -15,6 +17,18 @@ const UserSidebar: React.FC = () => {
         <>
             <div className="user-profile-left-nav">
                 <ul className="user-profile-left-nav-list">
+
+                    <li
+                        className={`user-profile-left-nav-link ${selectedNavItem === 'overview' ? 'active-user-option' : ''}`}
+                        onClick={() => setSelectedNavItem('overview')}
+                    >
+                        <a>
+                            <AccountBoxIcon />
+                            Overview
+                        </a>
+                    </li>
+
+
                     <li
                         className={`user-profile-left-nav-link ${selectedNavItem === 'setting' ? 'active-user-option' : ''}`}
                         onClick={() => setSelectedNavItem('setting')}
@@ -42,6 +56,16 @@ const UserSidebar: React.FC = () => {
                         <a>
                             <CalendarMonthIcon />
                             Appointments
+                        </a>
+                    </li>
+
+                    <li
+                        className={`user-profile-left-nav-link ${selectedNavItem === 'review' ? 'active-user-option' : ''}`}
+                        onClick={() => setSelectedNavItem('review')}
+                    >
+                        <a>
+                            <StarsIcon />
+                            Reviews
                         </a>
                     </li>
 
