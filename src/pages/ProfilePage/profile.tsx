@@ -1,35 +1,19 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
-import SingleBanner from '../../components/banner/SingleBanner'
-import UserSideBar from './UserProfie/UserSidebar'
-import AccountSettings from '../../components/UserProfile/AccountSetting'
-import ChangePassword from './UserProfie/ChangePassword'
-import Order from './UserProfie/Order'
-import Pet from './UserProfie/PetList'
-import "./Profile.css"
-import img from "../../assets/images/hygiene-image.jpg"
-const Profile = () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { activepage } = useParams()
-    // alert(activepage)
-    return (
-        <div className='userprofile'>
-            <SingleBanner
-                heading={'My Profile'}
-                bannerimage={img}
-            />
-            {/* UserProfile , showing {activepage} */}
+import { UserProfileProvider } from './UserProfie/user-profile-context'
+import UserSideBar from './UserProfie/UserProfileSide/user-sidebar'
+import UserProfileMainContent from './UserProfie/UserProfileMain/user-profile-main'
+import './user-profile.css'
 
-            <div className='userprofilein'>
-                <div className='left'>
-                    <UserSideBar activepage={activepage} />
-                </div>
-                <div className='right'>
-                    {activepage === 'accountsettings' && <AccountSettings />}
-                    {activepage === 'changepassword' && <ChangePassword />}
-                    {activepage === 'orders' && <Order />}
-                    {activepage === 'petstable' && <Pet />}
-                    {activepage === 'legalnotice' && <LegalNotice />}
+const Profile: React.FC = () => {
+
+    return (
+        <div className="user-profile-container">
+            <div className='user-profile-main-content' >
+                <div className='user-profile-nav-content-container'>
+                    <UserProfileProvider>
+                        <UserSideBar />
+                        <UserProfileMainContent />
+                    </UserProfileProvider>
                 </div>
             </div>
         </div>

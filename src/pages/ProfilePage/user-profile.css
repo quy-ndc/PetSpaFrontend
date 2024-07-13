@@ -1,0 +1,10 @@
+.user-profile-main-content {
+    flex-basis: 100%;
+}
+
+
+.user-profile-nav-content-container {
+    display: flex;
+    align-items: top;
+    padding-top: 10px;
+}
