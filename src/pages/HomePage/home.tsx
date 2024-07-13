@@ -64,11 +64,11 @@ const HomePage: React.FC = () => {
                 <video className="introvideo" src={bgvideo} autoPlay loop muted />
                 <div className="introduction__content">
                     <div className="introduction__content-title">
-                        Hệ thống thú y TROPICET
+                        PETSPA
                     </div>
                     <div className="introduction__content-subtitle">
-                        Tận tâm
-                        <div>chăm sóc</div>
+                        BUILDING A SPACE
+                        <div>WHERE ANIMALS COME FIRST</div>
                     </div>
                     <a href="/booking" className="introduction__content-button">
                         Book now
@@ -77,18 +77,18 @@ const HomePage: React.FC = () => {
             </section>
             <section id="aboutus" className="aboutus">
                 <div className="aboutus__title">
-                    TẠI SAO NÊN CHỌN TROPICPET? (About Us)
+                    Our story (About Us)
                 </div>
                 <div className="aboutus__content">
                     <img width="705px" height="600" src="https://tropicpet.vn/wp-content/uploads/2024/02/about-tropicpet.jpg" alt="" />
                     <div className="description">
-                        <p>Tropicpet là hệ thống bệnh viện thú y chất lượng, uy tín TOP đầu Hà Nội. Với 4 chi nhánh đang hoạt động, hệ thống của chúng tôi đã phục vụ hơn 30.000 khách hàng với sự tín nhiệm và tin tưởng rất lớn.
+                        <p>At PETSPA, we know our pets are more than just animals; they are cherished members of our families. That’s why our passionate team is dedicated to providing them with the highest quality of care, infused with love and expertise.
 
-                        </p><p>Thú cưng của bạn khi tới bệnh viện sẽ nhận được quy trình chăm sóc tiêu chuẩn quốc tế với các bước kiểm tra, xét nghiệm, chẩn đoán điều trị rõ ràng. Nhân viên của Tropicpet sẽ luôn duy trì kênh liên lạc với bạn để cập nhật thường xuyên, liên tục tình hình của các bạn thú cưng, chắc chắn rằng bạn sẽ an tâm khi gửi gắm thú cưng của cho chúng tôi.
+                        </p><p>We established PETSPA to deliver world-class veterinary services and preventative care in Southeast Asia. When it comes to pet healthcare, we hold ourselves to the same standards of excellence you will find at the best animal hospitals in North America, Europe and Australia.
 
-                        </p><p>Tropicpet có đội ngũ bác sĩ thú y tay nghề cao, chuyên môn tốt, giàu kinh nghiệm, luôn đề cao lương tâm, tính trách nhiệm trong công việc và rất yêu thương thú cưng. Cùng với hệ thống máy móc thiết bị hiện đại phục vụ cho chẩn đoán và điều trị bệnh.
+                        </p><p>Our commitment goes beyond clinical excellence. We focus on building trust with pet owners through clear and empathetic communication. Understanding your pet’s health is essential, and we are here to support you every step of the way.
                         </p><p>
-                            Với slogan “Healing From The Heart” chúng tôi chăm sóc thú cưng của bạn tận tâm với tất cả trái tim mình.</p>
+                            We take as long as you need to discuss your pet’s health in detail, ensuring you feel confident and reassured. At Animal Doctors International, your pet’s wellbeing and your peace of mind are our top priorities. Together, we keep your cherished companions happy, healthy, and thriving.</p>
                         <h4 >ĐIỂM NHẤN ẤN TƯỢNG:
                         </h4>
                         <p>
@@ -99,7 +99,7 @@ const HomePage: React.FC = () => {
             </section>
             <section id="services" className="services">
                 <div className="services__title">
-                    Our Doctors & Staffs
+                    Meets our team
                 </div>
 
                 <Carousel className="cara"
@@ -123,27 +123,27 @@ const HomePage: React.FC = () => {
                     <div className="cara__item">
                         <img width="425" height="313" decoding="async" src="https://tropicpet.vn/wp-content/uploads/2022/05/team-trang-tran-600x519.jpg" alt="" />
                         <h1>Dr. Trang Trần </h1>
-                        <p>BÁC SĨ ĐA KHOA </p>
+                        <p>Veterinary </p>
                     </div>
                     <div className="cara__item">
                         <img width="425" height="313" decoding="async" src="https://tropicpet.vn/wp-content/uploads/2021/05/team-Hiep-1-600x519-1-600x519.jpg" alt="" />
                         <h1>Dr. Hiệp Đỗ </h1>
-                        <p>GIÁM ĐỐC HỆ THỐNG </p>
+                        <p>Veterinary </p>
                     </div>
                     <div className="cara__item">
                         <img width="425" height="313" decoding="async" src="https://tropicpet.vn/wp-content/uploads/2022/06/chup-x-quang-425x313.jpg" alt="" />
                         <h1>Dr. Huy Nguyễn </h1>
-                        <p>BÁC SĨ ĐA KHOA </p>
+                        <p>Veterinary </p>
                     </div>
                     <div className="cara__item">
                         <img width="425" height="313" decoding="async" src="https://tropicpet.vn/wp-content/uploads/2021/05/team-huy-2-600x519-1-600x519.jpg" alt="" />
                         <h1>Dr. Nam Nguyễn </h1>
-                        <p>BÁC SĨ ĐA KHOA </p>
+                        <p>Veterinary </p>
                     </div>
                     <div className="cara__item">
                         <img width="425" height="313" decoding="async" src="https://tropicpet.vn/wp-content/uploads/2021/05/team-Tinh-600x519-1-1-600x519.jpg" alt="" />
                         <h1>Dr. Thảo Vũ </h1>
-                        <p>BÁC SĨ ĐA KHOA </p>
+                        <p>Veterinary </p>
                     </div>
                 </Carousel>;
             </section>
