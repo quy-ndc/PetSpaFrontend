@@ -4,7 +4,6 @@ import "react-multi-carousel/lib/styles.css";
 import { useEffect } from "react";
 import bgvideo from "../../assets/pet-care.mp4";
 import image from "../../assets/images/clinical-image.jpg";
-import TheImageList from "../../components/TheImageList";
 
 
 const HomePage: React.FC = () => {
