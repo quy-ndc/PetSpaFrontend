@@ -12,13 +12,15 @@ h1 {
 
 .checkout-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Center the content horizontally */
+  gap: 50px; /* Add gap between the columns */
 }
 
 .checkout-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
+  width: 100%; /* Make sure the form takes the full width of its container */
 }
 
 .checkout-contact-information {
@@ -46,7 +48,7 @@ button.checkout-button:hover {
   background-color: #555;
 }
 
-.order-summary {
+.order-summary-content {
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 4px;
@@ -60,14 +62,9 @@ button.checkout-button:hover {
 
 .checkout-order-item {
   display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
-  gap: 10px;
   align-items: center;
-}
-
-.checkout-order-item img {
-  width: 250px;
-  height: 200px;
 }
 
 .order-total {
@@ -76,6 +73,7 @@ button.checkout-button:hover {
   padding-top: 10px;
   color: rgb(161, 28, 28);
   font-weight: bold;
+  text-align: right; /* Align total to the right */
 }
 
 .payment-option img {

@@ -27,14 +27,10 @@ const CheckOut = () => {
     {
       name: "Grooming Cat",
       price: 95.0,
-      imageUrl:
-        "https://th.bing.com/th/id/OIP.e-FTPwDuLKTcXAS7iOAwQAAAAA?rs=1&pid=ImgDetMain",
     },
     {
       name: "Grooming Cat",
       price: 95.0,
-      imageUrl:
-        "https://th.bing.com/th/id/OIP.e-FTPwDuLKTcXAS7iOAwQAAAAA?rs=1&pid=ImgDetMain",
     },
   ];
   const total = orderItems.reduce((total, item) => total + item.price, 0);
@@ -100,23 +96,24 @@ const CheckOut = () => {
               />
               <h5>You will pay by VNPAY</h5>
             </div>
-            
-            <button className="checkout-button" type="submit">Pay</button>
+
+            <button className="checkout-button" type="submit">
+              Pay
+            </button>
           </div>
           <div className="order-summary">
-            <h2>Order Summary</h2>
-            {orderItems.map((item, index) => (
-              <div className="checkout-order-item" key={index}>
-                <img src={item.imageUrl} alt={item.name} />
-                <div>
+            <div className="order-summary-content">
+              <h2>Order Summary</h2>
+              {orderItems.map((item, index) => (
+                <div className="checkout-order-item" key={index}>
                   <p>{item.name}</p>
-                  <p>${item.price.toFixed(2)}</p>
+                  <p>{item.price.toFixed(3)}</p>
                 </div>
-              </div>
-            ))}
+              ))}
 
-            <div className="order-total">
-              <p>Total: ${total.toFixed(2)}</p>
+              <div className="order-total">
+                <p>Total: {total.toFixed(3)}</p>
+              </div>
             </div>
           </div>
         </form>
