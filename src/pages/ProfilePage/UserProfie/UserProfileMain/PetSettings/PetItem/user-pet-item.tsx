@@ -3,15 +3,17 @@ import "./user-pet-item.css";
 import Drawer from '@mui/material/Drawer';
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
+import UserPetCreateForm from "../PetCreateForm/pet-create-form";
+import UserPetEdit from "./user-pet-edit";
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 interface UserPetItemProp {
     name: string;
     gender: string;
-    age: number;
+    age: string;
     species: string;
-    breed: string;
+    breed: string | null;
 }
 
 const UserPetItem: React.FC<UserPetItemProp> = ({ name, gender, age, species, breed }) => {
@@ -37,7 +39,7 @@ const UserPetItem: React.FC<UserPetItemProp> = ({ name, gender, age, species, br
                 setState({ ...state, [anchor]: open });
             };
 
-    const list = (anchor: Anchor) => (
+    const MedicalRecord = (anchor: Anchor) => (
         <div
             className="medical-record-drawer"
             role="presentation"
@@ -92,24 +94,45 @@ const UserPetItem: React.FC<UserPetItemProp> = ({ name, gender, age, species, br
                         ) : (
                             null
                         )}
-                        <span>{breed}</span>
+                        {breed != null ? (
+                            <span>{breed}</span>
+                        ) : null}
                     </div>
                 </div>
+                <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 10
+                }}>
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-around',
 
-                <button
-                    className="user-profile-pet-medical"
-                    onClick={toggleDrawer("right", true)}
-                >
-                    See medical history
-                </button>
-                <Drawer
-                    anchor={"right"}
-                    open={state["right"]}
-                    onClose={toggleDrawer("right", false)}
-                >
-                    {list("right")}
-                </Drawer>
-
+                    }}>
+                        <UserPetEdit
+                            name={name}
+                            age={age}
+                            gender={gender}
+                            species={species}
+                            breed={breed || ""}
+                        />
+                        <button className="user-profile-pet-delete">Delete</button>
+                    </div>
+                    <button
+                        className="user-profile-pet-medical"
+                        onClick={toggleDrawer("right", true)}
+                    >
+                        See medical history
+                    </button>
+                    <Drawer
+                        anchor={"right"}
+                        open={state["right"]}
+                        onClose={toggleDrawer("right", false)}
+                    >
+                        {MedicalRecord("right")}
+                    </Drawer>
+                </div>
 
             </div>
         </>

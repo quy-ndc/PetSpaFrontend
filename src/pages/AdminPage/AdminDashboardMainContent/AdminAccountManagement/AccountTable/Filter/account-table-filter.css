@@ -1,0 +1,46 @@
+.account-filter-popup-container {
+    display: flex;
+    padding: 20px;
+}
+
+.account-filter-pop-up-items {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.account-filter-pop-up-items h3 {
+    margin: 5px 0;
+}
+
+.account-filter-pop-up-item {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.account-filter-pop-up-item div {
+    display: flex;
+    align-items: center;
+}
+
+.account-filter-pop-up-item-age {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.account-filter-pop-up-item-age div {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-filter-pop-up-item-age input {
+    border: none;
+    outline: none;
+    padding: 5px;
+    box-shadow: rgba(13, 37, 84, 0.635) 0px 1px;
+    width: 200px;
+    background: none;
+}

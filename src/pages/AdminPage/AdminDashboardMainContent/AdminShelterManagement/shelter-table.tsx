@@ -7,6 +7,8 @@ import AddCircleOutlineTwoToneIcon from '@mui/icons-material/AddCircleOutlineTwo
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import { Icon, IconButton, TablePagination, Tooltip } from '@mui/material';
 import { generateExampleShelters } from '../../../../utils/shelterExample';
+import ShelterTableAddButton from './CreateForm/shelter-table-add-button';
+import ShelterTableFilter from './Filter/shelter-table-filter';
 
 const ShelterTable: React.FC = () => {
 
@@ -49,12 +51,8 @@ const ShelterTable: React.FC = () => {
                         />
                     </div>
                     <div className="account-table-action-right">
-                        <Tooltip title="Filter">
-                            <button className='account-table-filter-button'><FilterListIcon /> <span>Filter</span></button>
-                        </Tooltip>
-                        <Tooltip title='Add account'>
-                            <button className='account-table-add-button'><AddCircleOutlineTwoToneIcon /><span>Add new Shelter</span> </button>
-                        </Tooltip>
+                        <ShelterTableFilter />
+                        <ShelterTableAddButton />
                     </div>
                 </div>
 

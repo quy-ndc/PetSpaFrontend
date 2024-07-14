@@ -8,6 +8,8 @@ import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import { Icon, IconButton, TablePagination, Tooltip } from '@mui/material';
 import { generateExampleServices } from '../../../../../utils/serviceExample';
 import formatNumber from '../../../../../utils/formatPrice';
+import ServiceTableAddButton from './CreateForm/service-table-add-button';
+import ServiceTableFilter from './Filter/service-table-filter';
 
 const ServiceTable: React.FC = () => {
 
@@ -53,12 +55,8 @@ const ServiceTable: React.FC = () => {
                         />
                     </div>
                     <div className="account-table-action-right">
-                        <Tooltip title="Filter">
-                            <button className='account-table-filter-button'><FilterListIcon /> <span>Filter</span></button>
-                        </Tooltip>
-                        <Tooltip title='Add account'>
-                            <button className='account-table-add-button'><AddCircleOutlineTwoToneIcon /><span>Add new service</span> </button>
-                        </Tooltip>
+                        <ServiceTableFilter />
+                        <ServiceTableAddButton />
                     </div>
                 </div>
 

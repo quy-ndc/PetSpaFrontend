@@ -57,7 +57,7 @@ const UserOverviewReview: React.FC<UserOverViewReviewProp> = ({ rating, comment,
             <div className="review-service-detail">
                 <p>Doctor incharge: Dr.Johnny</p>
                 <p>Service used: Grooming</p>
-                <p>This was for: Jake</p>
+                <p>This was for: Jake (Dog)</p>
             </div>
             <h3>Do you want to change the rating?</h3>
             <div className="service-rate-stars">

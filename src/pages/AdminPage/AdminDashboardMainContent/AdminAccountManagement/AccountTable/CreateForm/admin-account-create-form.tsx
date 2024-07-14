@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import "./account-setting.css";
+import React from "react";
+import './admin-account-create-form.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -13,99 +13,121 @@ const SignupSchema = Yup.object().shape({
     address: Yup.string().trim(),
 });
 
-const AccountSetting: React.FC = () => {
+interface UserCreateFormProps {
+    method: string;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    age?: string;
+    gender?: string;
+    address?: string;
+    phone?: string;
+}
 
+const AdminAccountCreateForm: React.FC<UserCreateFormProps> = ({
+    method = '',
+    firstName = '',
+    lastName = '',
+    email = '',
+    age = '',
+    gender = '',
+    address = '',
+    phone = ''
+}) => {
     return (
         <>
             <Formik
                 initialValues={{
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    phone: '',
-                    age: '',
-                    gender: '',
+                    firstName,
+                    lastName,
+                    email,
+                    age,
+                    gender,
+                    address,
+                    phone
                 }}
-
                 validationSchema={SignupSchema}
-
                 onSubmit={values => {
                     console.log(values);
                 }}
             >
                 {() => (
-                    <Form className="account-setting-form">
-                        <h1>Account settings</h1>
-                        <div className="account-setting-input-fields">
-                            <div className="account-setting-item">
+                    <Form className="admin-account-create-form" onClick={(e) => e.stopPropagation()}>
+                        {method.toLowerCase() == "update" ? (
+                            <h1>Edit account</h1>
+                        ) : (
+                            <h1>Add account</h1>
+                        )}
+                        <div className="admin-account-create-input-fields">
+                            <div className="admin-account-create-item">
                                 <p>First name</p>
                                 <Field
-                                    className="account-setting-field"
+                                    className="admin-account-create-field"
                                     name="firstName"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    className="account-setting-error"
+                                    className="admin-account-create-error"
                                     name="firstName"
                                     component="span"
                                 />
                             </div>
-                            <div className="account-setting-item">
+                            <div className="admin-account-create-item">
                                 <p>Last name</p>
                                 <Field
-                                    className="account-setting-field"
+                                    className="admin-account-create-field"
                                     name="lastName"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    className="account-setting-error"
+                                    className="admin-account-create-error"
                                     name="lastName"
                                     component="span"
                                 />
                             </div>
-                            <div className="account-setting-item">
+                            <div className="admin-account-create-item">
                                 <p>Phone</p>
                                 <Field
-                                    className="account-setting-field"
+                                    className="admin-account-create-field"
                                     name="phone"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    className="account-setting-error"
+                                    className="admin-account-create-error"
                                     name="phone"
                                     component="span"
                                 />
                             </div>
-                            <div className="account-setting-item">
+                            <div className="admin-account-create-item">
                                 <p>Email</p>
                                 <Field
-                                    className="account-setting-field"
+                                    className="admin-account-create-field"
                                     name="email"
                                     type="email"
                                 />
                                 <ErrorMessage
-                                    className="account-setting-error"
+                                    className="admin-account-create-error"
                                     name="email"
                                     component="span"
                                 />
                             </div>
-                            <div className="account-setting-item">
+                            <div className="admin-account-create-item">
                                 <p>Age</p>
                                 <Field
-                                    className="account-setting-field"
+                                    className="admin-account-create-field"
                                     name="age"
                                     type="number"
                                 />
                                 <ErrorMessage
-                                    className="account-setting-error"
+                                    className="admin-account-create-error"
                                     name="age"
                                     component="span"
                                 />
                             </div>
-                            <div className="account-setting-item">
+                            <div className="admin-account-create-item">
                                 <p>Gender</p>
                                 <Field
-                                    className="account-setting-field"
+                                    className="admin-account-create-field"
                                     as="select"
                                     id="gender"
                                     name="gender"
@@ -115,31 +137,40 @@ const AccountSetting: React.FC = () => {
                                     <option value="female">Female</option>
                                 </Field>
                                 <ErrorMessage
-                                    className="account-setting-error"
+                                    className="admin-account-create-error"
                                     name="gender"
                                     component="span"
                                 />
                             </div>
-                            <div className="account-setting-item">
+                            <div className="admin-account-create-item">
                                 <p>Address (optional)</p>
                                 <Field
-                                    className="account-setting-field"
+                                    className="admin-account-create-field"
                                     name="address"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    className="account-setting-error"
+                                    className="admin-account-create-error"
                                     name="address"
                                     component="span"
                                 />
                             </div>
                         </div>
-                        <button
-                            type="submit"
-                            className="account-save-button"
-                        >
-                            Save
-                        </button>
+                        {method.toLowerCase() == "update" ? (
+                            <button
+                                type="submit"
+                                className="admin-account-create-save-button"
+                            >
+                                Update
+                            </button>
+                        ) : (
+                            <button
+                                type="submit"
+                                className="admin-account-create-save-button"
+                            >
+                                Add
+                            </button>
+                        )}
                     </Form>
                 )}
             </Formik>
@@ -147,4 +178,4 @@ const AccountSetting: React.FC = () => {
     );
 };
 
-export default AccountSetting;
+export default AdminAccountCreateForm;

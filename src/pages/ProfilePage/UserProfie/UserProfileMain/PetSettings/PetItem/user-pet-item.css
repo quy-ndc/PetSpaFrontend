@@ -45,7 +45,9 @@
     align-items: center;
 }
 
-.user-profile-pet-medical {
+.user-profile-pet-medical,
+.user-profile-pet-edit,
+.user-profile-pet-delete {
     background: none;
     border: none;
     outline: none;
@@ -54,7 +56,17 @@
     position: relative;
 }
 
-.user-profile-pet-medical::after {
+.user-profile-pet-edit {
+    color: green;
+}
+
+.user-profile-pet-delete {
+    color: red;
+}
+
+.user-profile-pet-medical::after,
+.user-profile-pet-edit::after,
+.user-profile-pet-delete::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -66,6 +78,16 @@
 .user-profile-pet-medical:hover::after {
     width: 100%;
     border: 0.5px solid black;
+}
+
+.user-profile-pet-edit:hover::after {
+    width: 100%;
+    border: 0.5px solid green;
+}
+
+.user-profile-pet-delete:hover::after {
+    width: 100%;
+    border: 0.5px solid red;
 }
 
 .medical-record-drawer {

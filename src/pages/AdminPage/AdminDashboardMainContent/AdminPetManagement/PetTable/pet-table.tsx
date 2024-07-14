@@ -7,11 +7,14 @@ import AddCircleOutlineTwoToneIcon from '@mui/icons-material/AddCircleOutlineTwo
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import { IconButton, TablePagination, Tooltip } from '@mui/material';
 import { generateExamplePet } from '../../../../../utils/petExample';
+import PetTableAddButton from './pet-table-add-button';
+import PetTableFilter from './Filter/pet-table-filter';
 
 const PetTable: React.FC = () => {
 
     const [columns, setColumns] = useState<string[]>([
         "Name",
+        "Gender",
         "Species",
         "Breed",
         "Owner",
@@ -52,12 +55,8 @@ const PetTable: React.FC = () => {
                         />
                     </div>
                     <div className="account-table-action-right">
-                        <Tooltip title="Filter">
-                            <button className='account-table-filter-button'><FilterListIcon /> <span>Filter</span></button>
-                        </Tooltip>
-                        <Tooltip title='Add account'>
-                            <button className='account-table-add-button'><AddCircleOutlineTwoToneIcon /><span>Add new pet</span> </button>
-                        </Tooltip>
+                        <PetTableFilter />
+                        <PetTableAddButton />
                     </div>
                 </div>
 
@@ -86,6 +85,9 @@ const PetTable: React.FC = () => {
                                         <a>
                                             {pet.name}
                                         </a>
+                                    </td>
+                                    <td>
+                                        {pet.gender}
                                     </td>
                                     <td>
                                         {pet.species}

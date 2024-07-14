@@ -12,7 +12,7 @@ type UserProfileProviderProps = {
 };
 
 export const UserProfileProvider: React.FC<UserProfileProviderProps> = ({ children }) => {
-  const [selectedNavItem, setSelectedNavItem] = useState<string>('setting');
+  const [selectedNavItem, setSelectedNavItem] = useState<string>('overview');
 
   return (
     <UserProfileContext.Provider value={{ selectedNavItem, setSelectedNavItem }}>

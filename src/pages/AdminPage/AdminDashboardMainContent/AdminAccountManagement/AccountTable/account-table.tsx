@@ -7,6 +7,8 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import AddCircleOutlineTwoToneIcon from '@mui/icons-material/AddCircleOutlineTwoTone';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import { Icon, IconButton, TablePagination, Tooltip } from '@mui/material';
+import AccountTableAddButton from './CreateForm/account-table-add-button';
+import AccountTableFilter from './Filter/account-table-filter';
 
 const AccountTable: React.FC = () => {
 
@@ -53,12 +55,8 @@ const AccountTable: React.FC = () => {
                         />
                     </div>
                     <div className="account-table-action-right">
-                        <Tooltip title="Filter">
-                            <button className='account-table-filter-button'><FilterListIcon /> <span>Filter</span></button>
-                        </Tooltip>
-                        <Tooltip title='Add account'>
-                            <button className='account-table-add-button'><AddCircleOutlineTwoToneIcon /><span>Add new account</span> </button>
-                        </Tooltip>
+                        <AccountTableFilter />
+                        <AccountTableAddButton />
                     </div>
                 </div>
 

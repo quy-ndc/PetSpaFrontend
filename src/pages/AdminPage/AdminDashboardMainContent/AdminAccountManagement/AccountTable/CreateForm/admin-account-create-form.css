@@ -1,0 +1,70 @@
+.admin-account-create-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.admin-account-create-form h1 {
+    color: black;
+    margin: 0;
+    margin-left: 20px;
+}
+
+.admin-account-create-input-fields {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-account-create-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 300px;
+    padding: 20px;
+}
+
+.admin-account-create-item p {
+    margin: 0;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.admin-account-create-field {
+    border: none;
+    outline: none;
+    box-shadow: rgba(13, 37, 84, 0.635) 0px 1px;
+    font-size: 17px;
+    width: 300px;
+    background: none;
+    padding: 0px 5px 5px 0px;
+}
+
+.admin-account-create-fieldt:focus {
+    box-shadow: rgb(0, 4, 12)0px 1.5px;
+}
+
+.admin-account-create-error {
+    color: red;
+    margin-top: 3px;
+}
+
+.admin-account-create-save-button {
+    width: 120px;
+    height: 40px;
+    margin-left: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 7px;
+    background: none;
+    position: relative;
+    border: 0.5px solid black;
+    border-radius: 7px;
+    transition: background 0.3s ease;
+}
+
+.admin-account-create-save-button:hover {
+    background: rgb(255, 235, 233);
+}
+
