@@ -23,6 +23,7 @@ type Inputs = {
   password: string;
   passwordConfirm: string;
   gender: string;
+  age: number;
 };
 
 const Register: React.FC = () => {
@@ -177,6 +178,32 @@ const Register: React.FC = () => {
             <TextField
               sx={inputStyle}
               required
+              id="age"
+              label="Age"
+              {...register("age", {
+                required: "Age is required",
+                // pattern: {
+                //   value: /^[0-9]{1,2}$/,
+                //   message: "positive digits",
+                // },
+                min: {
+                  value: 18,
+                  message: "You must be at least 18 years old",
+                },
+                max: {
+                  value: 82,
+                  message: "Invalid",
+                },
+              })}
+              error={!!errors.age}
+              helperText={errors.age ? errors.age.message : ""}
+              onBlur={() => trigger("age")}
+              fullWidth
+            />
+
+            <TextField
+              sx={inputStyle}
+              required
               id="password"
               label="Password"
               type="password"
@@ -207,20 +234,21 @@ const Register: React.FC = () => {
               }
               fullWidth
             />
-
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{ marginTop: "20px" }}
-            >
-              Register
-            </Button>
-
-            <Typography sx={{ marginTop: "10px", textAlign: "center" }}>
-              <a href="/login">Have an account? Login</a>
-            </Typography>
           </div>
         </div>
+        <Box sx={{ textAlign: "center" }}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ marginTop: "20px", textAlign: "center" }}
+          >
+            Register
+          </Button>
+        </Box>
+
+        <Typography sx={{ marginTop: "10px", textAlign: "center" }}>
+          <a href="/login">Have an account? Login</a>
+        </Typography>
       </Box>
     </div>
   );
