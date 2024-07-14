@@ -8,16 +8,21 @@ import {
   Typography,
   Checkbox,
   FormControlLabel,
+  RadioGroup,
+  Radio,
+  FormLabel,
+  FormControl,
+  FormHelperText,
 } from "@mui/material";
-import GoogleIcon from "@mui/icons-material/Google";
 
 type Inputs = {
-  name: string;
+  lastName: string;
+  firstName: string;
   email: string;
   phone: number;
   password: string;
   passwordConfirm: string;
-  terms: boolean;
+  gender: string;
 };
 
 const Register: React.FC = () => {
@@ -36,145 +41,188 @@ const Register: React.FC = () => {
   };
 
   return (
-    <Box
-      component="form"
-      className="register-form"
-      onSubmit={handleSubmit(onSubmit)}
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        maxWidth: "320px",
-        margin: "auto",
-        padding: "20px",
-        backgroundColor: "white",
-        borderRadius: "10px",
-        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-      }}
-    >
-      <Typography
-        sx={{
-          marginBottom: "10px",
-          textAlign: "center",
-          fontFamily: "initial",
-        }}
-        variant="h5"
-        gutterBottom
+    <div className="register-form-container">
+      <Box
+        component="form"
+        className="register-form"
+        onSubmit={handleSubmit(onSubmit)}
       >
-        Join our pet-loving family
-      </Typography>
+        <Typography
+          sx={{
+            marginBottom: "30px",
+            textAlign: "center",
+            fontFamily: "initial",
+          }}
+          variant="h3"
+          gutterBottom
+        >
+          Join our pet-loving family
+        </Typography>
 
-      <TextField
-        sx={inputStyle}
-        required
-        id="name"
-        label="Username"
-        {...register("name", {
-          required: "Username is required",
-          minLength: {
-            value: 5,
-            message: "Username must be at least 5 characters",
-          },
-          pattern: {
-            value: /^[a-zA-Z][a-zA-Z0-9_!@#$%^&*()-+=]*$/,
-            message: "Username must start with a letter",
-          },
-        })}
-        error={!!errors.name}
-        helperText={errors.name ? errors.name.message : ""}
-        onBlur={() => trigger("name")}
-        fullWidth
-      />
-      <TextField
-        sx={inputStyle}
-        required
-        id="email"
-        label="Email Address"
-        {...register("email", {
-          required: "Email is required",
-          pattern: {
-            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            message: "Email is not valid",
-          },
-        })}
-        error={!!errors.email}
-        helperText={errors.email ? errors.email.message : ""}
-        onBlur={() => trigger("email")}
-        fullWidth
-      />
-      <TextField
-        sx={inputStyle}
-        required
-        id="phone"
-        label="Phone number"
-        {...register("phone", {
-          required: "Phone is required",
-          pattern: {
-            value: /^[0-9]{10,11}$/,
-            message: "Phone number must be 10-11 positive digits",
-          },
-        })}
-        error={!!errors.phone}
-        helperText={errors.phone ? errors.phone.message : ""}
-        onBlur={() => trigger("phone")}
-        fullWidth
-      />
-      <TextField
-        sx={inputStyle}
-        required
-        id="password"
-        label="Password"
-        type="password"
-        {...register("password", { required: "Password is required" })}
-        error={!!errors.password}
-        helperText={errors.password ? errors.password.message : ""}
-        fullWidth
-      />
-      <TextField
-        sx={inputStyle}
-        required
-        id="passwordConfirm"
-        label="Confirm Password"
-        type="password"
-        {...register("passwordConfirm", {
-          required: "Please confirm your password",
-          validate: (value) => {
-            if (value === "") return "Password confirmation is required";
-            if (value !== watch("password")) return "Passwords do not match";
-            return true;
-          },
-        })}
-        error={!!errors.passwordConfirm}
-        helperText={
-          errors.passwordConfirm ? errors.passwordConfirm.message : ""
-        }
-        fullWidth
-      />
+        <div className="form-columns">
+          <div className="form-column">
+            <TextField
+              sx={inputStyle}
+              required
+              id="firstName"
+              label="First Name"
+              {...register("firstName", {
+                required: "First name is required",
+                pattern: {
+                  value: /^[a-zA-Z]+$/,
+                  message: "First name must be letters",
+                },
+              })}
+              error={!!errors.firstName}
+              helperText={errors.firstName ? errors.firstName.message : ""}
+              onBlur={() => trigger("firstName")}
+              fullWidth
+            />
 
-      <FormControlLabel
-        control={
-          <Checkbox
-            {...register("terms", {
-              required: "You must agree to the terms and conditions",
-            })}
-            color="primary"
-          />
-        }
-        label="Agree to our Terms and Conditions"
-        sx={{ alignSelf: "flex-start" }}
-      />
-      {errors.terms && (
-        <Typography color="error">{errors.terms.message}</Typography>
-      )}
+            <TextField
+              sx={inputStyle}
+              required
+              id="lastName"
+              label="Last Name"
+              {...register("lastName", {
+                required: "Last name is required",
+                pattern: {
+                  value: /^[a-zA-Z]+$/,
+                  message: "Last name must be letters",
+                },
+              })}
+              error={!!errors.lastName}
+              helperText={errors.lastName ? errors.lastName.message : ""}
+              onBlur={() => trigger("lastName")}
+              fullWidth
+            />
 
-      <Button type="submit" variant="contained" sx={{ marginTop: "10px" }}>
-        Register
-      </Button>
+            <TextField
+              sx={inputStyle}
+              required
+              id="email"
+              label="Email Address"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Email is not valid",
+                },
+              })}
+              error={!!errors.email}
+              helperText={errors.email ? errors.email.message : ""}
+              onBlur={() => trigger("email")}
+              fullWidth
+            />
 
-      <Typography sx={{ marginTop: "20px" }}>
-        <a href="/login">Have an account? Login</a>
-      </Typography>
-    </Box>
+            <FormControl
+              component="fieldset"
+              sx={{ width: "100%", margin: "8px 0" }}
+            >
+              <FormLabel component="legend">Gender</FormLabel>
+              <RadioGroup
+                row
+                aria-label="gender"
+                name="gender"
+                sx={{ justifyContent: "space-between" }}
+              >
+                <FormControlLabel
+                  value="male"
+                  control={
+                    <Radio
+                      {...register("gender", {
+                        required: "Gender is required",
+                      })}
+                    />
+                  }
+                  label="Male"
+                />
+                <FormControlLabel
+                  value="female"
+                  control={
+                    <Radio
+                      {...register("gender", {
+                        required: "Gender is required",
+                      })}
+                    />
+                  }
+                  label="Female"
+                />
+              </RadioGroup>
+              {errors.gender && (
+                <FormHelperText error>{errors.gender.message}</FormHelperText>
+              )}
+            </FormControl>
+          </div>
+
+          <div className="form-column">
+            <TextField
+              sx={inputStyle}
+              required
+              id="phone"
+              label="Phone number"
+              {...register("phone", {
+                required: "Phone is required",
+                pattern: {
+                  value: /^0[0-9]{9,10}$/,
+                  message: "Phone number must be 10-11 positive digits",
+                },
+              })}
+              error={!!errors.phone}
+              helperText={errors.phone ? errors.phone.message : ""}
+              onBlur={() => trigger("phone")}
+              fullWidth
+            />
+
+            <TextField
+              sx={inputStyle}
+              required
+              id="password"
+              label="Password"
+              type="password"
+              {...register("password", { required: "Password is required" })}
+              error={!!errors.password}
+              helperText={errors.password ? errors.password.message : ""}
+              fullWidth
+            />
+
+            <TextField
+              sx={inputStyle}
+              required
+              id="passwordConfirm"
+              label="Confirm Password"
+              type="password"
+              {...register("passwordConfirm", {
+                required: "Please confirm your password",
+                validate: (value) => {
+                  if (value === "") return "Password confirmation is required";
+                  if (value !== watch("password"))
+                    return "Passwords do not match";
+                  return true;
+                },
+              })}
+              error={!!errors.passwordConfirm}
+              helperText={
+                errors.passwordConfirm ? errors.passwordConfirm.message : ""
+              }
+              fullWidth
+            />
+
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ marginTop: "20px" }}
+            >
+              Register
+            </Button>
+
+            <Typography sx={{ marginTop: "10px", textAlign: "center" }}>
+              <a href="/login">Have an account? Login</a>
+            </Typography>
+          </div>
+        </div>
+      </Box>
+    </div>
   );
 };
 
