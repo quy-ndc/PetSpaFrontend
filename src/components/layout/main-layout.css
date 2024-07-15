@@ -136,7 +136,22 @@
 }
 
 .nav-right-dropdown {
+    display: flex;
     position: relative;
+    align-items: center;
+    text-align: center;
+}
+
+.home-to-login {
+    text-decoration: none;
+    color: black;
+    padding: 6px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.home-to-login:hover {
+    background: rgb(209, 209, 209);
 }
 
 .nav-right-dropdown-toggle {
@@ -155,7 +170,8 @@
 
 .nav-right-dropdown-menu {
     position: absolute;
-    right: left;
+    bottom: -130px;
+    left: -50px;
     background-color: white;
     border: 1px solid #ccc;
     width: 130px;

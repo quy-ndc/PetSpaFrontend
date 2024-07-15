@@ -19,17 +19,6 @@ const UserSidebar: React.FC = () => {
                 <ul className="user-profile-left-nav-list">
 
                     <li
-                        className={`user-profile-left-nav-link ${selectedNavItem === 'overview' ? 'active-user-option' : ''}`}
-                        onClick={() => setSelectedNavItem('overview')}
-                    >
-                        <a>
-                            <AccountBoxIcon />
-                            Overview
-                        </a>
-                    </li>
-
-
-                    <li
                         className={`user-profile-left-nav-link ${selectedNavItem === 'setting' ? 'active-user-option' : ''}`}
                         onClick={() => setSelectedNavItem('setting')}
                     >

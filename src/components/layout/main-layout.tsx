@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import api from "../../service/apiService";
 
 const MainLayout = () => {
 
     const [selectedOption, setSelectedOption] = useState<string>("home");
     const [scrolled, setScrolled] = useState<boolean>(false);
     const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
+    const [account, setAccount] = useState<any>();
+    const [loading, setLoading] = useState(true);
 
     const handleOptionChange = (option: string) => {
         setSelectedOption(option);
@@ -35,6 +38,35 @@ const MainLayout = () => {
     const toggleDropdown = () => {
         setDropdownVisible(!dropdownVisible);
     };
+
+    const fetchCurrentUser = async () => {
+        try {
+            const response = await api.get(`user/currentUser/` + sessionStorage.getItem("jwtToken"));
+            setAccount(response.data);
+        } catch (error) {
+            console.error("Error fetching account data:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    useEffect(() => {
+        fetchCurrentUser();
+    }, []);
+
+    const handleLogout = async () => {
+        try {
+            const response = await api.post(`/user/logout`);
+            console.log('Login successful:', response);
+            sessionStorage.setItem('jwtToken', response.data.accessToken);
+        } catch (err) {
+            console.error('Login error:', err);
+        }
+    };
+
+    if (loading) {
+        return <h1 style={{ color: 'black' }}>Loading...</h1>;
+    }
+
     return (
         <div className="main-layout">
             <nav className={scrolled ? 'scrolled' : ''}>
@@ -82,9 +114,14 @@ const MainLayout = () => {
                         <span>Book now</span>
                     </Link>
                     <div className="nav-right-dropdown">
-                        <button onClick={toggleDropdown} className="nav-right-dropdown-toggle">
-                            Welcome Mrs.Jessica
-                        </button>
+                        {account ? (
+                            <button onClick={toggleDropdown} className="nav-right-dropdown-toggle">
+                                {account?.userName}
+                            </button>
+                        ) : (
+                            <Link className="home-to-login" to="/login">Login</Link>
+                        )}
+
                         {dropdownVisible && (
                             <div className="nav-right-dropdown-menu">
                                 <div className="nav-right-dropdown-item">
@@ -93,7 +130,7 @@ const MainLayout = () => {
                                 </div>
                                 <div className="nav-right-dropdown-item">
                                     <ExitToAppIcon />
-                                    <Link onClick={toggleDropdown} to="/logout" className="nav-right-dropdown-item">Logout</Link>
+                                    <a onClick={handleLogout} className="nav-right-dropdown-item">Logout</a>
                                 </div>
                             </div>
                         )}

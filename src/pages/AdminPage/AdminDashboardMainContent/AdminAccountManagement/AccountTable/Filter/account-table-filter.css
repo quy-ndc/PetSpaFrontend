@@ -44,3 +44,17 @@
     width: 200px;
     background: none;
 }
+
+.apply-filter-button {
+    background: none;
+    border: 0.5px solid black;
+    padding: 5px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.apply-filter-button:hover {
+    background: black;
+    color: white;
+}

@@ -79,7 +79,7 @@ const UserPetSettings: React.FC = () => {
                         species="Bird"
                         breed="Tulip"
                         gender="Male"
-                        age='6'
+                        age='6F'
                     />
                 </div>
             </div>

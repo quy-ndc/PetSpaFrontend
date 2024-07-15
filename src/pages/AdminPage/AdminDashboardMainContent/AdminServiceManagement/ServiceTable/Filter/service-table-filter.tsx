@@ -73,28 +73,6 @@ const ServiceTableFilter: React.FC = () => {
                                 <input type="number" />
                             </div>
                         </div>
-                        <h3>Discount</h3>
-                        <div className="account-filter-pop-up-item-age">
-                            <div>
-                                <span>Min discount</span>
-                                <input type="number" />
-                            </div>
-                            <div>
-                                <span>Max discount</span>
-                                <input type="number" />
-                            </div>
-                        </div>
-                        <h3>Rating</h3>
-                        <div className="account-filter-pop-up-item-age">
-                            <div>
-                                <span>Min rating</span>
-                                <input type="number" />
-                            </div>
-                            <div>
-                                <span>Max rating</span>
-                                <input type="number" />
-                            </div>
-                        </div>
                     </div>
                 </div>
             </Popover>

@@ -44,15 +44,15 @@ const ShelterTableFilter: React.FC = () => {
                 <div className="account-filter-popup-container">
                     <div className="account-filter-pop-up-items">
                        
-                        <h3>Capacity</h3>
-                        <div className="account-filter-pop-up-item-age">
+                        <h3>Status</h3>
+                        <div className="account-filter-pop-up-item">
                             <div>
-                                <span>Min capacity</span>
-                                <input type="number" />
+                                <input type="checkbox" name="gender" value="full" />
+                                <span>Full</span>
                             </div>
                             <div>
-                                <span>Max capacity</span>
-                                <input type="number" />
+                                <input type="checkbox" name="gender" value="available" />
+                                <span>Not full</span>
                             </div>
                         </div>
                         

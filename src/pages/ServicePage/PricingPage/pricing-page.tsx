@@ -213,13 +213,13 @@ function PricingPage() {
         </div>
         <div className="content-right">
 
-        <h1>PRICING</h1>
-        <p>
-          We believe in being upfront with our pet parents. Being upfront means
-          we’ll always take the time to talk through your pet’s condition, all
-          the options for their treatment and the likely results of each option.
-          And being upfront also includes talking about the cost of each option.
-        </p>
+          <h1>PRICING</h1>
+          <p>
+            We believe in being upfront with our pet parents. Being upfront means
+            we’ll always take the time to talk through your pet’s condition, all
+            the options for their treatment and the likely results of each option.
+            And being upfront also includes talking about the cost of each option.
+          </p>
         </div>
       </div>
 

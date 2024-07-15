@@ -77,7 +77,6 @@ const AdminDashboardSideNav: React.FC = () => {
                     </li>
                 </ul>
             </nav>
-
         </div>
     );
 };

@@ -1,73 +1,82 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import "./login.css";
+import { useState } from "react";
 import { Box, TextField, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import GoogleIcon from '@mui/icons-material/Google';
 import LoginIcon from '@mui/icons-material/Login';
-
-type Inputs = {
-    username: string;
-    password: string;
-};
+import api from "../../service/apiService";
+import './login.css'
 
 export default function Login() {
-    const {
-        register,
-        handleSubmit, // watch
-        formState: { errors },
-    } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
-    // console.log(watch("example")); // watch input value by passing the name of it
+    const handleLogin = async () => {
+        try {
+            const response = await api.get(`/user/login?email=${username}%40gmail.com&password=${password}`);
+            console.log('Login successful:', response);
+            sessionStorage.setItem('jwtToken', response.data.accessToken);
+            setTimeout(() => {
+                window.location.href = "http://localhost:5173";
+            }, 2000)
+        } catch (err) {
+            console.error('Login error:', err);
+            window.location.reload;
+        }
+    };
+
+    const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUsername(event.target.value);
+    };
+
+    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value);
+    };
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        handleLogin();
+    };
 
     const inputStyle = {
         margin: "15px 0",
     };
 
     return (
-        <>
-            <Box
-                component="form"
-                className="login-form"
-                onSubmit={handleSubmit(onSubmit)}
-            >
-                <Typography
-                    sx={{
-                        marginBottom: "30px",
-                        textAlign: "center",
-                        color: 'black'
+        <Box
+            component="form"
+            className="login-form"
+            onSubmit={handleSubmit}
+        >
+            <Typography
+                sx={{
+                    marginBottom: "30px",
+                    textAlign: "center",
+                    color: 'black'
+                }}
+                variant="h6" gutterBottom>
+                Login to your account
+            </Typography>
 
-                    }}
-                    variant="h6" gutterBottom>
-                    Login to your account
-                </Typography>
-
-                <TextField
-                    sx={inputStyle}
-                    required
-                    id="outlined-required-username"
-                    label="Username"
-                    {...register("username")}
-                />
-                <TextField
-                    sx={inputStyle}
-                    required
-                    id="outlined-required-password"
-                    label="Password"
-                    type="password"
-                    {...register("password")}
-                />
-
-                {errors.password && <span>This field is required</span>}
-                <Link to='/register'>Don't have an account?</Link>
-                <button type="submit" className="login-button">
-                    <LoginIcon /> Login
-                </button>
-                <span > Or</span>
-                <button className="google-button">
-                    <GoogleIcon /> Continue with Google
-                </button>
-            </Box >
-        </>
+            <TextField
+                sx={inputStyle}
+                required
+                id="outlined-required-username"
+                label="Username"
+                value={username}
+                onChange={handleUsernameChange}
+            />
+            <TextField
+                sx={inputStyle}
+                required
+                id="outlined-required-password"
+                label="Password"
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+            />
+            <Link to='/register'>Don't have an account?</Link>
+            <Button type="submit" className="login-button" variant="contained" color="primary">
+                <LoginIcon /> Login
+            </Button>
+        </Box>
     );
 }

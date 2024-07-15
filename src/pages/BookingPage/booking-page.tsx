@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./booking-page.css";
 import BookingDatePicker from "./BookingDatePicker/booking-date-picker";
 import BookingTimePicker from "./BookingTimePicker/booking-time-picker";
@@ -6,8 +6,26 @@ import BookingServicePicker from "./BookingServicePicker/booking-service-picker"
 import BookingDoctorPicker from "./BookingDoctorPicker/booking-doctor-picker";
 import BookingPetPicker from "./BookingPetPicker/booking-pet-picker";
 import dayjs, { Dayjs } from "dayjs";
+import api from "../../service/apiService";
 
 const BookingPage: React.FC = () => {
+
+    const [account, setAccount] = useState<any>();
+    const [loading, setLoading] = useState(true);
+
+    const fetchCurrentUser = async () => {
+        try {
+            const response = await api.get(`user/currentUser/` + sessionStorage.getItem("jwtToken"));
+            setAccount(response.data);
+        } catch (error) {
+            console.error("Error fetching account data:", error);
+        }
+    };
+    useEffect(() => {
+        fetchCurrentUser();
+    }, []);
+
+
 
     const [fullname, setFullname] = useState<string>("");
     const handleFullnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +71,8 @@ const BookingPage: React.FC = () => {
         doctor: doctor ? doctor : "",
         pet: pet ? pet : "",
     }
+
+    console.log(account)
 
     console.log(appointmentDate)
 

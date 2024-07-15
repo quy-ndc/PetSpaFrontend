@@ -14,7 +14,6 @@ const ShelterTable: React.FC = () => {
 
     const [columns, setColumns] = useState<string[]>([
         "Name",
-        "Capacity",
         "Status"
     ]);
     const [shelters] = useState(generateExampleShelters(5));
@@ -82,10 +81,6 @@ const ShelterTable: React.FC = () => {
                                             {shelter.shelterName}
                                         </Link>
                                     </td>
-                                    <td>
-                                        {shelter.capacity}
-                                    </td>
-
                                     <td className='account-table-status-column'>
                                         <span className={shelter.status.toLowerCase() + '-status'}>{shelter.status}</span>
                                     </td>

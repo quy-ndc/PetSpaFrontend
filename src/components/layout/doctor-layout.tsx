@@ -27,13 +27,6 @@ const DoctorLayout = () => {
                 <div className="doctor-nav-left">
                     <img src={logo} />
                     <div className="staff-nav-left-action">
-                        <Link
-                            to="/home"
-                            onClick={() => handleOptionChange("home")}
-                            className={`${selectedOption === 'home' ? 'active-staff-option' : ''}`}
-                        >
-                            Home
-                        </Link>
                         <Tooltip title='View your schedules'>
                             <Link
                                 to="schedule"

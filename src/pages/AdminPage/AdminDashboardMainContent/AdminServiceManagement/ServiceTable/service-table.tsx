@@ -10,25 +10,50 @@ import { generateExampleServices } from '../../../../../utils/serviceExample';
 import formatNumber from '../../../../../utils/formatPrice';
 import ServiceTableAddButton from './CreateForm/service-table-add-button';
 import ServiceTableFilter from './Filter/service-table-filter';
+import api from '../../../../../service/apiService';
 
 const ServiceTable: React.FC = () => {
 
-    const [columns, setColumns] = useState<string[]>([
+    const [columns] = useState<string[]>([
         "Serivce",
         "Type",
         "Price (vnd)",
-        "Discount",
-        "Rating",
         "Status",
     ]);
-    const [servies] = useState(generateExampleServices(5));
 
-    type Order = 'asc' | 'desc';
+    const [services, setServices] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
 
-    const [order, setOrder] = React.useState<Order>('asc');
-    const [selected, setSelected] = React.useState<readonly number[]>([]);
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    // State for filters
+    const [filters, setFilters] = useState({
+        type: [] as string[],
+        minPrice: '',
+        maxPrice: '',
+    });
+
+    // State for search query
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const fetchAccountData = async () => {
+        try {
+            const response = await api.get(`/service/getAll`);
+            setServices(response.data);
+        } catch (error) {
+            console.error("Error fetching account data:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchAccountData();
+    }, []);
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
@@ -38,6 +63,12 @@ const ServiceTable: React.FC = () => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
+
+
+
+    if (loading) {
+        return <h1 style={{ color: 'black' }}>Loading...</h1>;
+    }
 
     return (
         <>
@@ -76,7 +107,7 @@ const ServiceTable: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {servies.map((service) => (
+                            {services.map((service) => (
                                 <tr>
                                     <td>
                                         <input type='checkbox' />
@@ -90,13 +121,7 @@ const ServiceTable: React.FC = () => {
                                         {service.type}
                                     </td>
                                     <td>
-                                        {formatNumber(service.minPrice)} - {formatNumber(service.maxPrice)}
-                                    </td>
-                                    <td>
-                                        {service.discount}%
-                                    </td>
-                                    <td>
-                                        {service.rating}/5★
+                                        {formatNumber(service.price)}
                                     </td>
                                     <td className='account-table-status-column'>
                                         <span className={service.status.toLowerCase() + '-status'}>{service.status}</span>
@@ -118,7 +143,7 @@ const ServiceTable: React.FC = () => {
                     <TablePagination
                         rowsPerPageOptions={[5, 10, 15]}
                         component="div"
-                        count={servies.length}
+                        count={services.length}
                         rowsPerPage={rowsPerPage}
                         page={page}
                         onPageChange={handleChangePage}
