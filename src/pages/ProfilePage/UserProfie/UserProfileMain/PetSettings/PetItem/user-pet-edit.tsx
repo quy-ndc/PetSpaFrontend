@@ -6,6 +6,7 @@ import UserPetCreateForm from "../PetCreateForm/pet-create-form";
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 interface UserPetItemProp {
+    petid: string;
     name: string;
     gender: string;
     age: string;
@@ -13,7 +14,7 @@ interface UserPetItemProp {
     breed: string | null;
 }
 
-const UserPetEdit: React.FC<UserPetItemProp> = ({ name, gender, age, species, breed }) => {
+const UserPetEdit: React.FC<UserPetItemProp> = ({ petid, name, gender, age, species, breed }) => {
 
     const [state, setState] = React.useState({
         top: false,
@@ -45,6 +46,7 @@ const UserPetEdit: React.FC<UserPetItemProp> = ({ name, gender, age, species, br
         >
             <UserPetCreateForm
                 method="update"
+                petid={petid}
                 name={name}
                 gender={gender}
                 age={age}

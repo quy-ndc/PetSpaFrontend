@@ -5,10 +5,12 @@ import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 import UserPetCreateForm from "../PetCreateForm/pet-create-form";
 import UserPetEdit from "./user-pet-edit";
+import api from "../../../../../../service/apiService";
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 interface UserPetItemProp {
+    petid: string;
     name: string;
     gender: string;
     age: string;
@@ -16,7 +18,19 @@ interface UserPetItemProp {
     breed: string | null;
 }
 
-const UserPetItem: React.FC<UserPetItemProp> = ({ name, gender, age, species, breed }) => {
+const UserPetItem: React.FC<UserPetItemProp> = ({ petid, name, gender, age, species, breed }) => {
+
+    const handleDeletePet = async (petId: string) => {
+        try {
+            const response = await api.put(`/pet/delete?pet_id=${petId}`);
+            console.log('Delete pet successful:', response);
+            setTimeout(() => {
+                window.location.reload;
+            }, 1000)
+        } catch (err) {
+            console.error('Delete pet error:', err);
+        }
+    };
 
     const [state, setState] = React.useState({
         top: false,
@@ -70,6 +84,7 @@ const UserPetItem: React.FC<UserPetItemProp> = ({ name, gender, age, species, br
         </div>
     );
 
+
     return (
         <>
             <div className="user-profile-pet-item">
@@ -111,13 +126,19 @@ const UserPetItem: React.FC<UserPetItemProp> = ({ name, gender, age, species, br
 
                     }}>
                         <UserPetEdit
+                            petid={petid}
                             name={name}
                             age={age}
                             gender={gender}
                             species={species}
                             breed={breed || ""}
                         />
-                        <button className="user-profile-pet-delete">Delete</button>
+                        <button
+                            onClick={() => handleDeletePet(petid)}
+                            className="user-profile-pet-delete"
+                        >
+                            Delete
+                        </button>
                     </div>
                     <button
                         className="user-profile-pet-medical"

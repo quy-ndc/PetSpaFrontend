@@ -27,6 +27,7 @@
     "react-multi-carousel": "^2.8.5",
     "react-router-dom": "^6.23.1",
     "react-select": "^5.8.0",
+    "react-toastify": "^10.0.5",
     "recharts": "^2.12.7",
     "yup": "^1.4.0"
   },

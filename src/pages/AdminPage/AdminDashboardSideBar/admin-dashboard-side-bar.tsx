@@ -14,9 +14,9 @@ const AdminDashboardSideNav: React.FC = () => {
 
     return (
         <div className="admin-dashboard-left-nav">
-            <nav>
-                <ul className="admin-dashboard-left-nav-list">
-                    <li
+
+            <ul className="admin-dashboard-left-nav-list">
+                {/* <li
                         className={`admin-dashboard-left-nav-link ${selectedNavItem === 'general' ? 'active-dashboard-option' : ''}`}
                         onClick={() => setSelectedNavItem('general')}
                     >
@@ -24,49 +24,49 @@ const AdminDashboardSideNav: React.FC = () => {
                             <RemoveFromQueueIcon />
                             Overview
                         </a>
-                    </li>
+                    </li> */}
 
-                    <li
-                        className={`admin-dashboard-left-nav-link ${selectedNavItem === 'account' ? 'active-dashboard-option' : ''}`}
-                        onClick={() => setSelectedNavItem('account')}
-                    >
-                        <a>
-                            <GroupsIcon />
-                            Accounts
-                        </a>
-                    </li>
+                <li
+                    className={`admin-dashboard-left-nav-link ${selectedNavItem === 'account' ? 'active-dashboard-option' : ''}`}
+                    onClick={() => setSelectedNavItem('account')}
+                >
+                    <a>
+                        <GroupsIcon />
+                        Accounts
+                    </a>
+                </li>
 
-                    <li
-                        className={`admin-dashboard-left-nav-link ${selectedNavItem === 'pet' ? 'active-dashboard-option' : ''}`}
-                        onClick={() => setSelectedNavItem('pet')}
-                    >
-                        <a>
-                            <PetsIcon />
-                            Pets
-                        </a>
-                    </li>
+                <li
+                    className={`admin-dashboard-left-nav-link ${selectedNavItem === 'pet' ? 'active-dashboard-option' : ''}`}
+                    onClick={() => setSelectedNavItem('pet')}
+                >
+                    <a>
+                        <PetsIcon />
+                        Pets
+                    </a>
+                </li>
 
-                    <li
-                        className={`admin-dashboard-left-nav-link ${selectedNavItem === 'service' ? 'active-dashboard-option' : ''}`}
-                        onClick={() => setSelectedNavItem('service')}
-                    >
-                        <a>
-                            <SettingsIcon />
-                            Services
-                        </a>
-                    </li>
+                <li
+                    className={`admin-dashboard-left-nav-link ${selectedNavItem === 'service' ? 'active-dashboard-option' : ''}`}
+                    onClick={() => setSelectedNavItem('service')}
+                >
+                    <a>
+                        <SettingsIcon />
+                        Services
+                    </a>
+                </li>
 
-                    <li
-                        className={`admin-dashboard-left-nav-link ${selectedNavItem === 'shelter' ? 'active-dashboard-option' : ''}`}
-                        onClick={() => setSelectedNavItem('shelter')}
-                    >
-                        <a>
-                            <HomeIcon />
-                            Shelter
-                        </a>
-                    </li>
+                <li
+                    className={`admin-dashboard-left-nav-link ${selectedNavItem === 'shelter' ? 'active-dashboard-option' : ''}`}
+                    onClick={() => setSelectedNavItem('shelter')}
+                >
+                    <a>
+                        <HomeIcon />
+                        Shelter
+                    </a>
+                </li>
 
-                    <li
+                {/* <li
                         className={`admin-dashboard-left-nav-link ${selectedNavItem === 'revenue' ? 'active-dashboard-option' : ''}`}
                         onClick={() => setSelectedNavItem('revenue')}
                     >
@@ -74,9 +74,9 @@ const AdminDashboardSideNav: React.FC = () => {
                             <ShowChartIcon />
                             Revenue
                         </a>
-                    </li>
-                </ul>
-            </nav>
+                    </li> */}
+            </ul>
+
         </div>
     );
 };

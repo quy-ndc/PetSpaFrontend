@@ -12,7 +12,7 @@ type AdminDashboardProviderProps = {
 };
 
 export const AdminDashboardProvider: React.FC<AdminDashboardProviderProps> = ({ children }) => {
-  const [selectedNavItem, setSelectedNavItem] = useState<string>('general');
+  const [selectedNavItem, setSelectedNavItem] = useState<string>('account');
 
   return (
     <AdminDashboardContext.Provider value={{ selectedNavItem, setSelectedNavItem }}>

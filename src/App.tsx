@@ -26,11 +26,14 @@ import MainLayout from "./components/layout/main-layout";
 import CheckOut from "./pages/CheckOut/check-out";
 import StaffShelterManage from "./pages/StaffPage/Shelter/staff-shelter-manage";
 import Profile from "./pages/ProfilePage/profile";
+import AdminLayout from "./components/layout/admin-layout";
 
 function App() {
     return (
         <Routes>
-            <Route path='/admin' element={<AdminDashboard />} />
+            <Route path='/admin' element={<AdminLayout />}>
+                <Route path='/admin' element={<AdminDashboard />} />
+            </Route>
             <Route path="/" element={<MainLayout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />

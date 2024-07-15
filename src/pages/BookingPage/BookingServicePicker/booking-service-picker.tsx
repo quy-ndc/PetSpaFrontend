@@ -10,7 +10,7 @@ interface BookingServicePickerProps {
     onChange: (selectedService: string) => void
 }
 
-const BookingServicePicker: React.FC<BookingServicePickerProps> = ({ onChange}) => {
+const BookingServicePicker: React.FC<BookingServicePickerProps> = ({ onChange }) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -59,7 +59,7 @@ const BookingServicePicker: React.FC<BookingServicePickerProps> = ({ onChange}) 
                                 />
                             </Modal>
                         </React.Fragment>
-
+                        {/* 
                         <React.Fragment>
                             <button onClick={handleOpenCombo}>Choose combo</button>
                             <Modal
@@ -71,7 +71,7 @@ const BookingServicePicker: React.FC<BookingServicePickerProps> = ({ onChange}) 
                                     handleServiceSelection={handleServiceSelection}
                                 />
                             </Modal>
-                        </React.Fragment>
+                        </React.Fragment> */}
                     </ButtonGroup>
                 </div>
             </Modal>
