@@ -14,10 +14,12 @@ import {
   FormControl,
   FormHelperText,
 } from "@mui/material";
+import api from "../../service/apiService";
 
 type Inputs = {
   lastName: string;
   firstName: string;
+  address: string;
   email: string;
   phone: number;
   password: string;
@@ -34,11 +36,25 @@ const Register: React.FC = () => {
     formState: { errors },
     trigger,
   } = useForm<Inputs>();
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+//http://localhost:8080/petspa/user/register?user_name=Joe&address=America&email=simplygamer1999%40gmail.com&full_name=JoeBiden&gender=MALE&password=123&confirm%20password=123&phone=0384974585&age=65
+  const onSubmit: SubmitHandler<Inputs> = (data) => handleRegister(data);
 
   const inputStyle = {
     margin: "8px 0",
+  };
+
+  const handleRegister = async (data:any) => {
+      try {
+          const response = await api.post(`/user/register?user_name=${data.firstName}&address=${data.address}&email=${data.email}%40gmail.com&full_name=${data.firstName+data.lastName}&gender=${data.gender}&password=${data.password}&confirm%20password=${data.confirmPassword}&phone=${data.phone}&age=${data.age}`);
+          console.log('Register successful:', response);
+          sessionStorage.setItem('jwtToken', response.data.accessToken);
+          setTimeout(() => {
+              window.location.href = "http://localhost:5173";
+          }, 2000)
+      } catch (err) {
+          console.error('Register error:', err);
+          window.location.reload;
+      }
   };
 
   return (
@@ -101,14 +117,28 @@ const Register: React.FC = () => {
             <TextField
               sx={inputStyle}
               required
+              id="address"
+              label="Address"
+              {...register("address", {
+                required: "Address is required",
+              })}
+              error={!!errors.address}
+              helperText={errors.address ? errors.address.message : ""}
+              onBlur={() => trigger("address")}
+              fullWidth
+            />  
+
+            <TextField
+              sx={inputStyle}
+              required
               id="email"
               label="Email Address"
               {...register("email", {
                 required: "Email is required",
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: "Email is not valid",
-                },
+                // pattern: {
+                //   value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                //   message: "Email is not valid",
+                // },
               })}
               error={!!errors.email}
               helperText={errors.email ? errors.email.message : ""}
@@ -128,7 +158,7 @@ const Register: React.FC = () => {
                 sx={{ justifyContent: "space-between" }}
               >
                 <FormControlLabel
-                  value="male"
+                  value="MALE"
                   control={
                     <Radio
                       {...register("gender", {
@@ -139,7 +169,7 @@ const Register: React.FC = () => {
                   label="Male"
                 />
                 <FormControlLabel
-                  value="female"
+                  value="FEMALE"
                   control={
                     <Radio
                       {...register("gender", {
