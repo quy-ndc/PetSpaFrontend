@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./account-setting.css";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import api from "../../../../../service/apiService";
 
 const SignupSchema = Yup.object().shape({
     firstName: Yup.string().trim().required('First name cannot be empty').matches(/^[^\d]*$/, 'First name cannot contain numbers'),
@@ -15,22 +16,56 @@ const SignupSchema = Yup.object().shape({
 
 const AccountSetting: React.FC = () => {
 
+    const [account, setAccount] = useState<any>();
+    const [loading, setLoading] = useState(true);
+
+    const fetchCurrentUser = async () => {
+        try {
+            const response = await api.get(`user/currentUser/` + sessionStorage.getItem("jwtToken"));
+            setAccount(response.data);
+        } catch (error) {
+            console.error("Error fetching account data:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchCurrentUser();
+    }, []);
+
+    const handleUpdateAccount = async (data: any) => {
+        try {
+            const email = encodeURIComponent(data.email)
+            const response = await api.put(`/user/updateProfile?userId=${account.userId}&user_name=${data.firstName}&address=${data.address}&email=${email}&full_name=${data.firstName + ' ' + data.lastName}&gender=${data.gender}&phone=${data.phone}`);
+            console.log('Login successful:', response);
+            sessionStorage.setItem('jwtToken', response.data.accessToken);
+        } catch (err) {
+            console.error('Login error:', err);
+        }
+    };
+
+    if (loading) {
+        return <h1 style={{ color: "black" }}>Loading</h1>;
+    }
+
     return (
         <>
             <Formik
+                enableReinitialize={true}
                 initialValues={{
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    phone: '',
-                    age: '',
-                    gender: '',
+                    userName: account ? account.userName : '',
+                    firstName: account ? account.userName : '',
+                    lastName: account ? account.fullName : '',
+                    email: account ? account.email : '',
+                    phone: account ? account.phone : '',
+                    age: account ? account.age : '',
+                    gender: account ? account.gender : '',
+                    address: account ? account.address : '',
                 }}
-
                 validationSchema={SignupSchema}
-
                 onSubmit={values => {
-                    console.log(values);
+                    handleUpdateAccount(values)
                 }}
             >
                 {() => (
@@ -111,8 +146,8 @@ const AccountSetting: React.FC = () => {
                                     name="gender"
                                 >
                                     <option value=""></option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option selected={account?.gender == "MALE"} value="MALE">Male</option>
+                                    <option selected={account?.gender == "FEMALE"} value="FEMALE">Female</option>
                                 </Field>
                                 <ErrorMessage
                                     className="account-setting-error"

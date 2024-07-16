@@ -4,10 +4,43 @@ import UserPetItem from "./PetItem/user-pet-item";
 import AddIcon from '@mui/icons-material/Add';
 import { Drawer, Tooltip } from "@mui/material";
 import UserPetCreateForm from "./PetCreateForm/pet-create-form";
+import api from "../../../../../service/apiService";
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 const UserPetSettings: React.FC = () => {
+
+    const [account, setAccount] = useState<any>()
+    const fetchCurrentUser = async () => {
+        try {
+            const response = await api.get(`user/currentUser/` + sessionStorage.getItem("jwtToken"));
+            setAccount(response.data);
+        } catch (error) {
+            console.error("Error fetching account data:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    useEffect(() => {
+        fetchCurrentUser();
+    }, []);
+
+    const [pets, setPets] = useState<any[]>([]);
+    const fetchAccountData = async () => {
+        try {
+            const response = await api.get(`/pet/${account.userId}/ownPet`);
+            setPets(response.data.data);
+        } catch (error) {
+            console.error("Error fetching account data:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    useEffect(() => {
+        if (account) {
+            fetchAccountData();
+        }
+    }, [account]);
 
     const [state, setState] = useState({
         top: false,
@@ -60,27 +93,20 @@ const UserPetSettings: React.FC = () => {
                     </Tooltip>
                 </div>
                 <div className="user-profile-pet-list">
-                    <UserPetItem
-                        name="Jake"
-                        species="Dog"
-                        breed="Husky"
-                        gender="Male"
-                        age="1"
-                    />
-                    <UserPetItem
-                        name="Fiona"
-                        species="Cat"
-                        breed="Orange"
-                        gender="Female"
-                        age="3"
-                    />
-                    <UserPetItem
-                        name="Kenny"
-                        species="Bird"
-                        breed="Tulip"
-                        gender="Male"
-                        age='6F'
-                    />
+                    {pets.map((pet) => (
+                        pet.status === 'ACTIVE' && (
+                            <UserPetItem
+                                key={pet.pet_id}
+                                petid={pet.pet_id}
+                                name={pet.pet_name}
+                                species={pet.species}
+                                breed={pet.type_of_species}
+                                gender={pet.gender}
+                                age={pet.age}
+                            />
+                        )
+                    ))}
+
                 </div>
             </div>
         </>
@@ -88,3 +114,7 @@ const UserPetSettings: React.FC = () => {
 };
 
 export default UserPetSettings;
+
+function setLoading(arg0: boolean) {
+    throw new Error("Function not implemented.");
+}

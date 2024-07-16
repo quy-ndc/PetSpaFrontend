@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./pet-create-form.css";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import api from "../../../../../../service/apiService";
 
 const SignupSchema = Yup.object().shape({
     name: Yup.string().trim().required('Name cannot be empty'),
@@ -14,6 +15,7 @@ const SignupSchema = Yup.object().shape({
 interface UserPetCreateFormProps {
     method: string;
     name?: string;
+    petid?: string;
     gender?: string;
     age?: string;
     species?: string;
@@ -23,11 +25,71 @@ interface UserPetCreateFormProps {
 const UserPetCreateForm: React.FC<UserPetCreateFormProps> = ({
     method = '',
     name = '',
+    petid = '',
     gender = '',
     age = '',
     species = '',
     breed = ''
 }) => {
+
+    const [account, setAccount] = useState<any>();
+    const [loading, setLoading] = useState(true);
+
+    const fetchCurrentUser = async () => {
+        try {
+            const response = await api.get(`user/currentUser/` + sessionStorage.getItem("jwtToken"));
+            setAccount(response.data);
+        } catch (error) {
+            console.error("Error fetching account data:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchCurrentUser();
+    }, []);
+
+    const handleUpdatePet = async (petId: string, values: any) => {
+        try {
+            const response = await api.put(`/pet/update?pet_id=${petId}`, {
+                pet_name: values.name,
+                age: parseInt(values.age, 10),
+                gender: values.gender.toUpperCase(),
+                species: values.species.toUpperCase(),
+                type_of_species: values.breed || '',
+                status: 'ACTIVE'
+            });
+            console.log('Update pet successful:', response);
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        } catch (err) {
+            console.error('Update pet error:', err);
+        }
+    };
+
+    const handleCreatePet = async (values: any) => {
+        try {
+            const response = await api.post(`/pet/${account.userId}/create`, {
+                pet_name: values.name,
+                age: parseInt(values.age, 10),
+                gender: values.gender.toUpperCase(),
+                species: values.species.toUpperCase(),
+                type_of_species: values.breed || '',
+                status: 'ACTIVE'
+            });
+            console.log('Update pet successful:', response);
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        } catch (err) {
+            console.error('Update pet error:', err);
+        }
+    };
+
+    console.log(petid)
+
     return (
         <>
             <Formik
@@ -40,7 +102,13 @@ const UserPetCreateForm: React.FC<UserPetCreateFormProps> = ({
                 }}
                 validationSchema={SignupSchema}
                 onSubmit={values => {
-                    console.log(values);
+                    if (method.toLowerCase() === 'update') {
+                        //console.log(petid)
+                        handleUpdatePet(petid, values);
+                    } else {
+                        console.log(values)
+                        handleCreatePet(values);
+                    }
                 }}
             >
                 {() => (
@@ -69,8 +137,8 @@ const UserPetCreateForm: React.FC<UserPetCreateFormProps> = ({
                                     name="gender"
                                 >
                                     <option value=""></option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="MALE">Male</option>
+                                    <option value="FEMALE">Female</option>
                                 </Field>
                                 <ErrorMessage
                                     className="pet-create-error"

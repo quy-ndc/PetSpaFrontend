@@ -90,56 +90,6 @@ const HomePage: React.FC = () => {
                     </div>
                 </div>
             </section>
-            <section id="services" className="services">
-                <div className="services__title">
-                    Meets our team
-                </div>
-
-                <Carousel className="cara"
-                    swipeable={false}
-                    draggable={false}
-                    showDots={true}
-                    responsive={responsive}
-                    ssr={true} 
-                    infinite={true}
-                    autoPlay={true}
-                    autoPlaySpeed={3000}
-                    keyBoardControl={true}
-                    customTransition="all .5"
-                    transitionDuration={500}
-                    containerClass="carousel-container"
-                    removeArrowOnDeviceType={["tablet", "mobile"]}
-                    deviceType={"desktop"}
-                    dotListClass="custom-dot-list-style"
-                    itemClass="carousel-item-padding-40-px"
-                >
-                    <div className="cara__item">
-                        <img width="425" height="313" decoding="async" src="https://tropicpet.vn/wp-content/uploads/2022/05/team-trang-tran-600x519.jpg" alt="" />
-                        <h1>Dr. Trang Trần </h1>
-                        <p>Veterinary </p>
-                    </div>
-                    <div className="cara__item">
-                        <img width="425" height="313" decoding="async" src="https://tropicpet.vn/wp-content/uploads/2021/05/team-Hiep-1-600x519-1-600x519.jpg" alt="" />
-                        <h1>Dr. Hiệp Đỗ </h1>
-                        <p>Veterinary </p>
-                    </div>
-                    <div className="cara__item">
-                        <img width="425" height="313" decoding="async" src="https://tropicpet.vn/wp-content/uploads/2022/06/chup-x-quang-425x313.jpg" alt="" />
-                        <h1>Dr. Huy Nguyễn </h1>
-                        <p>Veterinary </p>
-                    </div>
-                    <div className="cara__item">
-                        <img width="425" height="313" decoding="async" src="https://tropicpet.vn/wp-content/uploads/2021/05/team-huy-2-600x519-1-600x519.jpg" alt="" />
-                        <h1>Dr. Nam Nguyễn </h1>
-                        <p>Veterinary </p>
-                    </div>
-                    <div className="cara__item">
-                        <img width="425" height="313" decoding="async" src="https://tropicpet.vn/wp-content/uploads/2021/05/team-Tinh-600x519-1-1-600x519.jpg" alt="" />
-                        <h1>Dr. Thảo Vũ </h1>
-                        <p>Veterinary </p>
-                    </div>
-                </Carousel>
-            </section>
         </div>
     );
 }

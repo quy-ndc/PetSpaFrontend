@@ -56,10 +56,13 @@ const MainLayout = () => {
     const handleLogout = async () => {
         try {
             const response = await api.post(`/user/logout`);
-            console.log('Login successful:', response);
-            sessionStorage.setItem('jwtToken', response.data.accessToken);
+            console.log('Logout successful:', response);
+            sessionStorage.removeItem("jwtToken");
+            setTimeout(() => {
+                window.location.href = "http://localhost:5173";
+            }, 2000)
         } catch (err) {
-            console.error('Login error:', err);
+            console.error('Logout error:', err);
         }
     };
 
