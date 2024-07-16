@@ -4,9 +4,13 @@ import AddCircleOutlineTwoToneIcon from '@mui/icons-material/AddCircleOutlineTwo
 import { Drawer, Tooltip } from '@mui/material';
 import AdminShelterCreateForm from './admin-shelter-create-form';
 
+import api from '../../../../../service/apiService';
+
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 const ShelterTableAddButton: React.FC = () => {
+
+    // const addShelter = async ()
 
     const [state, setState] = useState({
         top: false,
@@ -40,16 +44,15 @@ const ShelterTableAddButton: React.FC = () => {
         </div>
     );
 
-
     return (
         <>
-            <Tooltip title='Add service'>
+            <Tooltip title='Add shelter'>
                 <button
                     className='account-table-add-button'
                     onClick={toggleDrawer("right", true)}
                 >
                     <AddCircleOutlineTwoToneIcon />
-                    <span>Add new service</span>
+                    <span>Add new shelter</span>
                 </button>
             </Tooltip>
             <Drawer
