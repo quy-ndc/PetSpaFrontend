@@ -6,6 +6,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import api from "../../service/apiService";
+import { useNavigate } from "react-router-dom";
+
 
 const AdminLayout = () => {
 
@@ -13,6 +15,7 @@ const AdminLayout = () => {
     const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
     const [account, setAccount] = useState<any>();
     const [loading, setLoading] = useState(true);
+    const navigator = useNavigate();
 
     const handleScroll = () => {
         const offset = window.scrollY;
@@ -38,6 +41,9 @@ const AdminLayout = () => {
         try {
             const response = await api.get(`user/currentUser/` + sessionStorage.getItem("jwtToken"));
             setAccount(response.data);
+            if (response.data?.role?.roleName !== "admin") {
+                navigator("/");
+              }
         } catch (error) {
             console.error("Error fetching account data:", error);
         } finally {

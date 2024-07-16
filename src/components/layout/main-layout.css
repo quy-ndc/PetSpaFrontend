@@ -170,11 +170,11 @@
 
 .nav-right-dropdown-menu {
     position: absolute;
-    bottom: -130px;
-    left: -50px;
+    bottom: -250px;
+    left: -110px;
     background-color: white;
     border: 1px solid #ccc;
-    width: 130px;
+    width: 180px;
     margin-top: 3px;
     text-align: center;
     border-radius: 7px;
