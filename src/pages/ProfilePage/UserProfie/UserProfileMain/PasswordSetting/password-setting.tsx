@@ -65,7 +65,7 @@ const PasswordSetting: React.FC = () => {
     return (
         <>
             <Formik
-            enableReinitialize={true}
+                enableReinitialize={true}
                 initialValues={{
                     currentPassword: '',
                     password: '',
@@ -79,6 +79,15 @@ const PasswordSetting: React.FC = () => {
                 {() => (
                     <Form className="account-setting-form">
                         <h1>Change password</h1>
+                        <div className="account-setting-item">
+                            <p>Current Password</p>
+                            <Field
+                                className="account-setting-field"
+                                type="password"
+                                id="currentPassword"
+                                name="currentPassword"
+                            />
+                        </div>
                         <div className="account-setting-item">
                             <p>Password</p>
                             <Field
