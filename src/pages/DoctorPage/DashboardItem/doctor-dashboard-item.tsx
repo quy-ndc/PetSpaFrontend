@@ -24,9 +24,7 @@ const DoctorDashboardItem: React.FC<DoctorDashboardItemProp> = ({
                 <h2 className='item-detail'>
                     {type} with
                     <span> {gender} </span>
-                    <Tooltip title='Go to profile'>
-                        <Link to='#'>{name}</Link>
-                    </Tooltip>
+                    <a >{name}</a>
                 </h2>
                 <h3 className='item-service'><HealthAndSafetyIcon />{service}</h3>
             </div>

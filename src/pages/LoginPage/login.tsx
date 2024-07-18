@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, TextField, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import LoginIcon from '@mui/icons-material/Login';
@@ -6,8 +6,13 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import api from "../../service/apiService";
 import './login.css';
+import checkUserLoggedIn from "../../utils/checkLoggedIn";
 
 export default function Login() {
+
+    useEffect(() => {
+        checkUserLoggedIn()
+    }, []);
 
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");

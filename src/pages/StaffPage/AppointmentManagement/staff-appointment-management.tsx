@@ -26,7 +26,7 @@ const StaffAppointmentManagement: React.FC = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await api.put(`/appointment/updateStatus?appointmentId=${id}&status=INACTIVE`);
+      const response = await api.delete(`/appointment/delete/${id}`);
       if (response) {
         toast.success('Deny successful!');
       }
@@ -51,9 +51,6 @@ const StaffAppointmentManagement: React.FC = () => {
       toast.error('Approve failed!');
     }
   };
-
-
-  console.log(appointments)
 
   const formatISODate = (isoString: string): string => {
     const date = new Date(isoString);
@@ -80,41 +77,42 @@ const StaffAppointmentManagement: React.FC = () => {
           <h1>Appointments</h1>
           <div>
             {appointments
-              ?.map(appointment => (
-                <div key={appointment.id} className="appointment-card">
+              ?.filter((appointment) => appointment.status === 'INACTIVE')
+              .map((filteredAppointment) => (
+                <div key={filteredAppointment.id} className="appointment-card">
                   <div className="grid-item">
-                    <strong>Pet:</strong> {appointment.pet ? `${appointment.pet.pet_name} the ${appointment.pet.species} (${appointment.pet.age})` : "N/A"}
+                    <strong>Pet:</strong> {filteredAppointment.pet ? `${filteredAppointment.pet.pet_name} the ${filteredAppointment.pet.species} (${filteredAppointment.pet.age})` : "N/A"}
                   </div>
                   <div className="grid-item">
-                    <strong>Time:</strong> {formatISODate(appointment.startTime)}
+                    <strong>Time:</strong> {formatISODate(filteredAppointment.startTime)}
                   </div>
                   <div className="grid-item">
-                    <strong>Service:</strong> {appointment.bookedService.serviceName}
+                    <strong>Service:</strong> {filteredAppointment.bookedService.serviceName}
                   </div>
                   <div className="grid-item">
-                    <strong>Doctor:</strong> {appointment.bookedDoctor.userName}
+                    <strong>Doctor:</strong> {filteredAppointment.bookedDoctor.fullName}
                   </div>
                   <div className="grid-item">
-                    <strong>Customer:</strong> {appointment.userName}
+                    <strong>Customer:</strong> {filteredAppointment.userName}
                   </div>
                   <div className="grid-item">
-                    <strong>Contact:</strong> {appointment.phoneNumber}
+                    <strong>Contact:</strong> {filteredAppointment.phoneNumber}
                   </div>
                   <div className="grid-item">
-                    <strong>Contact:</strong> {appointment.status}
+                    <strong>Contact:</strong> {filteredAppointment.status}
                   </div>
                   <div>
                     < button
                       className="grid-item approve-button"
-                      onClick={() => handleApprove(appointment.appointmentId)}
+                      onClick={() => handleApprove(filteredAppointment.appointmentId)}
                     >
                       Approve
                     </button>
                     < button
                       className="grid-item deny-button"
-                      onClick={() => handleDelete(appointment.appointmentId)}
+                      onClick={() => handleDelete(filteredAppointment.appointmentId)}
                     >
-                      Delete
+                      Deny
                     </button>
                   </div>
                 </div>

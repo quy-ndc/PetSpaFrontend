@@ -8,8 +8,13 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import checkUser from "../../utils/checkLogin";
 
 const AdminLayout = () => {
+
+    useEffect(() => {
+        checkUser();
+    }, []);
 
     const [scrolled, setScrolled] = useState<boolean>(false);
     const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);

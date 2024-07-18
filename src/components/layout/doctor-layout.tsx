@@ -11,13 +11,18 @@ import api from "../../service/apiService";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import checkUser from "../../utils/checkLogin";
 
 const DoctorLayout = () => {
+
+  useEffect(() => {
+    checkUser();
+  }, []);
+
   const [selectedOption, setSelectedOption] = useState<string>("home");
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [account, setAccount] = useState<any>();
-  const [loading, setLoading] = useState(true)
-  const navigator = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   const handleOptionChange = (option: string) => {
     setSelectedOption(option);
@@ -54,7 +59,7 @@ const DoctorLayout = () => {
       );
       setAccount(response.data);
       if (response.data?.role?.roleName !== "doctor") {
-        navigator("/");
+        window.location.href = "http://localhost:5173/"
       }
     } catch (error) {
       console.error("Error fetching account data:", error);

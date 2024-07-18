@@ -95,7 +95,7 @@ const UserFinishedAppointmentItem: React.FC<UserAppointmentItemProp> = ({
                 <span className='item-time'><AccessTimeFilledIcon />{time}</span>
                 <h2 className='item-detail'>
                     {type} with
-                    <span> Dr.{name} </span>
+                    <span> Dr. {name} </span>
                 </h2>
                 <h3 style={{ color: 'black' }} className='item-service'><HealthAndSafetyIcon />{service}</h3>
                 <button

@@ -68,7 +68,7 @@ const UserAppointmentItemList: React.FC = () => {
                                 <UserAppointmentItem
                                     time={formatISODate(filteredAppointment.startTime)}
                                     type='Appointment'
-                                    name={filteredAppointment.bookedDoctor.userName}
+                                    name={filteredAppointment.bookedDoctor.fullName}
                                     service={filteredAppointment.bookedService.serviceName}
                                 />
                             ))}

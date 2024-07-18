@@ -11,6 +11,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import checkUser from "../../utils/checkLogin";
 
 const StaffLayout = () => {
   const [selectedOption, setSelectedOption] = useState<string>("home");
@@ -25,6 +26,10 @@ const StaffLayout = () => {
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
+
+  useEffect(() => {
+    checkUser();
+  }, []);
 
   const fetchCurrentUser = async () => {
     try {
@@ -181,7 +186,7 @@ const StaffLayout = () => {
                 Appointment
               </Link>
             </Tooltip>
-            <Tooltip title="View doctor schedules">
+            {/* <Tooltip title="View doctor schedules">
               <Link
                 to="schedule"
                 onClick={() => handleOptionChange("schedule")}
@@ -189,7 +194,7 @@ const StaffLayout = () => {
               >
                 Schedule
               </Link>
-            </Tooltip>
+            </Tooltip> */}
             {/*    <Tooltip title="Manage reviews">
               <Link
                 to="reviews"
@@ -203,7 +208,7 @@ const StaffLayout = () => {
             </Tooltip>
 
             {/* Shelter  */}
-            <Tooltip title="Manage shelter">
+            {/* <Tooltip title="Manage shelter">
               <Link
                 to="shelter"
                 onClick={() => handleOptionChange("shelter")}
@@ -213,7 +218,7 @@ const StaffLayout = () => {
               >
                 Shelter
               </Link>
-            </Tooltip>
+            </Tooltip> */}
           </div>
         </div>
         <div className="staff-nav-right">
