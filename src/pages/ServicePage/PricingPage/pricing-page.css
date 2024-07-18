@@ -1,12 +1,4 @@
-.pricing-page-service {
-  background: #fff;
-  border-radius: 50px;
-  padding: 50px 20px 50px 20px;
-  position: relative;
-  margin-top: -50px;
-  display: flex;
-  flex-direction: column;
-}
+
 
 .content-right {
   flex: 2;
@@ -39,7 +31,7 @@
 
 .img-left img {
   height: 400px;
-  width: 440px;
+  width: 540px;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -49,20 +41,19 @@
   flex-direction: row;
   align-items: center;
   padding: 40px;
-  /* gap: 50px;
-  width: 100%; */
-  /* margin-top: 30px;
-  /* padding: 20px; */
+  
 }
 
 .price-table {
   min-width: 750px;
   border-collapse: collapse;
+  width: 100%; /* Make the table take up the full width of its container */
+  height: 100px; /* Allow the table to adjust its h */
 }
 
 .price-table th,
 .price-table td {
-  padding: 12px 15px;
+  padding: 20px 15px;
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
@@ -90,12 +81,17 @@
   border-bottom: 2px solid #ddd;
 }
 
+.pricing-page-service-detail-right {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .pricing-page-service-detail-right a {
   align-items: center;
   background: #fff2f1;
   border: 0.5px solid #111;
   border-radius: 8px;
-  box-sizing: border-box;
   color: #111;
   cursor: pointer;
   display: flex;
@@ -107,17 +103,14 @@
   justify-content: center;
   line-height: 24px;
   max-width: 100%;
-  padding: 0 25px;
   position: relative;
   text-align: center;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin-top: 50px;
-  text-decoration: none;
+  margin-top: 5px;
   transition: background ease 0.3s;
-  align-self: center;
 }
 
 .pricing-page-service-detail-right a:hover {

@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from "react";
-import Pagination from "@mui/material/Pagination";
 import "./staff-appointment-management.css";
 import api from "../../../service/apiService";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Pagination, TablePagination } from "@mui/material";
 
 const StaffAppointmentManagement: React.FC = () => {
 
   const [appointments, setAppointments] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
 
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
   const fetchAppointmentData = async () => {
     try {
       const response = await api.get(`/appointment/getAll`);
@@ -76,7 +87,7 @@ const StaffAppointmentManagement: React.FC = () => {
         <main>
           <h1>Appointments</h1>
           <div>
-            {appointments
+            {appointments.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               ?.filter((appointment) => appointment.status === 'INACTIVE')
               .map((filteredAppointment) => (
                 <div key={filteredAppointment.id} className="appointment-card">
@@ -119,8 +130,17 @@ const StaffAppointmentManagement: React.FC = () => {
               ))
             }
           </div >
-          {/* <Pagination sx={{ display: "flex", justifyContent: "center" }} count={10} color="primary" /> */}
-        </main >
+          <div className="account-table-bottom">
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 15]}
+            component="div"
+            count={appointments.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </div>        </main >
       </div >
       <ToastContainer />
     </>
