@@ -14,33 +14,14 @@ const SignupSchema = Yup.object().shape({
 
 const PasswordSetting: React.FC = () => {
 
-    const [currentPassword, setCurrentPassword] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const [confirmPassword, setConfirmPassword] = useState<string>("");
-    // const [account, setAccount] = useState<any>();
-    // const [loading, setLoading] = useState(true);
-
-    // const fetchCurrentUser = async () => {
-    //     try {
-    //         const response = await api.get(`user/currentUser/` + sessionStorage.getItem("jwtToken"));
-    //         setAccount(response.data);
-    //     } catch (error) {
-    //         console.error("Error fetching account data:", error);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-    // useEffect(() => {
-    //     fetchCurrentUser();
-    // }, []);
-
-    const fetchCurrentPassword = async () => {
+    const updatePassword = async (values: any) => {
         try {
-            const response = await api.get("user/currentPassword?");// đang tìm
-            return response.data.currentPassword;
+            const response = await api.put(`/user/updatePassword?current_password=${values.currentPassword}&new_password=${values.password}&confirm_password=${values.confirmPassword}`);
+            setTimeout(() => {
+                window.location.reload;
+            }, 2000)
         } catch (err) {
-            console.error("Error fetching current password:", err);
-            throw err;
+            console.error('Update error:', err);
         }
     };
 
@@ -82,8 +63,8 @@ const PasswordSetting: React.FC = () => {
                     confirmPassword: '',
                 }}
                 validationSchema={SignupSchema}
-                onSubmit={(values) => {
-                    console.log(values);
+                onSubmit={(updatePassword) => {
+                    console.log(updatePassword);
                 }}
             >
                 {() => (
