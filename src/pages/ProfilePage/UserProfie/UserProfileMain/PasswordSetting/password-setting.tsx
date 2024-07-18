@@ -13,7 +13,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 const PasswordSetting: React.FC = () => {
-    
+
     const [currentPassword, setCurrentPassword] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -33,6 +33,16 @@ const PasswordSetting: React.FC = () => {
     // useEffect(() => {
     //     fetchCurrentUser();
     // }, []);
+
+    const fetchCurrentPassword = async () => {
+        try {
+            const response = await api.get("user/currentPassword?");// đang tìm
+            return response.data.currentPassword;
+        } catch (err) {
+            console.error("Error fetching current password:", err);
+            throw err;
+        }
+    };
 
     const handleUpdatePassword = async () => {
         try {
@@ -65,7 +75,7 @@ const PasswordSetting: React.FC = () => {
     return (
         <>
             <Formik
-            enableReinitialize={true}
+                enableReinitialize={true}
                 initialValues={{
                     currentPassword: '',
                     password: '',
@@ -79,6 +89,20 @@ const PasswordSetting: React.FC = () => {
                 {() => (
                     <Form className="account-setting-form">
                         <h1>Change password</h1>
+                        <div className="account-setting-item">
+                            <p>Current Password</p>
+                            <Field
+                                className="account-setting-field"
+                                type="password"
+                                id="currentPassword"
+                                name="currentPassword"
+                            />
+                            <ErrorMessage
+                                className="account-setting-error"
+                                name="currentPassword"
+                                component="span"
+                            />
+                        </div>
                         <div className="account-setting-item">
                             <p>Password</p>
                             <Field
