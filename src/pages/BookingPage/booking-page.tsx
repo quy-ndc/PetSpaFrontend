@@ -45,6 +45,14 @@ const BookingPage: React.FC = () => {
         setPhone(event.target.value);
     };
 
+    useEffect(() => {
+        if (account) {
+            setFullname(account.fullName || "");
+            setEmail(account.email || "");
+            setPhone(account.phone || "");
+        }
+    }, [account]);
+
     const [date, setDate] = useState<Dayjs | null>(dayjs());
     const [time, setTime] = useState<Dayjs | null>(dayjs());
     const getAppointmentDateTime = (): string => {
@@ -80,16 +88,22 @@ const BookingPage: React.FC = () => {
         petId: pet
     }
 
-    const handleBook = async (phone: string, email: string) => {
+    const handleBook = async (fullName: string, phone: string, email: string) => {
         try {
-            const response = await api.post(`/appointment/save?hospitalize=NO&phone=${phone}&email=toilachungquy6789%40gmail.com`, appointmentDate);
-            toast.success('Book successful!');
-            setTimeout(() => {
-                window.location.href = "http://localhost:5173";
-            }, 2000)
+            const userEmail = encodeURIComponent(email)
+            const response = await api.post(`/appointment/save?hospitalize=NO&full%20name=${fullName}&phone=${phone}&email=${userEmail}`, appointmentDate);
+            if (response.status == 200) {
+                toast.success('Book successful!');
+                setTimeout(() => {
+                    window.location.href = "http://localhost:5173";
+                }, 2000)
+            }
+            else {
+                toast.error('Book unsuccessful')
+            }
         } catch (err) {
             console.error('Logout error:', err);
-            toast.error('Book successful!');
+            toast.error('Book unsuccessful!');
         }
     };
 
@@ -110,17 +124,19 @@ const BookingPage: React.FC = () => {
                         <div className="booking-inner">
                             <h2>How should we contact you</h2>
                             <div className="booking-attribute-container">
-                                {/* <div className="booking-attribute">
+                                <div className="booking-attribute">
                                     <div>Full name</div>
                                     <input
+                                        disabled={account}
                                         type="text"
                                         value={fullname}
                                         onChange={handleFullnameChange}
                                     />
-                                </div> */}
+                                </div>
                                 <div className="booking-attribute">
                                     <div>Email</div>
                                     <input
+                                        disabled={account}
                                         type="email"
                                         value={email}
                                         onChange={handleEmailChange}
@@ -129,6 +145,7 @@ const BookingPage: React.FC = () => {
                                 <div className="booking-attribute">
                                     <div>Phone</div>
                                     <input
+                                        disabled={account}
                                         type="number"
                                         value={phone}
                                         onChange={handlePhoneChange}
@@ -136,7 +153,6 @@ const BookingPage: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-
                         {account && (
                             <div className="booking-inner">
                                 <h2>Which of your pet is this service for</h2>
@@ -150,9 +166,7 @@ const BookingPage: React.FC = () => {
                                 </div>
                             </div>
                         )}
-
                     </section>
-
                     <section className="booking-section">
                         <div className="booking-inner">
                             <h2>When do you want this appointment</h2>
@@ -191,7 +205,7 @@ const BookingPage: React.FC = () => {
                     </section>
                 </div >
                 <div className="booking-action">
-                    <button onClick={() => handleBook(phone, email)}>Confirm</button>
+                    <button onClick={() => handleBook(fullname, phone, email)}>Confirm</button>
                     <button onClick={handleCancel}>Cancel</button>
                 </div>
             </div>

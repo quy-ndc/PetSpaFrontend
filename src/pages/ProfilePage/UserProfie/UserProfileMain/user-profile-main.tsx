@@ -38,9 +38,8 @@ const UserProfileMainContent: React.FC = () => {
                 {selectedNavItem === "history" && (
                     <>
                         <UserAppointment
-                            futureAppointment={<UserAppointmentItemList date="June 22 - Saturday" />}
-                            pastAppointment={<UserFinishedAppointmentItemList date="June 22 - Saturday" />}
-                            onGoingAppointment={<UserAppointmentItemList date="June 22 - Saturday" />}
+                            futureAppointment={<UserAppointmentItemList />}
+                            pastAppointment={<UserFinishedAppointmentItemList />}
                         />
                     </>
                 )}

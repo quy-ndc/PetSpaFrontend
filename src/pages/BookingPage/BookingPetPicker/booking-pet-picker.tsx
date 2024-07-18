@@ -37,7 +37,7 @@ const BookingPetPicker: React.FC<BookingPetPickerProps> = ({ value, onChange }) 
     const fetchAccountData = async () => {
         try {
             const response = await api.get(`/pet/${account.userId}/ownPet`);
-            const petOptions = response.data.data.map((pet: Pet) => ({
+            const petOptions = response.data.data?.map((pet: Pet) => ({
                 value: pet.pet_id.toString(),
                 label: `${pet.pet_name} (${pet.species.toLowerCase()})`,
             }));

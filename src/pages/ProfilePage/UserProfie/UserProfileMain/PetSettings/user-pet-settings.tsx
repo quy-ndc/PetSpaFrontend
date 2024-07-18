@@ -93,7 +93,7 @@ const UserPetSettings: React.FC = () => {
                     </Tooltip>
                 </div>
                 <div className="user-profile-pet-list">
-                    {pets.map((pet) => (
+                    {pets?.map((pet) => (
                         pet.status === 'ACTIVE' && (
                             <UserPetItem
                                 key={pet.pet_id}

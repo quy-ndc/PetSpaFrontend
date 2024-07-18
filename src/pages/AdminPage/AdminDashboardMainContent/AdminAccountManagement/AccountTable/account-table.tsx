@@ -161,7 +161,7 @@ const AccountTable: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredAccounts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            {filteredAccounts?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((account) => (
                                     <tr key={account.userId}>
                                         <td>

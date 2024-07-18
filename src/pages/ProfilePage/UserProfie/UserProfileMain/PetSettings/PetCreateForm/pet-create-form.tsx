@@ -3,6 +3,8 @@ import "./pet-create-form.css";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import api from "../../../../../../service/apiService";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignupSchema = Yup.object().shape({
     name: Yup.string().trim().required('Name cannot be empty'),
@@ -60,10 +62,12 @@ const UserPetCreateForm: React.FC<UserPetCreateFormProps> = ({
                 type_of_species: values.breed || '',
                 status: 'ACTIVE'
             });
+            toast.success("Update pet successful")
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
         } catch (err) {
+            toast.error("Update pet unsuccessful")
             console.error('Update pet error:', err);
         }
     };
@@ -78,13 +82,19 @@ const UserPetCreateForm: React.FC<UserPetCreateFormProps> = ({
                 type_of_species: values.breed || '',
                 status: 'ACTIVE'
             });
+            toast.success("Create pet successful")
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
         } catch (err) {
+            toast.error("Create pet unsuccessful")
             console.error('Update pet error:', err);
         }
     };
+
+    if (loading) {
+        return <h1 style={{ color: 'black' }}>LOADING</h1>
+    }
 
     return (
         <>
@@ -198,6 +208,7 @@ const UserPetCreateForm: React.FC<UserPetCreateFormProps> = ({
                     </Form>
                 )}
             </Formik>
+            <ToastContainer />
         </>
     );
 };

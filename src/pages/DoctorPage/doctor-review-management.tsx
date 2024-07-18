@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './doctor-review-management.css';
 
 
 const DoctorReviewManagement: React.FC = () => {

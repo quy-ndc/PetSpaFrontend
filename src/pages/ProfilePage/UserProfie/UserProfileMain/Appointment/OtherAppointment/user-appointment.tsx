@@ -9,18 +9,16 @@ interface ChartOption {
 interface UserAppointmentProp {
     futureAppointment: React.ReactNode;
     pastAppointment: React.ReactNode;
-    onGoingAppointment: React.ReactNode;
 }
 
-const UserAppointment: React.FC<UserAppointmentProp> = ({ futureAppointment, pastAppointment, onGoingAppointment }) => {
+const UserAppointment: React.FC<UserAppointmentProp> = ({ futureAppointment, pastAppointment }) => {
 
     const [selectedChart, setSelectedChart] = useState<React.ReactNode | null>(futureAppointment);
     const [selectedOption, setSelectedOption] = useState<number>(1);
 
     const chartOptions: ChartOption[] = [
         { id: 1, label: 'Up Coming' },
-        { id: 2, label: 'Finished' },
-        { id: 3, label: 'On Going' },
+        { id: 2, label: 'Pending' },
     ];
 
     const handleChartChange = (chartNumber: number) => {
@@ -34,8 +32,6 @@ const UserAppointment: React.FC<UserAppointmentProp> = ({ futureAppointment, pas
                 return futureAppointment;
             case 2:
                 return pastAppointment;
-            case 3:
-                return onGoingAppointment;
             default:
                 return futureAppointment;
         }

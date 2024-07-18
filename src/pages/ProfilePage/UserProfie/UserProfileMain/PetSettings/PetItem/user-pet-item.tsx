@@ -3,9 +3,10 @@ import "./user-pet-item.css";
 import Drawer from '@mui/material/Drawer';
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
-import UserPetCreateForm from "../PetCreateForm/pet-create-form";
 import UserPetEdit from "./user-pet-edit";
 import api from "../../../../../../service/apiService";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -23,10 +24,12 @@ const UserPetItem: React.FC<UserPetItemProp> = ({ petid, name, gender, age, spec
     const handleDeletePet = async (petId: string) => {
         try {
             const response = await api.put(`/pet/delete?pet_id=${petId}`);
+            toast.success('Delete pet successful')
             setTimeout(() => {
                 window.location.reload();
             }, 1000)
         } catch (err) {
+            toast.error('Delete pet unsuccessful')
             console.error('Delete pet error:', err);
         }
     };
@@ -82,7 +85,6 @@ const UserPetItem: React.FC<UserPetItemProp> = ({ petid, name, gender, age, spec
             </div>
         </div>
     );
-
 
     return (
         <>
@@ -153,7 +155,6 @@ const UserPetItem: React.FC<UserPetItemProp> = ({ petid, name, gender, age, spec
                         {MedicalRecord("right")}
                     </Drawer>
                 </div>
-
             </div>
         </>
     );

@@ -146,7 +146,7 @@ const AdminServiceCreateForm: React.FC<UserCreateFormProps> = ({
                                     name="type"
                                 >
                                     <option value=""></option>
-                                    {serviceTypes.map((serviceType) => (
+                                    {serviceTypes?.map((serviceType) => (
                                         <option key={serviceType.serviceTypeId} value={serviceType.serviceTypeId}>{serviceType.typeName}</option>
                                     ))}
                                 </Field>

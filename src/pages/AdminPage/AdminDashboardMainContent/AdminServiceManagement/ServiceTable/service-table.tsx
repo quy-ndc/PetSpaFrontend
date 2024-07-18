@@ -139,7 +139,7 @@ const ServiceTable: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredServices.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            {filteredServices?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((service) => (
                                     <tr key={service.serviceId}>
                                         <td>

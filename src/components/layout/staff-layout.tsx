@@ -7,15 +7,16 @@ import { Tooltip } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import api from "../../service/apiService";
-import { useNavigate } from "react-router-dom";
-
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const StaffLayout = () => {
   const [selectedOption, setSelectedOption] = useState<string>("home");
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
-  const navigator = useNavigate();
-
   const [account, setAccount] = useState<any>();
+  const [loading, setLoading] = useState(true);
 
   const handleOptionChange = (option: string) => {
     setSelectedOption(option);
@@ -25,17 +26,6 @@ const StaffLayout = () => {
     setDropdownVisible(!dropdownVisible);
   };
 
-  const handleLogout = async () => {
-    try {
-      const response = await api.post(`/user/logout`);
-      sessionStorage.removeItem("jwtToken");
-      setTimeout(() => {
-        window.location.href = "http://localhost:5173";
-      }, 2000);
-    } catch (err) {
-      console.error("Logout error:", err);
-    }
-  };
   const fetchCurrentUser = async () => {
     try {
       const response = await api.get(
@@ -48,12 +38,37 @@ const StaffLayout = () => {
     } catch (error) {
       console.error("Error fetching account data:", error);
     } finally {
-      // setLoading(false);
+      setLoading(false);
     }
   };
   useEffect(() => {
     fetchCurrentUser();
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      const response = await api.post(`/user/logout`);
+      sessionStorage.removeItem("jwtToken");
+      if (!sessionStorage.getItem('jwtToken')) {
+        toast.success('Logout successful')
+        setTimeout(() => {
+          window.location.href = "http://localhost:5173";
+        }, 2000);
+      }
+      else {
+        toast.error('Logout unsuccessful');
+      }
+
+    } catch (err) {
+      console.error("Logout error:", err);
+      toast.error('Logout unsuccessful');
+    }
+  };
+
+  if (loading) {
+    return <h1 style={{ color: "black" }}>LOADING</h1>
+  }
+
 
   return (
     <div className="staff-layout">
@@ -166,18 +181,16 @@ const StaffLayout = () => {
                 Appointment
               </Link>
             </Tooltip>
-            {/* <Tooltip title="View doctor schedules">
+            <Tooltip title="View doctor schedules">
               <Link
                 to="schedule"
                 onClick={() => handleOptionChange("schedule")}
-                className={`${
-                  selectedOption === "schedule" ? "active-staff-option" : ""
-                }`}
+                className={`${selectedOption === "schedule" ? "active-staff-option" : ""}`}
               >
                 Schedule
               </Link>
             </Tooltip>
-            <Tooltip title="Manage reviews">
+            {/*    <Tooltip title="Manage reviews">
               <Link
                 to="reviews"
                 onClick={() => handleOptionChange("reviews")}
@@ -223,6 +236,16 @@ const StaffLayout = () => {
                   <AccountCircleIcon />
                   <Link
                     onClick={toggleDropdown}
+                    to="/profile"
+                    className="nav-right-dropdown-item"
+                  >
+                    Profile
+                  </Link>
+                </div>
+                <div className="nav-right-dropdown-item">
+                  <DashboardIcon />
+                  <Link
+                    onClick={toggleDropdown}
                     to="/admin"
                     className="nav-right-dropdown-item"
                   >
@@ -230,7 +253,7 @@ const StaffLayout = () => {
                   </Link>
                 </div>
                 <div className="nav-right-dropdown-item">
-                  <AccountCircleIcon />
+                  <CalendarMonthIcon />
                   <Link
                     onClick={toggleDropdown}
                     to="/staff"
@@ -251,6 +274,7 @@ const StaffLayout = () => {
         </div>
       </nav>
       <Outlet />
+      <ToastContainer />
     </div>
   );
 };

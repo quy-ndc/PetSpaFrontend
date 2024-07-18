@@ -76,7 +76,7 @@ const StaffShelterManage: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {pets.map((pet) => (
+                {pets?.map((pet) => (
                   <tr>
                     <td>
                       <a>{pet.name}</a>
@@ -84,7 +84,7 @@ const StaffShelterManage: React.FC = () => {
                     <td>{pet.species}</td>
                     <td>{pet.breed}</td>
                     <td>
-                      <Link to="#">{pet.owner}</Link>
+                      <a>{pet.owner}</a>
                     </td>
                   </tr>
                 ))}

@@ -9,6 +9,7 @@ const StaffAppointmentManagement: React.FC = () => {
 
   const [appointments, setAppointments] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
   const fetchAppointmentData = async () => {
     try {
       const response = await api.get(`/appointment/getAll`);
@@ -25,18 +26,34 @@ const StaffAppointmentManagement: React.FC = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await api.post(`/appointment/updateStatus?appointmentId=${id}&status=INACTIVE`);
+      const response = await api.put(`/appointment/updateStatus?appointmentId=${id}&status=INACTIVE`);
       if (response) {
-        toast.success('Delete successful!');
+        toast.success('Deny successful!');
       }
       setTimeout(() => {
         window.location.reload();
       }, 1000)
     } catch (err) {
-      console.error('Delete pet error:', err);
-      toast.error('Delete failed!');
+      toast.error('Deny failed!');
     }
   };
+
+  const handleApprove = async (id: number) => {
+    try {
+      const response = await api.put(`/appointment/updateStatus?appointmentId=${id}&status=ACTIVE`);
+      if (response) {
+        toast.success('Approve successful!');
+      }
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000)
+    } catch (err) {
+      toast.error('Approve failed!');
+    }
+  };
+
+
+  console.log(appointments)
 
   const formatISODate = (isoString: string): string => {
     const date = new Date(isoString);
@@ -63,8 +80,7 @@ const StaffAppointmentManagement: React.FC = () => {
           <h1>Appointments</h1>
           <div>
             {appointments
-              .filter(appointment => appointment.status === 'ACTIVE')
-              .map(appointment => (
+              ?.map(appointment => (
                 <div key={appointment.id} className="appointment-card">
                   <div className="grid-item">
                     <strong>Pet:</strong> {appointment.pet ? `${appointment.pet.pet_name} the ${appointment.pet.species} (${appointment.pet.age})` : "N/A"}
@@ -72,36 +88,35 @@ const StaffAppointmentManagement: React.FC = () => {
                   <div className="grid-item">
                     <strong>Time:</strong> {formatISODate(appointment.startTime)}
                   </div>
-                  {/* <div className="grid-item">
-                    <strong>Serivce:</strong> {appointment.bookedService.serviceName}
-                  </div> */}
-                  {/* <div className="grid-item">
+                  <div className="grid-item">
+                    <strong>Service:</strong> {appointment.bookedService.serviceName}
+                  </div>
+                  <div className="grid-item">
                     <strong>Doctor:</strong> {appointment.bookedDoctor.userName}
-                  </div> */}
-                  {/* 
-               
-                <div className="grid-item">
-                  <strong>Phone:</strong> {appointment.customerPhone}
-                </div>
-                <div className="grid-item">
-                  <strong>Pet Name:</strong> {appointment.petName}
-                </div>
-                <div className="grid-item">
-                  <strong>Doctor:</strong> {appointment.doctorName}
-                </div>
-                
-                <div className="grid-item">
-                  <strong>Service/Combo:</strong> {appointment.serviceName}
-                </div>
-                <div className="grid-item">
-                  <strong>Status:</strong> {appointment.status}
-                </div> */}
-                  < button
-                    className="grid-item deny-button"
-                    onClick={() => handleDelete(appointment.appointmentId)}
-                  >
-                    Delete
-                  </button>
+                  </div>
+                  <div className="grid-item">
+                    <strong>Customer:</strong> {appointment.userName}
+                  </div>
+                  <div className="grid-item">
+                    <strong>Contact:</strong> {appointment.phoneNumber}
+                  </div>
+                  <div className="grid-item">
+                    <strong>Contact:</strong> {appointment.status}
+                  </div>
+                  <div>
+                    < button
+                      className="grid-item approve-button"
+                      onClick={() => handleApprove(appointment.appointmentId)}
+                    >
+                      Approve
+                    </button>
+                    < button
+                      className="grid-item deny-button"
+                      onClick={() => handleDelete(appointment.appointmentId)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               ))
             }

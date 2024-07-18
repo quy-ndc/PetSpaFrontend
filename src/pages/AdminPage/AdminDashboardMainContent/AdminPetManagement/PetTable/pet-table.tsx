@@ -126,11 +126,11 @@ const PetTable: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredPets.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            {filteredPets?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((pet) => (
                                     <tr key={pet.pet_id}>
                                         <td>
-                                            <a href="#">
+                                            <a>
                                                 {pet.pet_name}
                                             </a>
                                         </td>

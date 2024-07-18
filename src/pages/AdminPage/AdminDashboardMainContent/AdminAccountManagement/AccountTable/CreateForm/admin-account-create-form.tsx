@@ -105,10 +105,12 @@ const AdminAccountCreateForm: React.FC<UserCreateFormProps> = ({
                         console.log(`user/updateProfile?userId=${values.userId}&user_name=${values.userName}&address=${values.address}&email=${values.email}&full_name=${values.fullName}&gender=${values.gender}&phone=${values.phone}`)
                         handleUpdateAccount(values);
                     } else {
+                        const accountPassword = hashPassword("1234");
+
                         const newUser = {
                             userName: values.userName,
                             email: values.email,
-                            password: "1234",
+                            password: accountPassword,
                             fullName: values.fullName,
                             age: values.age,
                             gender: values.gender,

@@ -22,7 +22,7 @@ const BookingDoctorPicker: React.FC<BookingDoctorPickerProps> = ({ value, onChan
     const fetchDoctorData = async () => {
         try {
             const response = await api.get(`/doctor/getAll`);
-            const doctorOptions = response.data.map((doctor: Doctor) => ({
+            const doctorOptions = response.data?.map((doctor: Doctor) => ({
                 value: doctor.doctor_id.toString(),
                 label: doctor.authenUser.fullName,
             }));

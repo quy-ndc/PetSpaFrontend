@@ -1,13 +1,13 @@
 import { Link, Outlet } from "react-router-dom";
 import './main-layout.css'
-import { Tooltip } from "@mui/material";
 import { useEffect, useState } from "react";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import api from "../../service/apiService";
-import { useNavigate } from "react-router-dom";
-
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const AdminLayout = () => {
 
@@ -15,7 +15,6 @@ const AdminLayout = () => {
     const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
     const [account, setAccount] = useState<any>();
     const [loading, setLoading] = useState(true);
-    const navigator = useNavigate();
 
     const handleScroll = () => {
         const offset = window.scrollY;
@@ -58,11 +57,19 @@ const AdminLayout = () => {
         try {
             const response = await api.post(`/user/logout`);
             sessionStorage.removeItem("jwtToken");
-            setTimeout(() => {
-                window.location.href = "http://localhost:5173";
-            }, 2000);
+            if (!sessionStorage.getItem('jwtToken')) {
+                toast.success('Logout successful')
+                setTimeout(() => {
+                    window.location.href = "http://localhost:5173";
+                }, 2000);
+            }
+            else {
+                toast.error('Logout unsuccessful');
+            }
+
         } catch (err) {
             console.error("Logout error:", err);
+            toast.error('Logout unsuccessful');
         }
     };
 
@@ -183,6 +190,16 @@ const AdminLayout = () => {
                                 <AccountCircleIcon />
                                 <Link
                                     onClick={toggleDropdown}
+                                    to="/profile"
+                                    className="nav-right-dropdown-item"
+                                >
+                                    Profile
+                                </Link>
+                            </div>
+                            <div className="nav-right-dropdown-item">
+                                <DashboardIcon />
+                                <Link
+                                    onClick={toggleDropdown}
                                     to="/admin"
                                     className="nav-right-dropdown-item"
                                 >
@@ -190,7 +207,7 @@ const AdminLayout = () => {
                                 </Link>
                             </div>
                             <div className="nav-right-dropdown-item">
-                                <AccountCircleIcon />
+                                <CalendarMonthIcon />
                                 <Link
                                     onClick={toggleDropdown}
                                     to="/staff"
@@ -208,6 +225,7 @@ const AdminLayout = () => {
                 </div>
             </nav >
             <Outlet />
+            <ToastContainer />
         </div >
 
     );

@@ -1,6 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import EmptyLayout from "./components/layout/EmptyLayout";
 import Login from "./pages/LoginPage/login";
 import Register from "./pages/RegisterPage/register";
 import BookingPage from "./pages/BookingPage/booking-page";

@@ -1,18 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './doctor-dashboard.css';
 import DoctorDashboardItemList from './DashboardItemList/doctor-dashboard-item-list';
 
-const DateList = [
-    {
-        date: 'June 19 - Wednesday'
-    },
-    {
-        date: 'June 22 - Saturday'
-    },
-    {
-        date: 'June 25 - Tuesday'
-    }
-]
+
 
 const DoctorDashboard: React.FC = () => {
 
@@ -21,9 +11,7 @@ const DoctorDashboard: React.FC = () => {
             <div className="doctor-dashboard-container">
                 <h1>Schedule</h1>
                 <div className='doctor-dashboard-items-container'>
-                    {DateList.map((date) => (
-                        <DoctorDashboardItemList date={date.date} />
-                    ))}
+                    <DoctorDashboardItemList />
                 </div>
             </div>
         </>
