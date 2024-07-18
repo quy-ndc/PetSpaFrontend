@@ -13,26 +13,17 @@ const SignupSchema = Yup.object().shape({
 });
 
 const PasswordSetting: React.FC = () => {
-    
-    const [currentPassword, setCurrentPassword] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const [confirmPassword, setConfirmPassword] = useState<string>("");
-    // const [account, setAccount] = useState<any>();
-    // const [loading, setLoading] = useState(true);
 
-    // const fetchCurrentUser = async () => {
-    //     try {
-    //         const response = await api.get(`user/currentUser/` + sessionStorage.getItem("jwtToken"));
-    //         setAccount(response.data);
-    //     } catch (error) {
-    //         console.error("Error fetching account data:", error);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-    // useEffect(() => {
-    //     fetchCurrentUser();
-    // }, []);
+    const updatePassword = async (values: any) => {
+        try {
+            const response = await api.put(`/user/updatePassword?current_password=${values.currentPassword}&new_password=${values.password}&confirm_password=${values.confirmPassword}`);
+            setTimeout(() => {
+                window.location.reload;
+            }, 2000)
+        } catch (err) {
+            console.error('Update error:', err);
+        }
+    };
 
     const handleUpdatePassword = async () => {
         try {
@@ -65,20 +56,34 @@ const PasswordSetting: React.FC = () => {
     return (
         <>
             <Formik
-            enableReinitialize={true}
+                enableReinitialize={true}
                 initialValues={{
                     currentPassword: '',
                     password: '',
                     confirmPassword: '',
                 }}
                 validationSchema={SignupSchema}
-                onSubmit={(values) => {
-                    console.log(values);
+                onSubmit={(updatePassword) => {
+                    console.log(updatePassword);
                 }}
             >
                 {() => (
                     <Form className="account-setting-form">
                         <h1>Change password</h1>
+                        <div className="account-setting-item">
+                            <p>Current Password</p>
+                            <Field
+                                className="account-setting-field"
+                                type="password"
+                                id="currentPassword"
+                                name="currentPassword"
+                            />
+                            <ErrorMessage
+                                className="account-setting-error"
+                                name="currentPassword"
+                                component="span"
+                            />
+                        </div>
                         <div className="account-setting-item">
                             <p>Password</p>
                             <Field
