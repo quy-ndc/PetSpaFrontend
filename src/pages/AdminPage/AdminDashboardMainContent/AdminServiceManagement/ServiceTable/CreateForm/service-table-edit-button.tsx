@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import '../account-table.css';
+import '../../../AdminAccountManagement/AccountTable/CreateForm/account-table-update-button.css';
 import AddCircleOutlineTwoToneIcon from '@mui/icons-material/AddCircleOutlineTwoTone';
 import { Drawer, Tooltip } from '@mui/material';
-import AdminAccountCreateForm from './admin-account-create-form';
+import AdminServiceCreateForm from './admin-service-create-form';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
+interface ServiceProp {
+    serviceId: string;
+    name: string;
+    type: string;
+    description: string;
+    price: string;
+    discount: string;
+}
 
-const AccountTableAddButton: React.FC = () => {
+
+const AccountTableEditButton: React.FC<ServiceProp> = ({ serviceId, name, type, description, price, discount }) => {
 
     const [state, setState] = useState({
         top: false,
@@ -35,8 +44,14 @@ const AccountTableAddButton: React.FC = () => {
             onClick={(event) => event.stopPropagation()}
             onKeyDown={(event) => event.stopPropagation()}
         >
-            <AdminAccountCreateForm
-                method='add'
+            <AdminServiceCreateForm
+                method='update'
+                serviceId={serviceId}
+                name={name}
+                type={type}
+                description={description}
+                price={price}
+                discount={discount}
             />
         </div>
     );
@@ -44,16 +59,13 @@ const AccountTableAddButton: React.FC = () => {
 
     return (
         <>
-            <Tooltip title='Add account'>
-                <button
-                    className='account-table-add-button'
-                    onClick={toggleDrawer("right", true)}
-                >
-                    <AddCircleOutlineTwoToneIcon />
-                    <span>Add new account</span>
-                </button>
+            <button
+                className='account-table-edit-button'
+                onClick={toggleDrawer("right", true)}
+            >
+                <span> Edit</span>
+            </button>
 
-            </Tooltip>
             <Drawer
                 anchor={"right"}
                 open={state["right"]}
@@ -66,4 +78,4 @@ const AccountTableAddButton: React.FC = () => {
 };
 
 
-export default AccountTableAddButton;
+export default AccountTableEditButton;

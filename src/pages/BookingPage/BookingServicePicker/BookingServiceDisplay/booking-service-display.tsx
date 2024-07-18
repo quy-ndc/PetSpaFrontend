@@ -1,60 +1,54 @@
 import * as React from 'react';
 import './booking-service-display.css';
+import api from '../../../../service/apiService';
 
 interface BookingServiceDisplayProps {
     handleClose: () => void;
-    handleServiceSelection: (selectedService: string) => void;
+    handleServiceSelection: (selectedServiceId: number, selectedServiceName: string) => void;
 }
 
-const ServiceData = [
-    { name: 'Spaying & neutering', type: 'Clinical' },
-    { name: 'Dentistry', type: 'Clinical' },
-    { name: 'Soft-tissue surgery', type: 'Clinical' },
-    { name: 'Mass removal', type: 'Clinical' },
-    { name: 'Orthopedic surgery', type: 'Clinical' },
-    { name: 'Stem cell', type: 'Clinical' },
-    { name: 'Junior suite', type: 'Clinical' },
-    { name: 'Therapeutic massage', type: 'Clinical' },
-    { name: 'Chauffer service', type: 'Clinical' },
-    { name: 'Specialist surgeries', type: 'Surgical' },
-    { name: 'Dental cleaning', type: 'Surgical' },
-    { name: 'Spaying (female cat)', type: 'Surgical' },
-    { name: 'Neutering (male cat)', type: 'Surgical' },
-    { name: 'Spaying (female dog)', type: 'Surgical' },
-    { name: 'Neutering (male dog)', type: 'Surgical' },
-    { name: 'Allergy testing', type: 'Laboratory' },
-    { name: 'Infectious disease test', type: 'Laboratory' },
-    { name: 'Urine test', type: 'Laboratory' },
-    { name: 'Blood test', type: 'Laboratory' },
-    { name: 'Faecal test', type: 'Laboratory' },
-    { name: 'Rabies serology', type: 'Laboratory' },
-    { name: 'MRI/CT', type: 'Laboratory' },
-    { name: 'Therapeutic massage', type: 'Holistic' },
-    { name: 'Physiotherapy', type: 'Holistic' },
-    { name: 'Acupuncture', type: 'Holistic' },
-    { name: 'Laser therapy', type: 'Holistic' },
-    { name: 'Faecal test', type: 'Holistic' }
-];
-
 const BookingServiceDisplay: React.FC<BookingServiceDisplayProps> = ({ handleClose, handleServiceSelection }) => {
+
+    const [services, setServices] = React.useState<any[]>([]);
+    const [loading, setLoading] = React.useState(true);
+    const fetchAccountData = async () => {
+        try {
+            const response = await api.get(`/service/getAll`);
+            setServices(response.data);
+        } catch (error) {
+            console.error("Error fetching account data:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    React.useEffect(() => {
+        fetchAccountData();
+    }, []);
+
     const [searchTerm, setSearchTerm] = React.useState('');
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
     };
 
-    const renderServiceButtons = (type: string) => {
-        return ServiceData
-            .filter(service => service.type === type && service.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    const renderServiceButtons = () => {
+        return services
+            .filter(service => service.serviceName.toLowerCase().includes(searchTerm.toLowerCase()))
             .map(service => (
                 <button
-                    key={service.name}
-                    onClick={() => handleServiceSelection(service.name)}
+                    key={service.serviceId}
+                    onClick={() => handleServiceSelection(service.serviceId, service.serviceName)}
+                    style={{ color: 'white' }}
                 >
-                    {service.name}
+                    {service.serviceName}
                 </button>
             ));
     };
+
+    if (loading) {
+        return <h1 style={{ color: 'black' }}>LOADING</h1>
+    }
 
     return (
         <div className='booking-service-display'>
@@ -69,21 +63,9 @@ const BookingServiceDisplay: React.FC<BookingServiceDisplayProps> = ({ handleClo
                 onChange={handleSearchChange}
             />
             <div className='booking-service-container'>
-                <h3>Clinical</h3>
+                <h3>Services</h3>
                 <div className="booking-service-group">
-                    {renderServiceButtons('Clinical')}
-                </div>
-                <h3>Surgical</h3>
-                <div className="booking-service-group">
-                    {renderServiceButtons('Surgical')}
-                </div>
-                <h3>Laboratory</h3>
-                <div className="booking-service-group">
-                    {renderServiceButtons('Laboratory')}
-                </div>
-                <h3>Holistic</h3>
-                <div className="booking-service-group">
-                    {renderServiceButtons('Holistic')}
+                    {renderServiceButtons()}
                 </div>
             </div>
         </div>

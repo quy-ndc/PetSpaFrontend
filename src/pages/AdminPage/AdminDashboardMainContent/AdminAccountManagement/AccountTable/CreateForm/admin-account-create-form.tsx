@@ -2,53 +2,128 @@ import React from "react";
 import './admin-account-create-form.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import api from "../../../../../../service/apiService";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import bcrypt from 'bcryptjs';
 
 const SignupSchema = Yup.object().shape({
-    firstName: Yup.string().trim().required('First name cannot be empty').matches(/^[^\d]*$/, 'First name cannot contain numbers'),
-    lastName: Yup.string().trim().required('Last name cannot be empty').matches(/^[^\d]*$/, 'Last name cannot contain numbers'),
+    fullName: Yup.string().trim().required('Full name cannot be empty').matches(/^[^\d]*$/, 'Full name cannot contain numbers'),
+    userName: Yup.string().trim().required('User name cannot be empty').matches(/^[^\d]*$/, 'User name cannot contain numbers'),
     email: Yup.string().trim().email('Invalid email').required('Required'),
     phone: Yup.string().required('Phone cannot be empty').matches(/^\d+$/, 'Phone must contain only numbers'),
     age: Yup.string().required('Age cannot be empty').matches(/^\d+$/, 'Age must contain only numbers'),
     gender: Yup.string().required('Gender cannot be empty'),
     address: Yup.string().trim(),
+    role: Yup.string().required('Role cannot be empty'),
 });
 
 interface UserCreateFormProps {
     method: string;
-    firstName?: string;
-    lastName?: string;
+    userId?: string;
+    fullName?: string;
+    userName?: string;
     email?: string;
     age?: string;
     gender?: string;
     address?: string;
     phone?: string;
+    role?: string;
 }
 
 const AdminAccountCreateForm: React.FC<UserCreateFormProps> = ({
     method = '',
-    firstName = '',
-    lastName = '',
+    userId = '',
+    fullName = '',
+    userName = '',
     email = '',
     age = '',
     gender = '',
     address = '',
-    phone = ''
+    phone = '',
+    role = '',
 }) => {
+
+    const handleCreateAccount = async (values: any) => {
+        try {
+            const response = await api.post(`/user/save`, values);
+            if (response) {
+                toast.success('Create account successful!');
+            }
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        } catch (err) {
+            toast.error('Create account failed!');
+        }
+    };
+
+    const handleUpdateAccount = async (values: any) => {
+        try {
+            console.log(values)
+            const response = await api.put(`user/updateProfile?userId=${values.userId}&user_name=${values.userName}&address=${values.address}&email=${values.email}&full_name=${values.fullName}&gender=${values.gender}&phone=${values.phone}`);
+            if (response) {
+                toast.success('Update account successful!');
+            }
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
+        } catch (err) {
+            toast.error('Update account failed!');
+        }
+    };
+
+    const hashPassword = async (password: string) => {
+        const saltRounds = 10; // Number of rounds to generate the salt
+        try {
+            const salt = await bcrypt.genSalt(saltRounds);
+            const hash = await bcrypt.hash(password, salt);
+            return hash;
+        } catch (error) {
+            throw error;
+        }
+    };
+
+
     return (
         <>
             <Formik
                 initialValues={{
-                    firstName,
-                    lastName,
+                    userId,
+                    fullName,
+                    userName,
                     email,
                     age,
                     gender,
                     address,
-                    phone
+                    phone,
+                    role,
                 }}
                 validationSchema={SignupSchema}
                 onSubmit={values => {
-                    console.log(values);
+                    if (method.toLowerCase() === 'update') {
+                        console.log(`user/updateProfile?userId=${values.userId}&user_name=${values.userName}&address=${values.address}&email=${values.email}&full_name=${values.fullName}&gender=${values.gender}&phone=${values.phone}`)
+                        handleUpdateAccount(values);
+                    } else {
+                        const newUser = {
+                            userName: values.userName,
+                            email: values.email,
+                            password: "1234",
+                            fullName: values.fullName,
+                            age: values.age,
+                            gender: values.gender,
+                            address: values.address,
+                            phone: values.phone,
+                            create_date: (new Date).toISOString(),
+                            status: "ACTIVE",
+                            role: {
+                                roleId: values.role == 'admin' ? 1 : values.role == 'staff' ? 2 : values.role == 'customer' ? 3 : 4,
+                                roleName: values.role,
+                                status: "ACTIVE"
+                            }
+                        }
+                        handleCreateAccount(newUser);
+                    }
                 }}
             >
                 {() => (
@@ -60,28 +135,28 @@ const AdminAccountCreateForm: React.FC<UserCreateFormProps> = ({
                         )}
                         <div className="admin-account-create-input-fields">
                             <div className="admin-account-create-item">
-                                <p>First name</p>
+                                <p>Full name</p>
                                 <Field
                                     className="admin-account-create-field"
-                                    name="firstName"
+                                    name="fullName"
                                     type="text"
                                 />
                                 <ErrorMessage
                                     className="admin-account-create-error"
-                                    name="firstName"
+                                    name="fullName"
                                     component="span"
                                 />
                             </div>
                             <div className="admin-account-create-item">
-                                <p>Last name</p>
+                                <p>Username</p>
                                 <Field
                                     className="admin-account-create-field"
-                                    name="lastName"
+                                    name="userName"
                                     type="text"
                                 />
                                 <ErrorMessage
                                     className="admin-account-create-error"
-                                    name="lastName"
+                                    name="userName"
                                     component="span"
                                 />
                             </div>
@@ -133,12 +208,32 @@ const AdminAccountCreateForm: React.FC<UserCreateFormProps> = ({
                                     name="gender"
                                 >
                                     <option value=""></option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option selected={gender == "MALE"} value="MALE">Male</option>
+                                    <option selected={gender == "MALE"} value="FEMALE">Female</option>
                                 </Field>
                                 <ErrorMessage
                                     className="admin-account-create-error"
                                     name="gender"
+                                    component="span"
+                                />
+                            </div>
+                            <div className="admin-account-create-item">
+                                <p>Role</p>
+                                <Field
+                                    className="admin-account-create-field"
+                                    as="select"
+                                    id="role"
+                                    name="role"
+                                >
+                                    <option value=""></option>
+                                    <option selected={role == "admin"} value="admin">Admin</option>
+                                    <option selected={role == "staff"} value="staff">Staff</option>
+                                    <option selected={role == "doctor"} value="doctor">Doctor</option>
+                                    <option selected={role == "customer"} value="customer">Customer</option>
+                                </Field>
+                                <ErrorMessage
+                                    className="admin-account-create-error"
+                                    name="role"
                                     component="span"
                                 />
                             </div>
@@ -174,6 +269,7 @@ const AdminAccountCreateForm: React.FC<UserCreateFormProps> = ({
                     </Form>
                 )}
             </Formik>
+            <ToastContainer />
         </>
     );
 };

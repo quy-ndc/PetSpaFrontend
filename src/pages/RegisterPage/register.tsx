@@ -17,8 +17,8 @@ import {
 import api from "../../service/apiService";
 
 type Inputs = {
-  lastName: string;
-  firstName: string;
+  fullName: string;
+  userName: string;
   address: string;
   email: string;
   phone: number;
@@ -36,25 +36,25 @@ const Register: React.FC = () => {
     formState: { errors },
     trigger,
   } = useForm<Inputs>();
-//http://localhost:8080/petspa/user/register?user_name=Joe&address=America&email=simplygamer1999%40gmail.com&full_name=JoeBiden&gender=MALE&password=123&confirm%20password=123&phone=0384974585&age=65
   const onSubmit: SubmitHandler<Inputs> = (data) => handleRegister(data);
 
   const inputStyle = {
     margin: "8px 0",
   };
 
-  const handleRegister = async (data:any) => {
-      try {
-          const response = await api.post(`/user/register?user_name=${data.firstName}&address=${data.address}&email=${data.email}%40gmail.com&full_name=${data.firstName+data.lastName}&gender=${data.gender}&password=${data.password}&confirm%20password=${data.confirmPassword}&phone=${data.phone}&age=${data.age}`);
-          console.log('Register successful:', response);
-          sessionStorage.setItem('jwtToken', response.data.accessToken);
-          setTimeout(() => {
-              window.location.href = "http://localhost:5173";
-          }, 2000)
-      } catch (err) {
-          console.error('Register error:', err);
-          window.location.reload;
-      }
+  const handleRegister = async (data: any) => {
+    try {
+      const email = encodeURIComponent(data.email)
+      const response = await api.post(`/user/register?user_name=${data.userName}&address=${data.address}&email=${email}&full_name=${data.fullName}&gender=${data.gender}&password=${data.password}&confirm%20password=${data.passwordConfirm}&phone=${data.phone}&age=${data.age}`);
+      ///user/register?user_name=Huy&address=Addresss&email=huy%40gmail.com&full_name=Tong%20Tran%20Le%20Huy&gender=MALE&password=1234&confirm%20password=1234&phone=0321456897&age=21
+      sessionStorage.setItem('jwtToken', response.data.accessToken);
+      // setTimeout(() => {
+      //   window.location.href = "http://localhost:5173";
+      // }, 2000)
+    } catch (err) {
+      console.error('Register error:', err);
+      window.location.reload();
+    }
   };
 
   return (
@@ -81,36 +81,36 @@ const Register: React.FC = () => {
             <TextField
               sx={inputStyle}
               required
-              id="firstName"
-              label="First Name"
-              {...register("firstName", {
-                required: "First name is required",
-                pattern: {
-                  value: /^[a-zA-Z]+$/,
-                  message: "First name must be letters",
-                },
+              id="fullName"
+              label="Full Name"
+              {...register("fullName", {
+                required: "Full name is required",
+                // pattern: {
+                //   value: /^[a-zA-Z]+$/,
+                //   message: "Full name must be letters",
+                // },
               })}
-              error={!!errors.firstName}
-              helperText={errors.firstName ? errors.firstName.message : ""}
-              onBlur={() => trigger("firstName")}
+              error={!!errors.fullName}
+              helperText={errors.fullName ? errors.fullName.message : ""}
+              onBlur={() => trigger("fullName")}
               fullWidth
             />
 
             <TextField
               sx={inputStyle}
               required
-              id="lastName"
-              label="Last Name"
-              {...register("lastName", {
-                required: "Last name is required",
+              id="userName"
+              label="User Name"
+              {...register("userName", {
+                required: "User name is required",
                 pattern: {
                   value: /^[a-zA-Z]+$/,
-                  message: "Last name must be letters",
+                  message: "User name must be letters",
                 },
               })}
-              error={!!errors.lastName}
-              helperText={errors.lastName ? errors.lastName.message : ""}
-              onBlur={() => trigger("lastName")}
+              error={!!errors.userName}
+              helperText={errors.userName ? errors.userName.message : ""}
+              onBlur={() => trigger("userName")}
               fullWidth
             />
 
@@ -126,7 +126,7 @@ const Register: React.FC = () => {
               helperText={errors.address ? errors.address.message : ""}
               onBlur={() => trigger("address")}
               fullWidth
-            />  
+            />
 
             <TextField
               sx={inputStyle}

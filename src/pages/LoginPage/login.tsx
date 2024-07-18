@@ -8,19 +8,27 @@ import api from "../../service/apiService";
 import './login.css';
 
 export default function Login() {
-    
+
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
     const handleLogin = async () => {
         try {
-            const response = await api.get(`/user/login?email=${username}%40gmail.com&password=${password}`);
-            console.log('Login successful:', response);
-            sessionStorage.setItem('jwtToken', response.data.accessToken);
-            toast.success('Login successful!');
-            setTimeout(() => {
-                window.location.href = "http://localhost:5173";
-            }, 2000);
+            const email = encodeURIComponent(username)
+            const response = await api.get(`/user/login?email=${email}&password=${password}`);
+            if (sessionStorage.getItem('jwtToken') == null || sessionStorage.getItem('jwtToken') == undefined || sessionStorage.getItem('jwtToken')?.trim() == "" || sessionStorage.getItem('jwtItem') != response.data.accessToken) {
+                sessionStorage.setItem('jwtToken', response.data.accessToken);
+            }
+            if (sessionStorage.getItem('jwtToken')) {
+                toast.success('Login successful!');
+                setTimeout(() => {
+                    window.location.href = "http://localhost:5173";
+                }, 2000);
+            }
+            else {
+                toast.error('Login failed! Please check your credentials and try again.');
+            }
+
         } catch (err) {
             console.error('Login error:', err);
             toast.error('Login failed! Please check your credentials and try again.');
@@ -64,9 +72,10 @@ export default function Login() {
                 sx={inputStyle}
                 required
                 id="outlined-required-username"
-                label="Username"
+                label="Email"
                 value={username}
                 onChange={handleUsernameChange}
+                type="email"
             />
             <TextField
                 sx={inputStyle}
@@ -78,9 +87,9 @@ export default function Login() {
                 onChange={handlePasswordChange}
             />
             <Link to='/register'>Don't have an account?</Link>
-            <Button type="submit" className="login-button" variant="contained" color="primary">
+            <button type="submit" className="login-button" >
                 <LoginIcon /> Login
-            </Button>
+            </button>
             <ToastContainer />
         </Box>
     );

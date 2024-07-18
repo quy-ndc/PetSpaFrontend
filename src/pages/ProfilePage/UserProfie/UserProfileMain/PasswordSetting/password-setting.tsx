@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import "../AccountSetting/account-setting.css"
@@ -13,6 +13,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 const PasswordSetting: React.FC = () => {
+    
     const [currentPassword, setCurrentPassword] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -36,7 +37,6 @@ const PasswordSetting: React.FC = () => {
     const handleUpdatePassword = async () => {
         try {
             const response = await api.post("user/updatePassword?current_password=12345&new_password=123&confirm_password=123");
-            console.log('Change password:', response);
             setTimeout(() => {
                 window.location.reload;
             }, 2000)
@@ -65,7 +65,7 @@ const PasswordSetting: React.FC = () => {
     return (
         <>
             <Formik
-                enableReinitialize={true}
+            enableReinitialize={true}
                 initialValues={{
                     currentPassword: '',
                     password: '',
@@ -79,15 +79,6 @@ const PasswordSetting: React.FC = () => {
                 {() => (
                     <Form className="account-setting-form">
                         <h1>Change password</h1>
-                        <div className="account-setting-item">
-                            <p>Current Password</p>
-                            <Field
-                                className="account-setting-field"
-                                type="password"
-                                id="currentPassword"
-                                name="currentPassword"
-                            />
-                        </div>
                         <div className="account-setting-item">
                             <p>Password</p>
                             <Field

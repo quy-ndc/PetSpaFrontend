@@ -1,46 +1,75 @@
-import React, { useState } from 'react'
-import Select from 'react-select'
-import "./booking-pet-picker.css"
-
-const options = [
-    { value: 'Edgar', label: 'Edgar (dog)' },
-    { value: 'Cinder', label: 'Cinder (cat)' },
-    { value: 'Cake', label: 'Cake (cat)' },
-    { value: 'Maya', label: 'Maya (dog)' },
-]
+import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
+import "./booking-pet-picker.css";
+import api from '../../../service/apiService';
 
 interface BookingPetPickerProps {
     value: string | null;
     onChange: (selectedOption: { value: string, label: string } | null) => void;
 }
 
-const BookingPetPicker: React.FC<BookingPetPickerProps> = ({value, onChange}) => {
+interface Pet {
+    pet_id: number;
+    pet_name: string;
+    species: string;
+}
 
-    const [isClearable,] = useState(true);
-    const [isSearchable,] = useState(true);
-    const [isDisabled,] = useState(false);
-    const [isLoading,] = useState(false);
-    const [isRtl,] = useState(false);
+const BookingPetPicker: React.FC<BookingPetPickerProps> = ({ value, onChange }) => {
+    const [account, setAccount] = useState<any>();
+    const [loading, setLoading] = useState(true);
+    const [pets, setPets] = useState<{ value: string, label: string }[]>([]);
+
+    const fetchCurrentUser = async () => {
+        try {
+            const response = await api.get(`user/currentUser/` + sessionStorage.getItem("jwtToken"));
+            setAccount(response.data);
+        } catch (error) {
+            console.error("Error fetching account data:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchCurrentUser();
+    }, []);
+
+    const fetchAccountData = async () => {
+        try {
+            const response = await api.get(`/pet/${account.userId}/ownPet`);
+            const petOptions = response.data.data.map((pet: Pet) => ({
+                value: pet.pet_id.toString(),
+                label: `${pet.pet_name} (${pet.species.toLowerCase()})`,
+            }));
+            setPets(petOptions);
+        } catch (error) {
+            console.error("Error fetching pets data:", error);
+        }
+    };
+
+    useEffect(() => {
+        if (account) {
+            fetchAccountData();
+        }
+    }, [account]);
+
+    if (loading) {
+        return <h1 style={{ color: 'black' }}>LOADING</h1>;
+    }
 
     return (
-        <>
-            <Select
-                className="booking-pet-picker"
-                classNamePrefix="select"
-                defaultValue={options[0]}
-                isDisabled={isDisabled}
-                isLoading={isLoading}
-                isClearable={isClearable}
-                isRtl={isRtl}
-                isSearchable={isSearchable}
-                name="color"
-                options={options}
-                placeholder="Choose a pet..."
-                onChange={onChange}
-                value={options.find(option => option.value === value)}
-            />
-        </>
-    )
-}
+        <Select
+            className="booking-pet-picker"
+            classNamePrefix="select"
+            isClearable
+            isSearchable
+            name="pets"
+            options={pets}
+            placeholder="Choose a pet..."
+            onChange={onChange}
+            value={pets.find(option => option.value === value)}
+        />
+    );
+};
 
 export default BookingPetPicker;

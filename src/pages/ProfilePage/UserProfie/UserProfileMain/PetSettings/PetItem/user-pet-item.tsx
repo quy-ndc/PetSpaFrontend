@@ -23,9 +23,8 @@ const UserPetItem: React.FC<UserPetItemProp> = ({ petid, name, gender, age, spec
     const handleDeletePet = async (petId: string) => {
         try {
             const response = await api.put(`/pet/delete?pet_id=${petId}`);
-            console.log('Delete pet successful:', response);
             setTimeout(() => {
-                window.location.reload;
+                window.location.reload();
             }, 1000)
         } catch (err) {
             console.error('Delete pet error:', err);
