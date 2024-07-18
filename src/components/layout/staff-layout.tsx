@@ -166,7 +166,7 @@ const StaffLayout = () => {
                 Appointment
               </Link>
             </Tooltip>
-            {/* <Tooltip title="View doctor schedules">
+            <Tooltip title="View doctor schedules">
               <Link
                 to="schedule"
                 onClick={() => handleOptionChange("schedule")}
@@ -189,7 +189,7 @@ const StaffLayout = () => {
               </Link>
             </Tooltip>
 
-            {/* Shelter 
+            {/* Shelter  */}
             <Tooltip title="Manage shelter">
               <Link
                 to="shelter"
@@ -200,7 +200,7 @@ const StaffLayout = () => {
               >
                 Shelter
               </Link>
-            </Tooltip> */}
+            </Tooltip>
           </div>
         </div>
         <div className="staff-nav-right">
@@ -255,4 +255,4 @@ const StaffLayout = () => {
   );
 };
 
-export default StaffLayout;
+export default StaffLayout; 

@@ -110,6 +110,7 @@ const ShelterTable: React.FC = () => {
   }
 
   const filteredShelter = applyFilters(shelters);
+
   return (
     <>
       <div className="account-table-container">
@@ -146,7 +147,7 @@ const ShelterTable: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredShelter.map((shelter) => (
+              {filteredShelter.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((shelter) => (
                 <tr key={shelter.shelter_id}>
                   <td>
                     <a>{shelter.shelter_name}</a>
@@ -162,13 +163,7 @@ const ShelterTable: React.FC = () => {
                     </span>
                   </td>
 
-                  <td>
-                    <Tooltip title="Edit/Delete">
-                      <IconButton>
-                        <MoreHorizIcon sx={{ fill: "black" }} />
-                      </IconButton>
-                    </Tooltip>
-                  </td>
+                  
                 </tr>
               ))}
             </tbody>
