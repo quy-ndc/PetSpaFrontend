@@ -202,7 +202,7 @@ const StaffLayout = () => {
               </Link>
             </Tooltip>
 
-            {/* Shelter 
+            {/* Shelter  */}
             <Tooltip title="Manage shelter">
               <Link
                 to="shelter"
@@ -213,7 +213,7 @@ const StaffLayout = () => {
               >
                 Shelter
               </Link>
-            </Tooltip> */}
+            </Tooltip>
           </div>
         </div>
         <div className="staff-nav-right">
@@ -279,4 +279,4 @@ const StaffLayout = () => {
   );
 };
 
-export default StaffLayout;
+export default StaffLayout; 

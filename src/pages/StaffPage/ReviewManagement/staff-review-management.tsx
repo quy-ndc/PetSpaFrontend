@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Rating from "@mui/material/Rating";
 
 import "./staff-review-management.css";
-import { Pagination } from "@mui/material";
+import { Pagination, TablePagination } from "@mui/material";
 import { Link } from "react-router-dom";
 
 interface Review {
@@ -36,12 +36,44 @@ const StaffReviewManagement: React.FC = () => {
       reviewText: "Very satisfied with the service.",
       star: 4,
     },
+    {
+      id: 4,
+      userId: "Meo",
+      serviceId: "service1",
+      reviewText: "Great service!",
+      star: 4,
+    },
+    {
+      id: 5,
+      userId: "Mèo",
+      serviceId: "service2",
+      reviewText: "Good experience.",
+      star: 5,
+    },
+    {
+      id: 6,
+      userId: "Méo",
+      serviceId: "service3",
+      reviewText: "Very satisfied with the service.",
+      star: 4,
+    }
   ]);
 
   const handleDelete = (id: number) => {
     setReviews(reviews.filter((review) => review.id !== id));
   };
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
 
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
   return (
     <div className="container">
       {/* <header>
@@ -50,7 +82,7 @@ const StaffReviewManagement: React.FC = () => {
       <main>
         <h1>Reviews</h1>
         <div>
-          {reviews.map((review) => (
+          {reviews.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((review) => (
             <div key={review.id} className="review-card">
               <div className="review-details">
                 <span className="review-user">
@@ -69,11 +101,17 @@ const StaffReviewManagement: React.FC = () => {
             </div>
           ))}
         </div>
-        <Pagination
-          sx={{ display: "flex", justifyContent: "center" }}
-          count={10}
-          color="primary"
-        />
+        <div className="account-table-bottom">
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 15]}
+            component="div"
+            count={reviews.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </div>
       </main>
     </div>
   );
