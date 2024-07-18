@@ -1,11 +1,14 @@
-import React from "react";
-import '././../../../AdminAccountManagement/AccountTable/Filter/account-table-filter.css'
+import React, { useState } from "react";
+import '../../../AdminAccountManagement/AccountTable/Filter/account-table-filter.css';
 import { Popover, Tooltip } from "@mui/material";
 import FilterListIcon from '@mui/icons-material/FilterList';
 
-const ServiceTableFilter: React.FC = () => {
+interface ServiceTableFilterProps {
+    onFilterChange: (filters: any) => void;
+}
 
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+const ServiceTableFilter: React.FC<ServiceTableFilterProps> = ({ onFilterChange }) => {
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -15,9 +18,27 @@ const ServiceTableFilter: React.FC = () => {
         setAnchorEl(null);
     };
 
+    const handleApplyFilters = () => {
+        // Construct filters object based on user selections
+        const newFilters = {
+            status: [] as string[]
+        };
+
+        const statusCheckboxes = document.getElementsByName('status') as NodeListOf<HTMLInputElement>;
+        statusCheckboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                newFilters.status.push(checkbox.value);
+            }
+        });
+
+        // Notify parent component (ServiceTable) of filter changes
+        onFilterChange(newFilters);
+
+        handleClose();
+    };
+
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
-
 
     return (
         <>
@@ -43,35 +64,19 @@ const ServiceTableFilter: React.FC = () => {
             >
                 <div className="account-filter-popup-container">
                     <div className="account-filter-pop-up-items">
-                        <h3>Type</h3>
+                        <h3>Status</h3>
                         <div className="account-filter-pop-up-item">
                             <div>
-                                <input type="checkbox" />
-                                <span>Holistic</span>
+                                <input type="checkbox" name="status" value="ACTIVE" />
+                                <span>Active</span>
                             </div>
                             <div>
-                                <input type="checkbox" />
-                                <span>Surgical</span>
-                            </div>
-                            <div>
-                                <input type="checkbox" />
-                                <span>Clinical</span>
-                            </div>
-                            <div>
-                                <input type="checkbox" />
-                                <span>Grooming</span>
+                                <input type="checkbox" name="status" value="INACTIVE" />
+                                <span>Inactive</span>
                             </div>
                         </div>
-                        <h3>Price</h3>
-                        <div className="account-filter-pop-up-item-age">
-                            <div>
-                                <span>Min price</span>
-                                <input type="number" />
-                            </div>
-                            <div>
-                                <span>Max price</span>
-                                <input type="number" />
-                            </div>
+                        <div className="account-filter-pop-up-actions">
+                            <button className="apply-filter-button" onClick={handleApplyFilters}>Apply</button>
                         </div>
                     </div>
                 </div>

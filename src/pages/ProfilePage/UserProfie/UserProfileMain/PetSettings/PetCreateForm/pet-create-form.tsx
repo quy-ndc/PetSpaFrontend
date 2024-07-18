@@ -60,7 +60,6 @@ const UserPetCreateForm: React.FC<UserPetCreateFormProps> = ({
                 type_of_species: values.breed || '',
                 status: 'ACTIVE'
             });
-            console.log('Update pet successful:', response);
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
@@ -79,7 +78,6 @@ const UserPetCreateForm: React.FC<UserPetCreateFormProps> = ({
                 type_of_species: values.breed || '',
                 status: 'ACTIVE'
             });
-            console.log('Update pet successful:', response);
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
@@ -87,8 +85,6 @@ const UserPetCreateForm: React.FC<UserPetCreateFormProps> = ({
             console.error('Update pet error:', err);
         }
     };
-
-    console.log(petid)
 
     return (
         <>
@@ -103,10 +99,8 @@ const UserPetCreateForm: React.FC<UserPetCreateFormProps> = ({
                 validationSchema={SignupSchema}
                 onSubmit={values => {
                     if (method.toLowerCase() === 'update') {
-                        //console.log(petid)
                         handleUpdatePet(petid, values);
                     } else {
-                        console.log(values)
                         handleCreatePet(values);
                     }
                 }}

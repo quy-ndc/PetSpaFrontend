@@ -67,8 +67,8 @@ const BookingTimePicker: React.FC<BookingTimePickerProps> = ({ value, onChange }
                     value={value}
                     onChange={(newValue) => onChange(newValue)}
                     // shouldDisableTime={shouldDisableTime}
-                    // minTime={minTime}
-                    // maxTime={maxTime}
+                    minTime={minTime}
+                    maxTime={maxTime}
                     views={['hours', 'minutes']}
                 />
             </LocalizationProvider>

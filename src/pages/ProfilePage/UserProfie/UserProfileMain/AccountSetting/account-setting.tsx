@@ -38,7 +38,6 @@ const AccountSetting: React.FC = () => {
         try {
             const email = encodeURIComponent(data.email)
             const response = await api.put(`/user/updateProfile?userId=${account.userId}&user_name=${data.firstName}&address=${data.address}&email=${email}&full_name=${data.firstName + ' ' + data.lastName}&gender=${data.gender}&phone=${data.phone}`);
-            console.log('Login successful:', response);
             sessionStorage.setItem('jwtToken', response.data.accessToken);
         } catch (err) {
             console.error('Login error:', err);

@@ -158,3 +158,29 @@
     align-items: center;
     text-align: center;
 }
+
+
+
+.account-table-delete-button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 15px;
+    position: relative;
+    color: red;
+}
+
+.account-table-delete-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.account-table-delete-button:hover::after {
+    width: 100%;
+    border: 0.5px solid red;
+}

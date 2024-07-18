@@ -118,24 +118,17 @@ const PetTable: React.FC = () => {
                     <table className='admin-account-table'>
                         <thead>
                             <tr>
-                                <th>
-                                    <input type='checkbox' />
-                                </th>
                                 {columns.map((column) => (
                                     <th key={column}>
                                         <span>{column}</span>
                                     </th>
                                 ))}
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredPets.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((pet) => (
                                     <tr key={pet.pet_id}>
-                                        <td>
-                                            <input type='checkbox' />
-                                        </td>
                                         <td>
                                             <a href="#">
                                                 {pet.pet_name}
@@ -151,19 +144,12 @@ const PetTable: React.FC = () => {
                                             {pet.type_of_species}
                                         </td>
                                         <td>
-                                            <Link to='#'>
+                                            <a>
                                                 {pet.owner.fullName}
-                                            </Link>
+                                            </a>
                                         </td>
                                         <td className='account-table-status-column'>
                                             <span className={pet.status.toLowerCase() + '-status'}>{pet.status}</span>
-                                        </td>
-                                        <td>
-                                            <Tooltip title='Edit/Delete'>
-                                                <IconButton>
-                                                    <MoreHorizIcon sx={{ fill: 'black' }} />
-                                                </IconButton>
-                                            </Tooltip>
                                         </td>
                                     </tr>
                                 ))}

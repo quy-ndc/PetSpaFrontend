@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import "../AccountSetting/account-setting.css"
@@ -13,6 +13,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 const PasswordSetting: React.FC = () => {
+    
     const [currentPassword, setCurrentPassword] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -36,7 +37,6 @@ const PasswordSetting: React.FC = () => {
     const handleUpdatePassword = async () => {
         try {
             const response = await api.post("user/updatePassword?current_password=12345&new_password=123&confirm_password=123");
-            console.log('Change password:', response);
             setTimeout(() => {
                 window.location.reload;
             }, 2000)

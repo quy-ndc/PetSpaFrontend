@@ -7,7 +7,7 @@ import BookingComboDisplay from './BookingComboDisplay/booking-combo-display';
 import "./booking-service-picker.css"
 
 interface BookingServicePickerProps {
-    onChange: (selectedService: string) => void
+    onChange: (selectedServiceId: number, selectedServiceName: string) => void;
 }
 
 const BookingServicePicker: React.FC<BookingServicePickerProps> = ({ onChange }) => {
@@ -24,12 +24,15 @@ const BookingServicePicker: React.FC<BookingServicePickerProps> = ({ onChange })
     const handleCloseCombo = () => setOpenCombo(false);
 
     const [service, setService] = useState<string>("");
-    const handleServiceSelection = (selectedService: string) => {
-        setService(selectedService);
+    const [serviceId, setServiceId] = useState<number | null>(null);
+
+    const handleServiceSelection = (selectedServiceId: number, selectedServiceName: string) => {
+        setServiceId(selectedServiceId);
+        setService(selectedServiceName);
         handleClose();
         handleCloseService();
         handleCloseCombo();
-        onChange(selectedService);
+        onChange(selectedServiceId, selectedServiceName);
     };
 
     return (

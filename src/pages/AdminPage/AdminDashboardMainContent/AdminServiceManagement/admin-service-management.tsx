@@ -64,6 +64,7 @@ const AdminServiceManagement: React.FC = () => {
                     {bodyOptions.map(option => (
                         <Tooltip title={option.label}>
                             <button
+                                key={option.label}
                                 onClick={() => handleBodyChange(option.id)}
                                 className={`admin-dashboard-user-filter-option${selectedOption === option.id ? ' selected-option' : ''}`}
                             >

@@ -27,7 +27,6 @@ const DoctorLayout = () => {
   const handleLogout = async () => {
     try {
       const response = await api.post(`/user/logout`);
-      console.log("Logout successful:", response);
       sessionStorage.removeItem("jwtToken");
       setTimeout(() => {
         window.location.href = "http://localhost:5173";

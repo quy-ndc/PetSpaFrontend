@@ -12,8 +12,6 @@ const generateData = () => {
 
 const data = generateData();
 
-console.log(dates)
-
 export function NewAccountYear() {
 
     return (

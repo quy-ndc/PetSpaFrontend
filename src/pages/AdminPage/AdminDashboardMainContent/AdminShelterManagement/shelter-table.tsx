@@ -65,7 +65,6 @@ const ShelterTable: React.FC = () => {
 
   useEffect(() => {
     fetchAllShelter();
-    console.log(shelters);
   }, []);
 
   const applyFilters = (data: any[]) => {
@@ -110,7 +109,6 @@ const ShelterTable: React.FC = () => {
     return <h1 style={{ color: "black" }}>Loading...</h1>;
   }
 
-  // Apply filters
   const filteredShelter = applyFilters(shelters);
   return (
     <>
@@ -139,11 +137,8 @@ const ShelterTable: React.FC = () => {
           <table className="admin-account-table">
             <thead>
               <tr>
-                <th>
-                  <input type="checkbox" />
-                </th>
                 {columns.map((column) => (
-                  <th>
+                  <th key={column}>
                     <span>{column}</span>
                   </th>
                 ))}
@@ -154,18 +149,15 @@ const ShelterTable: React.FC = () => {
               {filteredShelter.map((shelter) => (
                 <tr key={shelter.shelter_id}>
                   <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>
-                    <Link to="#">{shelter.shelter_name}</Link>
+                    <a>{shelter.shelter_name}</a>
                   </td>
                   <td className="account-table-status-column">
-                    <span className={shelter.status.toLowerCase() + "-status"}>
+                    <span className={shelter.shelterStatus.toLowerCase() + "-status"}>
                       {shelter.status}
                     </span>
                   </td>
                   <td className="account-table-status-column">
-                    <span className={shelter.status.toLowerCase() + "-status"}>
+                    <span className={shelter.shelterStatus.toLowerCase() + "-status"}>
                       {shelter.shelterStatus}
                     </span>
                   </td>

@@ -39,7 +39,6 @@ const AdminRevenueManagement: React.FC = () => {
     const handleBodyChange = (bodyId: number) => {
         setSelectedBody(getSelectedChartComponent(bodyId));
         setSelectedOption(bodyId);
-        console.log(bodyId)
     };
 
     const getSelectedChartComponent = (bodyId: number): React.ReactNode => {

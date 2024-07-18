@@ -7,6 +7,9 @@ import AccountTableAddButton from './CreateForm/account-table-add-button';
 import AccountTableFilter from './Filter/account-table-filter';
 import api from '../../../../../service/apiService';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import AccountTableEditButton from './CreateForm/account-table-update-button';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AccountTable: React.FC = () => {
     const [columns] = useState<string[]>([
@@ -14,6 +17,7 @@ const AccountTable: React.FC = () => {
         "Gender",
         "Email",
         "Phone",
+        "Address",
         "Role",
         "Status",
     ]);
@@ -107,6 +111,20 @@ const AccountTable: React.FC = () => {
     // Apply filters
     const filteredAccounts = applyFilters(accounts);
 
+    const handleDeleteAccount = async (userId: string) => {
+        try {
+            const response = await api.delete(`/user/delete/${userId}`);
+            if (response) {
+                toast.success('Delete account successful!');
+            }
+            setTimeout(() => {
+                window.location.reload;
+            }, 1000)
+        } catch (err) {
+            console.error('Delete pet error:', err);
+        }
+    };
+
     return (
         <>
             <div className="account-table-container">
@@ -134,9 +152,6 @@ const AccountTable: React.FC = () => {
                     <table className='admin-account-table'>
                         <thead>
                             <tr>
-                                <th>
-                                    <input type='checkbox' />
-                                </th>
                                 {columns.map((column) => (
                                     <th key={column}>
                                         <span>{column}</span>
@@ -148,14 +163,11 @@ const AccountTable: React.FC = () => {
                         <tbody>
                             {filteredAccounts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((account) => (
-                                    <tr key={account.email}>
+                                    <tr key={account.userId}>
                                         <td>
-                                            <input type='checkbox' />
-                                        </td>
-                                        <td>
-                                            <Link to='#'>
+                                            <a>
                                                 {account.fullName}
-                                            </Link>
+                                            </a>
                                         </td>
                                         <td>
                                             {account.gender}
@@ -167,17 +179,32 @@ const AccountTable: React.FC = () => {
                                             {account.phone}
                                         </td>
                                         <td>
+                                            {account.address}
+                                        </td>
+                                        <td>
                                             {account.role.roleName}
                                         </td>
                                         <td className='account-table-status-column'>
                                             <span className={account.status.toLowerCase() + '-status'}>{account.status}</span>
                                         </td>
-                                        <td>
-                                            <Tooltip title='Edit/Delete'>
-                                                <IconButton>
-                                                    <MoreHorizIcon sx={{ fill: 'black' }} />
-                                                </IconButton>
-                                            </Tooltip>
+                                        <td style={{ display: 'flex', flexDirection: 'column', gap: 15 }}>
+                                            <AccountTableEditButton
+                                                userId={account.userId}
+                                                fullName={account.fullName}
+                                                userName={account.userName}
+                                                email={account.email}
+                                                gender={account.gender}
+                                                address={account.address}
+                                                age={account.age}
+                                                phone={account.phone}
+                                                role={account.role.roleName}
+                                            />
+                                            <button
+                                                onClick={() => handleDeleteAccount(account.userId)}
+                                                className='account-table-delete-button'
+                                            >
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}
@@ -197,6 +224,7 @@ const AccountTable: React.FC = () => {
                     />
                 </div>
             </div>
+            <ToastContainer />
         </>
     );
 };
