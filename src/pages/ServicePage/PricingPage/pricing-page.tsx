@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./pricing-page.css";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,6 +9,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TablePagination from "@mui/material/TablePagination";
 import { Link } from "react-router-dom";
+import api from "../../../service/apiService";
+import formatNumber from "../../../utils/formatPrice";
 
 interface PriceTablePropItem {
   name: string;
@@ -16,25 +18,28 @@ interface PriceTablePropItem {
   price: number;
 }
 
-const fakeData: PriceTablePropItem[] = [
-  { name: "Service 1", type: "Basic", price: 100 },
-  { name: "Service 2", type: "Premium", price: 200 },
-  { name: "Service 3", type: "Basic", price: 150 },
-  { name: "Service 4", type: "Premium", price: 250 },
-  { name: "Service 5", type: "Basic", price: 100 },
-  { name: "Service 6", type: "Premium", price: 200 },
-  { name: "Service 7", type: "Basic", price: 150 },
-  { name: "Service 8", type: "Premium", price: 250 },
-  { name: "Service 9", type: "Basic", price: 100 },
-  { name: "Service 10", type: "Premium", price: 200 },
-  { name: "Service 11", type: "Basic", price: 150 },
-  { name: "Service 12", type: "Premium", price: 250 },
-];
 
-export default function PriceTable() {
+const PriceTable: React.FC = () => {
+  const [columns] = useState<string[]>(["Service", "Type", "Price (vnd)"]);
+  const [services, setServices] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const fetchServiceData = async () => {
+    try {
+      const response = await api.get(`/service/getAll`);
 
+      setServices(response.data);
+    } catch (error) {
+      console.error("Error fetching service data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchServiceData();
+  }, []);
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -45,9 +50,6 @@ export default function PriceTable() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, fakeData.length - page * rowsPerPage);
 
   return (
     <>
@@ -69,57 +71,46 @@ export default function PriceTable() {
           </p>
         </div>
       </div>
-
-      <TableContainer
-        component={Paper}
-        style={{ margin: "auto", maxWidth: "75%" }}
-      >
-        <Table className="price-table" aria-label="price table">
-          <TableHead>
-            <TableRow>
-              <TableCell style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                Name
-              </TableCell>
-              <TableCell style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                Type
-              </TableCell>
-              <TableCell style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                Price (VND)
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {fakeData
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => (
-                <TableRow key={index}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell>{row.type}</TableCell>
-                  <TableCell>{row.price}</TableCell>
-                </TableRow>
+      <div className="account-table-main">
+        <table className="admin-account-table">
+          <thead>
+            <tr>
+              {columns.map((column, index) => (
+                <th key={index}>
+                  <span>{column}</span>
+                </th>
               ))}
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 53 * emptyRows }}>
-                <TableCell colSpan={3} />
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 15]}
-        component="div"
-        count={fakeData.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-      <div className="pricing-page-service-detail-right">
-        <Link to="/booking">Book now</Link>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {services?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((service) => (
+                <tr key={service.serviceId}>
+                  <td>
+                    <a>{service.serviceName}</a>
+                  </td>
+                  <td>{service.typeOfService[0]?.typeName}</td>
+                  <td>{formatNumber(service.price)}</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 15]}
+          component="div"
+          count={services.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+        <div className="pricing-page-service-detail-right">
+          <Link to="/booking">Book now</Link>
+        </div>
       </div>
     </>
   );
-}
+};
+export default PriceTable;
