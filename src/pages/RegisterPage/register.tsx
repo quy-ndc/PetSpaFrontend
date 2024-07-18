@@ -6,7 +6,6 @@ import {
   TextField,
   Button,
   Typography,
-  Checkbox,
   FormControlLabel,
   RadioGroup,
   Radio,
@@ -135,10 +134,10 @@ const Register: React.FC = () => {
               label="Email Address"
               {...register("email", {
                 required: "Email is required",
-                // pattern: {
-                //   value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                //   message: "Email is not valid",
-                // },
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Email is not valid",
+                },
               })}
               error={!!errors.email}
               helperText={errors.email ? errors.email.message : ""}
