@@ -140,7 +140,7 @@ const BookingPage: React.FC = () => {
   };
 
   const validatePhone = (phone: string) => {
-    const phoneRegex = /^[0-9]{10}$/; // assuming 10 digits for phone number
+    const phoneRegex = /^0[0-9]{9,10}$/; // assuming 10 digits for phone number
     return phoneRegex.test(phone);
   };
 
