@@ -88,7 +88,6 @@ const StaffAppointmentManagement: React.FC = () => {
           <h1>Appointments</h1>
           <div>
             {appointments.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              ?.filter((appointment) => appointment.status === 'INACTIVE')
               .map((filteredAppointment) => (
                 <div key={filteredAppointment.id} className="appointment-card">
                   <div className="grid-item">
@@ -110,7 +109,7 @@ const StaffAppointmentManagement: React.FC = () => {
                     <strong>Contact:</strong> {filteredAppointment.phoneNumber}
                   </div>
                   <div className="grid-item">
-                    <strong>Contact:</strong> {filteredAppointment.status}
+                    <strong>Status:</strong> {filteredAppointment.status == "INACTIVE" ? "UNAPPROVED" : "APPROVED"}
                   </div>
                   <div>
                     < button
@@ -131,16 +130,16 @@ const StaffAppointmentManagement: React.FC = () => {
             }
           </div >
           <div className="account-table-bottom">
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 15]}
-            component="div"
-            count={appointments.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </div>        </main >
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 15]}
+              component="div"
+              count={appointments.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </div>        </main >
       </div >
       <ToastContainer />
     </>

@@ -55,7 +55,7 @@ const AdminDashboardSideNav: React.FC = () => {
                         Services
                     </a>
                 </li>
-
+                {/* 
                 <li
                     className={`admin-dashboard-left-nav-link ${selectedNavItem === 'shelter' ? 'active-dashboard-option' : ''}`}
                     onClick={() => setSelectedNavItem('shelter')}
@@ -64,7 +64,7 @@ const AdminDashboardSideNav: React.FC = () => {
                         <HomeIcon />
                         Shelter
                     </a>
-                </li>
+                </li> */}
 
                 {/* <li
                         className={`admin-dashboard-left-nav-link ${selectedNavItem === 'revenue' ? 'active-dashboard-option' : ''}`}

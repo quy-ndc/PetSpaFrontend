@@ -11,14 +11,13 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 const UserPetSettings: React.FC = () => {
 
     const [account, setAccount] = useState<any>()
+    const [loading, setLoading] = useState(true)
     const fetchCurrentUser = async () => {
         try {
             const response = await api.get(`user/currentUser/` + sessionStorage.getItem("jwtToken"));
             setAccount(response.data);
         } catch (error) {
             console.error("Error fetching account data:", error);
-        } finally {
-            setLoading(false);
         }
     };
     useEffect(() => {
@@ -69,6 +68,10 @@ const UserPetSettings: React.FC = () => {
         />
     );
 
+    if (loading) {
+        return <h1 style={{ color: "black" }}>LOADING</h1>
+    }
+
     return (
         <>
             <div className="user-profile-pet-container">
@@ -106,7 +109,6 @@ const UserPetSettings: React.FC = () => {
                             />
                         )
                     ))}
-
                 </div>
             </div>
         </>
@@ -115,6 +117,3 @@ const UserPetSettings: React.FC = () => {
 
 export default UserPetSettings;
 
-function setLoading(arg0: boolean) {
-    throw new Error("Function not implemented.");
-}

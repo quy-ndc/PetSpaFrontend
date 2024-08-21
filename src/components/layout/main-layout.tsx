@@ -256,7 +256,7 @@ const MainLayout = () => {
                                             </div>
                                         </>
                                     )}
-                                    {account?.role?.roleName === "admin" && (
+                                    {account?.role?.roleName === "staff" && (
                                         <>
                                             <div className="nav-right-dropdown-item">
                                                 <CalendarMonthIcon />

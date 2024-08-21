@@ -27,7 +27,6 @@ const UserAppointmentItemList: React.FC = () => {
         try {
             const response = await api.get(`/appointment/getByUserId?userId=${account.userId}`);
             setAppointment(response.data.listData);
-            //console.log(response.data.listData)
         } catch (error) {
             console.error("Error fetching account data:", error);
         } finally {
@@ -35,7 +34,9 @@ const UserAppointmentItemList: React.FC = () => {
         }
     };
     useEffect(() => {
-        fetchAppointmentData();
+        if (account) {
+            fetchAppointmentData();
+        }
     }, [account]);
 
 
@@ -63,7 +64,9 @@ const UserAppointmentItemList: React.FC = () => {
                 <div className="doctor-dashboard-item-list-right">
                     <div className="doctor-dashboard-items">
                         {appointments
-                            ?.filter((appointment) => appointment.status === 'ACTIVE')
+                            ?.filter((appointment) =>
+                                appointment.status === 'ACTIVE' && new Date(appointment.startTime) > new Date()
+                            )
                             .map((filteredAppointment) => (
                                 <UserAppointmentItem
                                     time={formatISODate(filteredAppointment.startTime)}

@@ -61,10 +61,8 @@ const AdminAccountCreateForm: React.FC<UserCreateFormProps> = ({
     const handleUpdateAccount = async (values: any) => {
         try {
             console.log(values)
-            const response = await api.put(`user/updateProfile?userId=${values.userId}&user_name=${values.userName}&address=${values.address}&email=${values.email}&full_name=${values.fullName}&gender=${values.gender}&phone=${values.phone}`);
-            if (response) {
-                toast.success('Update account successful!');
-            }
+            const response = await api.put(`/user/updateProfile?userId=${values.userId}&user_name=${values.userName}&address=${values.address}&email=${values.email}&full_name=${values.fullName}&gender=${values.gender}&phone=${values.phone}`);
+            toast.success('Update account successful!');
             setTimeout(() => {
                 window.location.reload();
             }, 2000);
@@ -73,8 +71,8 @@ const AdminAccountCreateForm: React.FC<UserCreateFormProps> = ({
         }
     };
 
-    const hashPassword = async (password: string) => {
-        const saltRounds = 10; // Number of rounds to generate the salt
+    const hashPassword = async (password: string): Promise<string> => {
+        const saltRounds = 10;
         try {
             const salt = await bcrypt.genSalt(saltRounds);
             const hash = await bcrypt.hash(password, salt);
@@ -84,6 +82,16 @@ const AdminAccountCreateForm: React.FC<UserCreateFormProps> = ({
         }
     };
 
+
+    const getHashedPassword = (password: string): void => {
+        hashPassword(password)
+            .then(hashedPassword => {
+                console.log(hashedPassword); // The hashed password string
+            })
+            .catch(error => {
+                console.error("Error hashing password:", error);
+            });
+    };
 
     return (
         <>
@@ -105,12 +113,12 @@ const AdminAccountCreateForm: React.FC<UserCreateFormProps> = ({
                         console.log(`user/updateProfile?userId=${values.userId}&user_name=${values.userName}&address=${values.address}&email=${values.email}&full_name=${values.fullName}&gender=${values.gender}&phone=${values.phone}`)
                         handleUpdateAccount(values);
                     } else {
-                        const accountPassword = hashPassword("1234");
+                        const accountPassword = getHashedPassword("1234");
 
                         const newUser = {
                             userName: values.userName,
                             email: values.email,
-                            password: accountPassword,
+                            password: "1234",
                             fullName: values.fullName,
                             age: values.age,
                             gender: values.gender,
@@ -124,6 +132,7 @@ const AdminAccountCreateForm: React.FC<UserCreateFormProps> = ({
                                 status: "ACTIVE"
                             }
                         }
+                        //console.log(accountPassword)
                         handleCreateAccount(newUser);
                     }
                 }}
@@ -142,6 +151,7 @@ const AdminAccountCreateForm: React.FC<UserCreateFormProps> = ({
                                     className="admin-account-create-field"
                                     name="fullName"
                                     type="text"
+                                    placeholder="Enter email"
                                 />
                                 <ErrorMessage
                                     className="admin-account-create-error"

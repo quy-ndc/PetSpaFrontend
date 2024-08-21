@@ -114,9 +114,7 @@ const AccountTable: React.FC = () => {
     const handleDeleteAccount = async (userId: string) => {
         try {
             const response = await api.delete(`/user/delete/${userId}`);
-            if (response) {
-                toast.success('Delete account successful!');
-            }
+            toast.success('Delete account successful!');
             setTimeout(() => {
                 window.location.reload;
             }, 1000)

@@ -5,7 +5,7 @@ import api from '../../../../../../service/apiService';
 import UserAppointmentItem from '../OtherAppointment/user-appointment-item';
 import UserAppointmentItemList from '../OtherAppointment/user-appointment-item-list';
 
-const UserFinishedAppointmentItemList: React.FC = () => {
+const UserDoneAppointmentItemList: React.FC = () => {
 
     const [account, setAccount] = useState<any>();
     const [appointments, setAppointment] = useState<any[]>([]);
@@ -63,10 +63,12 @@ const UserFinishedAppointmentItemList: React.FC = () => {
                 <div className="doctor-dashboard-item-list-right">
                     <div className="doctor-dashboard-items">
                         {appointments
-                            ?.filter((appointment) => appointment.status === 'INACTIVE')
+                            ?.filter((appointment) =>
+                                appointment.status === 'ACTIVE' && new Date(appointment.startTime) < new Date()
+                            )
                             .map((filteredAppointment) => (
-                                <UserAppointmentItem
-                                    //appointmentId={filteredAppointment.appointmentId}
+                                <UserFinishedAppointmentItem
+                                    appointmentId={filteredAppointment.appointmentId}
                                     time={formatISODate(filteredAppointment.startTime)}
                                     type='Appointment'
                                     name={filteredAppointment.bookedDoctor.fullName}
@@ -80,4 +82,4 @@ const UserFinishedAppointmentItemList: React.FC = () => {
     );
 };
 
-export default UserFinishedAppointmentItemList;
+export default UserDoneAppointmentItemList;

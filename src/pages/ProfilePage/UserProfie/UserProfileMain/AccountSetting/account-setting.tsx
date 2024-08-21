@@ -3,10 +3,14 @@ import "./account-setting.css";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import api from "../../../../../service/apiService";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignupSchema = Yup.object().shape({
     firstName: Yup.string().trim().required('First name cannot be empty').matches(/^[^\d]*$/, 'First name cannot contain numbers'),
     lastName: Yup.string().trim().required('Last name cannot be empty').matches(/^[^\d]*$/, 'Last name cannot contain numbers'),
+    fullName: Yup.string().trim().required('Full name cannot be empty'),
+    userName: Yup.string().trim().required('User name cannot be empty').matches(/^[^\d]*$/, 'User name cannot contain numbers'),
     email: Yup.string().trim().email('Invalid email').required('Required'),
     phone: Yup.string().required('Phone cannot be empty').matches(/^\d+$/, 'Phone must contain only numbers'),
     age: Yup.string().required('Age cannot be empty').matches(/^\d+$/, 'Age must contain only numbers'),
@@ -36,11 +40,12 @@ const AccountSetting: React.FC = () => {
 
     const handleUpdateAccount = async (data: any) => {
         try {
-            const email = encodeURIComponent(data.email)
-            const response = await api.put(`/user/updateProfile?userId=${account.userId}&user_name=${data.firstName}&address=${data.address}&email=${email}&full_name=${data.firstName + ' ' + data.lastName}&gender=${data.gender}&phone=${data.phone}`);
-            sessionStorage.setItem('jwtToken', response.data.accessToken);
+            console.log(data)
+            const email = encodeURIComponent(data.email);
+            const response = await api.put(`/user/updateProfile?userId=${account.userId}&user_name=${data.userName}&address=${data.address}&email=${email}&full_name=${data.fullName}&gender=${data.gender}&phone=${data.phone}`);
+            toast.success("Update profile successful");
         } catch (err) {
-            console.error('Login error:', err);
+            toast.error("Update profile failed");
         }
     };
 
@@ -54,8 +59,7 @@ const AccountSetting: React.FC = () => {
                 enableReinitialize={true}
                 initialValues={{
                     userName: account ? account.userName : '',
-                    firstName: account ? account.userName : '',
-                    lastName: account ? account.fullName : '',
+                    fullName: account ? account.fullName : '',
                     email: account ? account.email : '',
                     phone: account ? account.phone : '',
                     age: account ? account.age : '',
@@ -64,6 +68,7 @@ const AccountSetting: React.FC = () => {
                 }}
                 validationSchema={SignupSchema}
                 onSubmit={values => {
+                 //   console.log(values);
                     handleUpdateAccount(values)
                 }}
             >
@@ -72,28 +77,28 @@ const AccountSetting: React.FC = () => {
                         <h1>Account settings</h1>
                         <div className="account-setting-input-fields">
                             <div className="account-setting-item">
-                                <p>First name</p>
+                                <p>User name</p>
                                 <Field
                                     className="account-setting-field"
-                                    name="firstName"
+                                    name="userName"
                                     type="text"
                                 />
                                 <ErrorMessage
                                     className="account-setting-error"
-                                    name="firstName"
+                                    name="userName"
                                     component="span"
                                 />
                             </div>
                             <div className="account-setting-item">
-                                <p>Last name</p>
+                                <p>Full name</p>
                                 <Field
                                     className="account-setting-field"
-                                    name="lastName"
+                                    name="fullName"
                                     type="text"
                                 />
                                 <ErrorMessage
                                     className="account-setting-error"
-                                    name="lastName"
+                                    name="fullName"
                                     component="span"
                                 />
                             </div>
@@ -177,6 +182,7 @@ const AccountSetting: React.FC = () => {
                     </Form>
                 )}
             </Formik>
+            <ToastContainer />
         </>
     );
 };

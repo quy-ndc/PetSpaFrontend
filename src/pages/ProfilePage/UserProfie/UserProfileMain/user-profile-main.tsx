@@ -9,6 +9,7 @@ import UserFinishedAppointmentItemList from "./Appointment/FinishedAppointment/u
 import UserPetSettings from "./PetSettings/user-pet-settings";
 import UserOverview from "./UserOverview/user-overview";
 import UserReviewList from "./UserReview/user-review-list";
+import UserDoneAppointmentItemList from "./Appointment/FinishedAppointment/user-done-appoitment-list";
 
 const UserProfileMainContent: React.FC = () => {
 
@@ -40,6 +41,7 @@ const UserProfileMainContent: React.FC = () => {
                         <UserAppointment
                             futureAppointment={<UserAppointmentItemList />}
                             pastAppointment={<UserFinishedAppointmentItemList />}
+                            finishAppointment={<UserDoneAppointmentItemList />}
                         />
                     </>
                 )}
@@ -55,7 +57,7 @@ const UserProfileMainContent: React.FC = () => {
                         <UserPetSettings />
                     </>
                 )}
-            </div>
+            </div >
         </>
     );
 };

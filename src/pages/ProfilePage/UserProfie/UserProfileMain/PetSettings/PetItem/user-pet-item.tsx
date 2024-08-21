@@ -141,12 +141,12 @@ const UserPetItem: React.FC<UserPetItemProp> = ({ petid, name, gender, age, spec
                             Delete
                         </button>
                     </div>
-                    <button
+                    {/* <button
                         className="user-profile-pet-medical"
                         onClick={toggleDrawer("right", true)}
                     >
                         See medical history
-                    </button>
+                    </button> */}
                     <Drawer
                         anchor={"right"}
                         open={state["right"]}

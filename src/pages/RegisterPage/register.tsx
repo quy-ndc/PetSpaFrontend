@@ -6,6 +6,7 @@ import {
   TextField,
   Button,
   Typography,
+  Checkbox,
   FormControlLabel,
   RadioGroup,
   Radio,
@@ -45,11 +46,9 @@ const Register: React.FC = () => {
     try {
       const email = encodeURIComponent(data.email)
       const response = await api.post(`/user/register?user_name=${data.userName}&address=${data.address}&email=${email}&full_name=${data.fullName}&gender=${data.gender}&password=${data.password}&confirm%20password=${data.passwordConfirm}&phone=${data.phone}&age=${data.age}`);
-      ///user/register?user_name=Huy&address=Addresss&email=huy%40gmail.com&full_name=Tong%20Tran%20Le%20Huy&gender=MALE&password=1234&confirm%20password=1234&phone=0321456897&age=21
-      sessionStorage.setItem('jwtToken', response.data.accessToken);
-      // setTimeout(() => {
-      //   window.location.href = "http://localhost:5173";
-      // }, 2000)
+      setTimeout(() => {
+        window.location.href = "http://localhost:5173";
+      }, 2000)
     } catch (err) {
       console.error('Register error:', err);
       window.location.reload();
@@ -134,10 +133,10 @@ const Register: React.FC = () => {
               label="Email Address"
               {...register("email", {
                 required: "Email is required",
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: "Email is not valid",
-                },
+                // pattern: {
+                //   value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                //   message: "Email is not valid",
+                // },
               })}
               error={!!errors.email}
               helperText={errors.email ? errors.email.message : ""}
